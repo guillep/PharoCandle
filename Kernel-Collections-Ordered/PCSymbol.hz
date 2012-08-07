@@ -1,0 +1,77 @@
+Class
+	name: #PCSymbol;
+	superclass: #ClassPCString;
+	instanceSpecification: #(#variable #byte );
+	instanceVariables: #();
+	classVariables: #();
+	package: #'PharoCandle-Kernel-Collections-Ordered'.
+
+Class PCSymbol >> replaceFrom: start to: stop with: replacement startingAt: repStart
+[
+self errorNoModification
+]
+
+Class PCSymbol >> hash
+[
+^ self identityHash
+]
+
+Class PCSymbol >> printOn: aStream
+[
+aStream nextPutAll: self
+]
+
+Class PCSymbol >> asSymbol
+[
+^ self
+]
+
+Class PCSymbol >> errorNoModification
+[
+self error: 'Symbols can not be modified.'
+]
+
+Class PCSymbol >> basicCopy
+[
+	"Answer myself because Symbols are unique."
+
+]
+
+Class PCSymbol >> at: anInteger put: anObject
+[
+	"You cannot modify the receiver."
+self errorNoModification
+]
+
+Class PCSymbol >> asString
+[
+	"Answer a string containing my characters."
+| sz result |sz := self size.result := PCString new: sz.result	replaceFrom: 1	to: sz	with: self	startingAt: 1.^ result
+]
+
+Class PCSymbol >> = anObject
+[
+^ self == anObject
+]
+
+Class PCSymbol >> species
+[
+^ PCString
+]
+
+Class PCSymbol >> initFrom: aString
+[
+	"Warning! Use only to initialize new Symbols. Symbols are assumed to be immutable there after."
+self size = aString size	ifFalse: [ self error: 'size mismatch' ].super	replaceFrom: 1	to: self size	with: aString	startingAt: 1
+]
+
+Metaclass
+	name: #PCSymbol;
+	instanceVariables: #().
+
+Metaclass PCSymbol >> new: size
+[
+	"Symbols are unique. You can create a new Symbol from a String using 'asSymbol'."
+self cannotInstantiate
+]
+

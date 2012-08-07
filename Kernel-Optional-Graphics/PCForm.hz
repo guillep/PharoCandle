@@ -1,0 +1,89 @@
+Class
+	name: #PCForm;
+	superclass: #ClassPCObject;
+	instanceSpecification: #(#pointers #words );
+	instanceVariables: #(#bits #width #height #depth #bitBlt );
+	classVariables: #();
+	package: #'PharoCandle-Kernel-Optional-Graphics'.
+
+Class PCForm >> setColorR: r g: g b: b
+[
+	"Set the fill color for rectangle drawing operations."
+bitBlt fillR: r g: g b: b
+]
+
+Class PCForm >> fillRectX: x y: y w: w h: h
+[
+	"Fill the given rectangle with the current fill color."
+bitBlt	destX: x		y: y		width: w		height: h;	copyBits
+]
+
+Class PCForm >> setWidth: w height: h depth: d
+[
+| wordsPerLine |wordsPerLine := (w * d + 31) // 32.bits := PCByteArray new: 4 * wordsPerLine * h.width := w.height := h.depth := d.bitBlt := PCBitBlt new	destForm: self;	fillR: 255 g: 0 b: 0	"default color"
+]
+
+Class PCForm >> bits
+[
+^ bits
+]
+
+Class PCForm >> primScreenSize
+[
+	"Answer the actual screen size. In Pharo Candle, this will be an Association object since Pharo Candle doesn't have Points."
+	<primitive: 106>
+self primitiveFailed
+]
+
+Class PCForm >> drawForm: aForm x: x y: y rule: anInteger
+[
+	"Fill the given rectangle with the current fill color."
+| oldFill |oldFill := bitBlt fillWords.bitBlt	sourceForm: aForm;	destX: x		y: y		width: aForm width		height: aForm height;	rule: anInteger;	copyBits.bitBlt sourceForm: nil.bitBlt fillWords: oldFill
+]
+
+Class PCForm >> beDisplayDepth: d
+[
+	"Install myself as the Display. Drawing onto me will then cause the screen or window to be updated."
+| screenExtent |screenExtent := self primScreenSize.self setWidth: (screenExtent instVarAt: 1) height: (screenExtent instVarAt: 2) depth: d.PCSystem specialObjectsArray at: 15 put: self	"make this Form the Display"
+]
+
+Class PCForm >> depth
+[
+^ depth
+]
+
+Class PCForm >> width
+[
+^ width
+]
+
+Class PCForm >> copyX: x y: y width: w height: h
+[
+	"Answer a new form containing given rectangular portion of this form."
+| result |result := PCForm basicNew setWidth: w height: h depth: depth.PCBitBlt new	sourceForm: self;	destForm: result;	sourceX: x y: y;	width: w height: h;	copyBits.^ result
+]
+
+Class PCForm >> height
+[
+^ height
+]
+
+Metaclass
+	name: #PCForm;
+	instanceVariables: #().
+
+Metaclass PCForm >> paint
+[
+^ 25
+]
+
+Metaclass PCForm >> over
+[
+^ 3
+]
+
+Metaclass PCForm >> width: w height: h depth: d
+[
+^ self basicNew setWidth: w height: h depth: d
+]
+

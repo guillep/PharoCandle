@@ -1,0 +1,12 @@
+Class
+	name: #PCWordArray;
+	superclass: #ClassPCArrayedCollection;
+	instanceSpecification: #(#variable #words );
+	instanceVariables: #();
+	classVariables: #();
+	package: #'PharoCandle-Kernel-Optional-Graphics'.
+
+Metaclass
+	name: #PCWordArray;
+	instanceVariables: #().
+

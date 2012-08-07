@@ -1,0 +1,42 @@
+Class
+	name: #PCMessage;
+	superclass: #ClassPCObject;
+	instanceSpecification: #(#pointers #words );
+	instanceVariables: #(#selector #arguments #lookupClass );
+	classVariables: #();
+	package: #'PharoCandle-Kernel-Methods'.
+
+Class PCMessage >> selector
+[
+	"Answer the message selector."
+^ selector
+]
+
+Class PCMessage >> sentTo: anObject
+[
+	"Answer the result of sending this message to the given object."
+lookupClass == nil	ifTrue: [ ^ anObject perform: selector withArguments: arguments ]	ifFalse: [ ^ anObject perform: selector withArguments: arguments inSuperclass: lookupClass ]
+]
+
+Class PCMessage >> lookupClass
+[
+	"Answer the message lookupClass."
+^ lookupClass
+]
+
+Class PCMessage >> printOn: aStream
+[
+	"Refer to the comment in Object|printOn:."
+super printOn: aStream.aStream	nextPutAll: ' selector: ' , selector printString;	nextPutAll: ' args: ' , arguments printString
+]
+
+Class PCMessage >> arguments
+[
+	"Answer the message arguments array."
+^ arguments
+]
+
+Metaclass
+	name: #PCMessage;
+	instanceVariables: #().
+
