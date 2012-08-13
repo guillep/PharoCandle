@@ -39,6 +39,11 @@ Class PCClass >> theNonMetaClass
 ^ self
 ]
 
+Class PCClass >> classSide
+[
+^ self class
+]
+
 Metaclass
 	name: #PCClass;
 	instanceVariables: #().

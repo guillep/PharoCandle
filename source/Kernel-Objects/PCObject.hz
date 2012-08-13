@@ -1,6 +1,6 @@
 Class
 	name: #PCObject;
-	superclass: #ClassObject;
+	superclass: nil;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #();
 	classVariables: #();

@@ -9,7 +9,7 @@ Class
 Class PCIdentityDictionary >> keys
 [
 	"Answer an array of the receiver's keys."
-| result |result := OrderedCollection new: self size.self keysDo: [ :key | result add: key ].^ result asArray
+| result |result := PCOrderedCollection new: self size.self keysDo: [ :key | result add: key ].^ result asArray
 ]
 
 Class PCIdentityDictionary >> scanFor: anObject

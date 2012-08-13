@@ -191,7 +191,7 @@ Class PCLinkedList >> removeLink: aLink ifAbsent: aBlock
 
 Class PCLinkedList >> species
 [
-^ Array
+^ PCArray
 ]
 
 Class PCLinkedList >> swap: ix1 with: ix2
