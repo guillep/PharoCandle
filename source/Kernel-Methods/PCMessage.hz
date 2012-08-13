@@ -6,16 +6,10 @@ Class
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Methods'.
 
-Class PCMessage >> selector
+Class PCMessage >> arguments
 [
-	"Answer the message selector."
-^ selector
-]
-
-Class PCMessage >> sentTo: anObject
-[
-	"Answer the result of sending this message to the given object."
-lookupClass == nil	ifTrue: [ ^ anObject perform: selector withArguments: arguments ]	ifFalse: [ ^ anObject perform: selector withArguments: arguments inSuperclass: lookupClass ]
+	"Answer the message arguments array."
+^ arguments
 ]
 
 Class PCMessage >> lookupClass
@@ -30,10 +24,16 @@ Class PCMessage >> printOn: aStream
 super printOn: aStream.aStream	nextPutAll: ' selector: ' , selector printString;	nextPutAll: ' args: ' , arguments printString
 ]
 
-Class PCMessage >> arguments
+Class PCMessage >> selector
 [
-	"Answer the message arguments array."
-^ arguments
+	"Answer the message selector."
+^ selector
+]
+
+Class PCMessage >> sentTo: anObject
+[
+	"Answer the result of sending this message to the given object."
+lookupClass == nil	ifTrue: [ ^ anObject perform: selector withArguments: arguments ]	ifFalse: [ ^ anObject perform: selector withArguments: arguments inSuperclass: lookupClass ]
 ]
 
 Metaclass

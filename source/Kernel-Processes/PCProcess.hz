@@ -6,11 +6,6 @@ Class
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Processes'.
 
-Class PCProcess >> nextLink
-[
-^ nextLink
-]
-
 Class PCProcess >> errorHandler
 [
 ^ errorHandler
@@ -21,10 +16,19 @@ Class PCProcess >> errorHandler: aBlock
 errorHandler := aBlock
 ]
 
-Class PCProcess >> priority: anInteger
+Class PCProcess >> initSuspendedContext: aContext
 [
-	"Set the receiver's priority to anInteger. The priority is used by the VM as an index into the scheduler's array of process queues so it must be an integer between 1 and Processor highestPriority."
-priority := (anInteger asInteger max: 1) min: Processor highestPriority
+suspendedContext := aContext.priority := 1	"lowest priority"
+]
+
+Class PCProcess >> nextLink
+[
+^ nextLink
+]
+
+Class PCProcess >> nextLink: aLink
+[
+nextLink := aLink
 ]
 
 Class PCProcess >> printOn: aStream
@@ -38,15 +42,10 @@ Class PCProcess >> priority
 ^ priority
 ]
 
-Class PCProcess >> suspendedContext
+Class PCProcess >> priority: anInteger
 [
-^ suspendedContext
-]
-
-Class PCProcess >> terminate
-[
-	"Stop this process forever."
-Processor activeProcess == self	ifTrue: [ thisContext removeSelf suspend ]	ifFalse: [ 		myList			ifNotNil: [ 				myList remove: self ifAbsent: [  ].				myList := nil ].		suspendedContext := nil ]
+	"Set the receiver's priority to anInteger. The priority is used by the VM as an index into the scheduler's array of process queues so it must be an integer between 1 and Processor highestPriority."
+priority := (anInteger asInteger max: 1) min: Processor highestPriority
 ]
 
 Class PCProcess >> resume
@@ -56,21 +55,22 @@ Class PCProcess >> resume
 self primitiveFailed
 ]
 
-Class PCProcess >> initSuspendedContext: aContext
-[
-suspendedContext := aContext.priority := 1	"lowest priority"
-]
-
-Class PCProcess >> nextLink: aLink
-[
-nextLink := aLink
-]
-
 Class PCProcess >> suspend
 [
 	"Primitive. Stop this process in such a way that it can be restarted later (see resume). If the receiver is the active process, suspend it. Otherwise, remove the receiver from its suspended process list. Essential. See Object documentation whatIsAPrimitive."
 	<primitive: 88>
 Processor activeProcess == self	ifTrue: [ self primitiveFailed ]	ifFalse: [ 		Processor remove: self ifAbsent: [ self error: 'This process was not active' ].		myList := nil ]
+]
+
+Class PCProcess >> suspendedContext
+[
+^ suspendedContext
+]
+
+Class PCProcess >> terminate
+[
+	"Stop this process forever."
+Processor activeProcess == self	ifTrue: [ thisContext removeSelf suspend ]	ifFalse: [ 		myList			ifNotNil: [ 				myList remove: self ifAbsent: [  ].				myList := nil ].		suspendedContext := nil ]
 ]
 
 Metaclass

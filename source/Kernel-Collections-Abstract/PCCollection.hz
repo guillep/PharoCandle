@@ -6,33 +6,10 @@ Class
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Collections-Abstract'.
 
-Class PCCollection >> includes: anObject
+Class PCCollection >> add: newObject
 [
-	"Answer whether anObject is one of the receiver's elements."
-self	do: [ :each | 		anObject = each			ifTrue: [ ^ true ] ].^ false
-]
-
-Class PCCollection >> errorEmptyCollection
-[
-self error: 'this collection is empty'
-]
-
-Class PCCollection >> do: aBlock
-[
-	"Evaluate aBlock with each of the receiver's elements as the argument."
+	"Include newObject as one of my elements. Answer newObject. ArrayedCollections cannot respond to this message."
 self subclassResponsibility
-]
-
-Class PCCollection >> printOn: aStream
-[
-	"Refer to the comment in Object|printOn:."
-aStream nextPutAll: self class name , ' ('.self	do: [ :element | 		element printOn: aStream.		aStream space ].aStream nextPut: $)
-]
-
-Class PCCollection >> asByteArray
-[
-	"Answer a ByteArray containing my elements."
-| result i |result := PCByteArray new: self size.i := 0.self do: [ :each | result at: (i := i + 1) put: each ].^ result
 ]
 
 Class PCCollection >> asArray
@@ -41,23 +18,16 @@ Class PCCollection >> asArray
 | result i |result := PCArray new: self size.i := 0.self do: [ :each | result at: (i := i + 1) put: each ].^ result
 ]
 
-Class PCCollection >> sum
+Class PCCollection >> asByteArray
 [
-	"Answer the sum of the elements of this collection. If the collection is empty, answer zero."
-	"Details: Use an arbitrary element of the collection as the initial value so this method will work for collections of any kind of object that understands + and -."
-| total seed |total := seed := self detect: [ :x | true ] ifNone: [ ^ 0 ].self do: [ :el | total := total + el ].^ total - seed	"subtract the seed value from the total"
+	"Answer a ByteArray containing my elements."
+| result i |result := PCByteArray new: self size.i := 0.self do: [ :each | result at: (i := i + 1) put: each ].^ result
 ]
 
-Class PCCollection >> add: newObject
+Class PCCollection >> asSet
 [
-	"Include newObject as one of my elements. Answer newObject. ArrayedCollections cannot respond to this message."
-self subclassResponsibility
-]
-
-Class PCCollection >> remove: oldObject ifAbsent: anExceptionBlock
-[
-	"Remove oldObject as one of the receiver's elements. If several of the 	elements are equal to oldObject, only one is removed. If no element is 	equal to oldObject, answer the result of evaluating anExceptionBlock. 	Otherwise, answer the argument, oldObject. SequenceableCollections 	cannot respond to this message."
-self subclassResponsibility
+	"Answer a Set whose elements are the unique elements of the receiver."
+| aSet |aSet := PCSet new: self size.self do: [ :each | aSet add: each ].^ aSet
 ]
 
 Class PCCollection >> collect: aBlock
@@ -66,10 +36,61 @@ Class PCCollection >> collect: aBlock
 | newCollection |newCollection := self species new.self do: [ :each | newCollection add: (aBlock value: each) ].^ newCollection
 ]
 
-Class PCCollection >> asSet
+Class PCCollection >> detect: aBlock ifNone: exceptionBlock
 [
-	"Answer a Set whose elements are the unique elements of the receiver."
-| aSet |aSet := PCSet new: self size.self do: [ :each | aSet add: each ].^ aSet
+	"Evaluate aBlock with each of the receiver's elements as the argument. 	Answer the first element for which aBlock evaluates to true. If none 	evaluate to true, then evaluate the argument, exceptionBlock."
+self	do: [ :each | 		(aBlock value: each)			ifTrue: [ ^ each ] ].^ exceptionBlock value
+]
+
+Class PCCollection >> do: aBlock
+[
+	"Evaluate aBlock with each of the receiver's elements as the argument."
+self subclassResponsibility
+]
+
+Class PCCollection >> emptyCheck
+[
+self isEmpty	ifTrue: [ self errorEmptyCollection ]
+]
+
+Class PCCollection >> errorEmptyCollection
+[
+self error: 'this collection is empty'
+]
+
+Class PCCollection >> errorNotFound
+[
+self error: 'Object is not in the collection.'
+]
+
+Class PCCollection >> includes: anObject
+[
+	"Answer whether anObject is one of the receiver's elements."
+self	do: [ :each | 		anObject = each			ifTrue: [ ^ true ] ].^ false
+]
+
+Class PCCollection >> isEmpty
+[
+	"Answer whether the receiver contains any elements."
+^ self size = 0
+]
+
+Class PCCollection >> printOn: aStream
+[
+	"Refer to the comment in Object|printOn:."
+aStream nextPutAll: self class name , ' ('.self	do: [ :element | 		element printOn: aStream.		aStream space ].aStream nextPut: $)
+]
+
+Class PCCollection >> remove: oldObject
+[
+	"Remove oldObject as one of the receiver's elements. Answer oldObject 	unless no element is equal to oldObject, in which case, create an error 	notification."
+^ self remove: oldObject ifAbsent: [ self errorNotFound ]
+]
+
+Class PCCollection >> remove: oldObject ifAbsent: anExceptionBlock
+[
+	"Remove oldObject as one of the receiver's elements. If several of the 	elements are equal to oldObject, only one is removed. If no element is 	equal to oldObject, answer the result of evaluating anExceptionBlock. 	Otherwise, answer the argument, oldObject. SequenceableCollections 	cannot respond to this message."
+self subclassResponsibility
 ]
 
 Class PCCollection >> select: aBlock
@@ -84,43 +105,16 @@ Class PCCollection >> size
 | count |count := 0.self do: [ :each | count := count + 1 ].^ count
 ]
 
-Class PCCollection >> isEmpty
+Class PCCollection >> sum
 [
-	"Answer whether the receiver contains any elements."
-^ self size = 0
-]
-
-Class PCCollection >> remove: oldObject
-[
-	"Remove oldObject as one of the receiver's elements. Answer oldObject 	unless no element is equal to oldObject, in which case, create an error 	notification."
-^ self remove: oldObject ifAbsent: [ self errorNotFound ]
-]
-
-Class PCCollection >> detect: aBlock ifNone: exceptionBlock
-[
-	"Evaluate aBlock with each of the receiver's elements as the argument. 	Answer the first element for which aBlock evaluates to true. If none 	evaluate to true, then evaluate the argument, exceptionBlock."
-self	do: [ :each | 		(aBlock value: each)			ifTrue: [ ^ each ] ].^ exceptionBlock value
-]
-
-Class PCCollection >> errorNotFound
-[
-self error: 'Object is not in the collection.'
-]
-
-Class PCCollection >> emptyCheck
-[
-self isEmpty	ifTrue: [ self errorEmptyCollection ]
+	"Answer the sum of the elements of this collection. If the collection is empty, answer zero."
+	"Details: Use an arbitrary element of the collection as the initial value so this method will work for collections of any kind of object that understands + and -."
+| total seed |total := seed := self detect: [ :x | true ] ifNone: [ ^ 0 ].self do: [ :el | total := total + el ].^ total - seed	"subtract the seed value from the total"
 ]
 
 Metaclass
 	name: #PCCollection;
 	instanceVariables: #().
-
-Metaclass PCCollection >> with: firstObject with: secondObject with: thirdObject
-[
-	"Answer an instance of me containing the three arguments as elements."
-| newCollection |newCollection := self new.newCollection add: firstObject.newCollection add: secondObject.newCollection add: thirdObject.^ newCollection
-]
 
 Metaclass PCCollection >> with: anObject
 [
@@ -132,5 +126,11 @@ Metaclass PCCollection >> with: firstObject with: secondObject
 [
 	"Answer an instance of me containing the two arguments as elements."
 | newCollection |newCollection := self new.newCollection add: firstObject.newCollection add: secondObject.^ newCollection
+]
+
+Metaclass PCCollection >> with: firstObject with: secondObject with: thirdObject
+[
+	"Answer an instance of me containing the three arguments as elements."
+| newCollection |newCollection := self new.newCollection add: firstObject.newCollection add: secondObject.newCollection add: thirdObject.^ newCollection
 ]
 

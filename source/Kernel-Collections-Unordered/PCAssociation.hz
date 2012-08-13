@@ -12,9 +12,10 @@ Class PCAssociation >> < aLookupKey
 ^ key < aLookupKey key
 ]
 
-Class PCAssociation >> key
+Class PCAssociation >> = anAssociation
 [
-^ key
+	"True if the receiver and argument have equal keys."
+self species = anAssociation species	ifTrue: [ ^ key = anAssociation key ]	ifFalse: [ ^ false ]
 ]
 
 Class PCAssociation >> hash
@@ -23,26 +24,9 @@ Class PCAssociation >> hash
 ^ key hash
 ]
 
-Class PCAssociation >> value
+Class PCAssociation >> key
 [
-^ value
-]
-
-Class PCAssociation >> = anAssociation
-[
-	"True if the receiver and argument have equal keys."
-self species = anAssociation species	ifTrue: [ ^ key = anAssociation key ]	ifFalse: [ ^ false ]
-]
-
-Class PCAssociation >> printOn: aStream
-[
-	"Print in the format (key->value)."
-aStream nextPut: $(.key printOn: aStream.aStream nextPutAll: '->'.value printOn: aStream.aStream nextPut: $)
-]
-
-Class PCAssociation >> value: anObject
-[
-value := anObject
+^ key
 ]
 
 Class PCAssociation >> key: anObject
@@ -53,6 +37,22 @@ key := anObject
 Class PCAssociation >> key: aKey value: anObject
 [
 key := aKey.value := anObject
+]
+
+Class PCAssociation >> printOn: aStream
+[
+	"Print in the format (key->value)."
+aStream nextPut: $(.key printOn: aStream.aStream nextPutAll: '->'.value printOn: aStream.aStream nextPut: $)
+]
+
+Class PCAssociation >> value
+[
+^ value
+]
+
+Class PCAssociation >> value: anObject
+[
+value := anObject
 ]
 
 Metaclass

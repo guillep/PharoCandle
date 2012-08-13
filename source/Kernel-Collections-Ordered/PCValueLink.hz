@@ -6,14 +6,9 @@ Class
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Collections-Ordered'.
 
-Class PCValueLink >> value
+Class PCValueLink >> = anotherObject
 [
-^ value
-]
-
-Class PCValueLink >> hash
-[
-^ self value hash bitXor: nextLink identityHash
+^ self species == anotherObject species	and: [ self value = anotherObject value and: [ self nextLink == anotherObject nextLink ] ]
 ]
 
 Class PCValueLink >> asLink
@@ -21,14 +16,9 @@ Class PCValueLink >> asLink
 ^ self
 ]
 
-Class PCValueLink >> = anotherObject
+Class PCValueLink >> hash
 [
-^ self species == anotherObject species	and: [ self value = anotherObject value and: [ self nextLink == anotherObject nextLink ] ]
-]
-
-Class PCValueLink >> printOn: aStream
-[
-aStream nextPutAll: 'ValueLink('.value printOn: aStream.aStream nextPut: $)
+^ self value hash bitXor: nextLink identityHash
 ]
 
 Class PCValueLink >> nextLink
@@ -36,14 +26,24 @@ Class PCValueLink >> nextLink
 ^ nextLink
 ]
 
-Class PCValueLink >> value: aValue
-[
-value := aValue
-]
-
 Class PCValueLink >> nextLink: aLink
 [
 nextLink := aLink
+]
+
+Class PCValueLink >> printOn: aStream
+[
+aStream nextPutAll: 'ValueLink('.value printOn: aStream.aStream nextPut: $)
+]
+
+Class PCValueLink >> value
+[
+^ value
+]
+
+Class PCValueLink >> value: aValue
+[
+value := aValue
 ]
 
 Metaclass

@@ -6,17 +6,15 @@ Class
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Optional'.
 
-Class PCFile >> primGetPosition: id
-[
-	"Get this files current position."
-	<primitive: 'primitiveFileGetPosition' module: 'FilePlugin'>
-self primitiveFailed
-]
-
 Class PCFile >> close
 [
 	"Close this file."
 fileID	ifNotNil: [ 		self primClose: fileID.		fileID := nil ]
+]
+
+Class PCFile >> cr
+[
+self nextPutAll: (PCString with: PCCharacter cr)
 ]
 
 Class PCFile >> localFolderPath
@@ -26,18 +24,46 @@ Class PCFile >> localFolderPath
 | imagePath delimiter i |imagePath := self primImageName.delimiter := $/.(imagePath includes: delimiter)	ifFalse: [ delimiter := $\ ].i := imagePath size.[ i > 0 and: [ (imagePath at: i) ~= delimiter ] ] whileTrue: [ i := i - 1 ].i = 0	ifTrue: [ ^ '' ].^ imagePath copyFrom: 1 to: i
 ]
 
-Class PCFile >> primImageName
+Class PCFile >> name
 [
-	"Answer the full path name for the current image."
-	<primitive: 121>
-self primitiveFailed
+	"Answer the name of this file."
+^ name
 ]
 
-Class PCFile >> primSetPosition: id to: anInteger
+Class PCFile >> next: count
 [
-	"Set this file to the given position."
-	<primitive: 'primitiveFileSetPosition' module: 'FilePlugin'>
-self primitiveFailed
+	"Answer a String containing the next count bytes of the file. If there are not count bytes left in the file, answer a String with as many bytes as available."
+| buffer n |buffer := '' class new: count.n := self	primRead: fileID	into: buffer	startingAt: 1	count: count.n < count	ifTrue: [ buffer := buffer copyFrom: 1 to: n ].^ buffer
+]
+
+Class PCFile >> nextPutAll: buffer
+[
+	"Write the contents of the given bytes or words object to this file."
+^ self	primWrite: fileID	from: buffer	startingAt: 1	count: buffer basicSize
+]
+
+Class PCFile >> openReadOnly: fileName
+[
+	"Open the file with the given name for reading and writing."
+name := nil.fileID := self primOpen: fileName writable: false.name := fileName
+]
+
+Class PCFile >> openReadWrite: fileName
+[
+	"Open the file with the given name for reading only."
+name := nil.fileID := self primOpen: fileName writable: true.name := fileName
+]
+
+Class PCFile >> position
+[
+	"Answer the current file position in bytes."
+^ self primGetPosition: fileID
+]
+
+Class PCFile >> position: newPosition
+[
+	"Seek to the given file position in bytes."
+^ self primSetPosition: fileID to: newPosition
 ]
 
 Class PCFile >> primClose: id
@@ -47,33 +73,17 @@ Class PCFile >> primClose: id
 
 ]
 
-Class PCFile >> next: count
+Class PCFile >> primGetPosition: id
 [
-	"Answer a String containing the next count bytes of the file. If there are not count bytes left in the file, answer a String with as many bytes as available."
-| buffer n |buffer := '' class new: count.n := self	primRead: fileID	into: buffer	startingAt: 1	count: count.n < count	ifTrue: [ buffer := buffer copyFrom: 1 to: n ].^ buffer
+	"Get this files current position."
+	<primitive: 'primitiveFileGetPosition' module: 'FilePlugin'>
+self primitiveFailed
 ]
 
-Class PCFile >> position
+Class PCFile >> primImageName
 [
-	"Answer the current file position in bytes."
-^ self primGetPosition: fileID
-]
-
-Class PCFile >> cr
-[
-self nextPutAll: (PCString with: PCCharacter cr)
-]
-
-Class PCFile >> openReadWrite: fileName
-[
-	"Open the file with the given name for reading only."
-name := nil.fileID := self primOpen: fileName writable: true.name := fileName
-]
-
-Class PCFile >> primRead: id into: byteArray startingAt: startIndex count: count
-[
-	"Read up to count elements into the given buffer and answer the number of elements actually read. The buffer may either a byte- or word-indexable object."
-	<primitive: 'primitiveFileRead' module: 'FilePlugin'>
+	"Answer the full path name for the current image."
+	<primitive: 121>
 self primitiveFailed
 ]
 
@@ -84,34 +94,17 @@ Class PCFile >> primOpen: fileName writable: writableFlag
 self primitiveFailed
 ]
 
-Class PCFile >> nextPutAll: buffer
+Class PCFile >> primRead: id into: byteArray startingAt: startIndex count: count
 [
-	"Write the contents of the given bytes or words object to this file."
-^ self	primWrite: fileID	from: buffer	startingAt: 1	count: buffer basicSize
+	"Read up to count elements into the given buffer and answer the number of elements actually read. The buffer may either a byte- or word-indexable object."
+	<primitive: 'primitiveFileRead' module: 'FilePlugin'>
+self primitiveFailed
 ]
 
-Class PCFile >> readInto: buffer startingAt: startIndex count: count
+Class PCFile >> primSetPosition: id to: anInteger
 [
-	"Read up to count elements into the given array and answer the number of elements actually read. The buffer may either a byte- or word-indexable object."
-^ self	primRead: fileID	into: buffer	startingAt: startIndex	count: count
-]
-
-Class PCFile >> openReadOnly: fileName
-[
-	"Open the file with the given name for reading and writing."
-name := nil.fileID := self primOpen: fileName writable: false.name := fileName
-]
-
-Class PCFile >> position: newPosition
-[
-	"Seek to the given file position in bytes."
-^ self primSetPosition: fileID to: newPosition
-]
-
-Class PCFile >> primWrite: id from: buffer startingAt: startIndex count: count
-[
-	"Write up to count elements from the given buffer and answer the number of elements actually written. The buffer may either a byte- or word-indexable object."
-	<primitive: 'primitiveFileWrite' module: 'FilePlugin'>
+	"Set this file to the given position."
+	<primitive: 'primitiveFileSetPosition' module: 'FilePlugin'>
 self primitiveFailed
 ]
 
@@ -122,16 +115,23 @@ Class PCFile >> primSize: id
 self primitiveFailed
 ]
 
+Class PCFile >> primWrite: id from: buffer startingAt: startIndex count: count
+[
+	"Write up to count elements from the given buffer and answer the number of elements actually written. The buffer may either a byte- or word-indexable object."
+	<primitive: 'primitiveFileWrite' module: 'FilePlugin'>
+self primitiveFailed
+]
+
+Class PCFile >> readInto: buffer startingAt: startIndex count: count
+[
+	"Read up to count elements into the given array and answer the number of elements actually read. The buffer may either a byte- or word-indexable object."
+^ self	primRead: fileID	into: buffer	startingAt: startIndex	count: count
+]
+
 Class PCFile >> size
 [
 	"Answer the size of this file in bytes."
 ^ self primSize: fileID
-]
-
-Class PCFile >> name
-[
-	"Answer the name of this file."
-^ name
 ]
 
 Metaclass

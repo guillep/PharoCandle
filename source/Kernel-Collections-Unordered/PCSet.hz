@@ -6,38 +6,9 @@ Class
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Collections-Unordered'.
 
-Class PCSet >> fixCollisionsFrom: index
+Class PCSet >> = aSet
 [
-	"The element at index has been removed and replaced by nil.	This method moves forward from there, relocating any entries	that had been placed below due to collisions with this one"
-| length oldIndex newIndex element |oldIndex := index.length := array size.[ oldIndex = length	ifTrue: [ oldIndex := 1 ]	ifFalse: [ oldIndex := oldIndex + 1 ].(element := self keyAt: oldIndex) == nil ]	whileFalse: [ 		newIndex := self findElementOrNil: element.		oldIndex = newIndex			ifFalse: [ self swap: oldIndex with: newIndex ] ]
-]
-
-Class PCSet >> withArray: anArray
-[
-	"private -- for use only in copy"
-array := anArray
-]
-
-Class PCSet >> do: aBlock
-[
-tally = 0	ifTrue: [ ^ self ].array	do: [ :element | 		element == nil			ifFalse: [ aBlock value: element ] ]
-]
-
-Class PCSet >> atNewIndex: index put: anObject
-[
-array at: index put: anObject.tally := tally + 1.self fullCheck
-]
-
-Class PCSet >> fullCheck
-[
-	"Keep array at least 1/4 free for decent hash behavior"
-array size - tally < (array size // 4 max: 1)	ifTrue: [ self grow ]
-]
-
-Class PCSet >> collect: aBlock
-[
-	"Return a Set containing the result of evaluating aBlock for each element of this set."
-| newSet |tally = 0	ifTrue: [ ^ PCSet new: 2 ].newSet := PCSet new: self size.array	do: [ :each | 		each == nil			ifFalse: [ newSet add: (aBlock value: each) ] ].^ newSet
+(aSet isKindOf: PCSet)	ifFalse: [ ^ false ].self size = aSet size	ifFalse: [ ^ false ].self	do: [ :each | 		(aSet includes: each)			ifFalse: [ ^ false ] ].^ true
 ]
 
 Class PCSet >> add: newObject
@@ -46,43 +17,10 @@ Class PCSet >> add: newObject
 | index |newObject == nil	ifTrue: [ self error: 'Sets cannot meaningfully contain nil as an element' ].index := self findElementOrNil: newObject.(array at: index) == nil	ifTrue: [ self atNewIndex: index put: newObject ].^ newObject
 ]
 
-Class PCSet >> noCheckAdd: anObject
-[
-array at: (self findElementOrNil: anObject) put: anObject.tally := tally + 1
-]
-
 Class PCSet >> asArray
 [
 	"Return an array whose elements are those of the receiver.  "
 | s |s := PCWriteStream on: (PCArray new: self size).self do: [ :el | s nextPut: el ].^ s contents
-]
-
-Class PCSet >> copy
-[
-^ self basicCopy withArray: array basicCopy
-]
-
-Class PCSet >> = aSet
-[
-(aSet isKindOf: PCSet)	ifFalse: [ ^ false ].self size = aSet size	ifFalse: [ ^ false ].self	do: [ :each | 		(aSet includes: each)			ifFalse: [ ^ false ] ].^ true
-]
-
-Class PCSet >> swap: oneIndex with: otherIndex
-[
-	"May be overridden by subclasses so that fixCollisions will work"
-array swap: oneIndex with: otherIndex
-]
-
-Class PCSet >> grow
-[
-	"Grow the elements array and reinsert the old elements."
-| oldElements |oldElements := array.array := PCArray new: array size + (array size max: 2).tally := 0.oldElements	do: [ :each | 		each == nil			ifFalse: [ self noCheckAdd: each ] ]
-]
-
-Class PCSet >> scanFor: anObject
-[
-	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or zero if no slot is found. This method will be overridden in various subclasses that have different interpretations for matching elements."
-| element start finish |start := anObject hash \\ array size + 1.finish := array size.	"Search from (hash mod size) to the end."start to: finish do: [ :index | 	((element := array at: index) == nil or: [ element = anObject ])		ifTrue: [ ^ index ] ].	"Search from 1 to where we started."1 to: start - 1 do: [ :index | 	((element := array at: index) == nil or: [ element = anObject ])		ifTrue: [ ^ index ] ].^ 0	"No match AND no empty slot"
 ]
 
 Class PCSet >> asSet
@@ -90,10 +28,25 @@ Class PCSet >> asSet
 ^ self
 ]
 
-Class PCSet >> init: n
+Class PCSet >> atNewIndex: index put: anObject
 [
-	"Initialize array to an array size of n."
-array := PCArray new: n.tally := 0
+array at: index put: anObject.tally := tally + 1.self fullCheck
+]
+
+Class PCSet >> collect: aBlock
+[
+	"Return a Set containing the result of evaluating aBlock for each element of this set."
+| newSet |tally = 0	ifTrue: [ ^ PCSet new: 2 ].newSet := PCSet new: self size.array	do: [ :each | 		each == nil			ifFalse: [ newSet add: (aBlock value: each) ] ].^ newSet
+]
+
+Class PCSet >> copy
+[
+^ self basicCopy withArray: array basicCopy
+]
+
+Class PCSet >> do: aBlock
+[
+tally = 0	ifTrue: [ ^ self ].array	do: [ :element | 		element == nil			ifFalse: [ aBlock value: element ] ]
 ]
 
 Class PCSet >> findElementOrNil: anObject
@@ -102,15 +55,22 @@ Class PCSet >> findElementOrNil: anObject
 | index |index := self scanFor: anObject.index > 0	ifTrue: [ ^ index ].	"Bad scene.  Neither have we found a matching element	nor even an empty slot.  No hashed set is ever supposed to get	completely full."self error: 'There is no free space in this set!'
 ]
 
-Class PCSet >> keyAt: index
+Class PCSet >> fixCollisionsFrom: index
 [
-	"May be overridden by subclasses so that fixCollisions will work"
-^ array at: index
+	"The element at index has been removed and replaced by nil.	This method moves forward from there, relocating any entries	that had been placed below due to collisions with this one"
+| length oldIndex newIndex element |oldIndex := index.length := array size.[ oldIndex = length	ifTrue: [ oldIndex := 1 ]	ifFalse: [ oldIndex := oldIndex + 1 ].(element := self keyAt: oldIndex) == nil ]	whileFalse: [ 		newIndex := self findElementOrNil: element.		oldIndex = newIndex			ifFalse: [ self swap: oldIndex with: newIndex ] ]
 ]
 
-Class PCSet >> size
+Class PCSet >> fullCheck
 [
-^ tally
+	"Keep array at least 1/4 free for decent hash behavior"
+array size - tally < (array size // 4 max: 1)	ifTrue: [ self grow ]
+]
+
+Class PCSet >> grow
+[
+	"Grow the elements array and reinsert the old elements."
+| oldElements |oldElements := array.array := PCArray new: array size + (array size max: 2).tally := 0.oldElements	do: [ :each | 		each == nil			ifFalse: [ self noCheckAdd: each ] ]
 ]
 
 Class PCSet >> includes: anObject
@@ -118,9 +78,49 @@ Class PCSet >> includes: anObject
 ^ (array at: (self findElementOrNil: anObject)) ~~ nil
 ]
 
+Class PCSet >> init: n
+[
+	"Initialize array to an array size of n."
+array := PCArray new: n.tally := 0
+]
+
+Class PCSet >> keyAt: index
+[
+	"May be overridden by subclasses so that fixCollisions will work"
+^ array at: index
+]
+
+Class PCSet >> noCheckAdd: anObject
+[
+array at: (self findElementOrNil: anObject) put: anObject.tally := tally + 1
+]
+
 Class PCSet >> remove: oldObject ifAbsent: aBlock
 [
 | index |index := self findElementOrNil: oldObject.(array at: index) == nil	ifTrue: [ ^ aBlock value ].array at: index put: nil.tally := tally - 1.self fixCollisionsFrom: index.^ oldObject
+]
+
+Class PCSet >> scanFor: anObject
+[
+	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or zero if no slot is found. This method will be overridden in various subclasses that have different interpretations for matching elements."
+| element start finish |start := anObject hash \\ array size + 1.finish := array size.	"Search from (hash mod size) to the end."start to: finish do: [ :index | 	((element := array at: index) == nil or: [ element = anObject ])		ifTrue: [ ^ index ] ].	"Search from 1 to where we started."1 to: start - 1 do: [ :index | 	((element := array at: index) == nil or: [ element = anObject ])		ifTrue: [ ^ index ] ].^ 0	"No match AND no empty slot"
+]
+
+Class PCSet >> size
+[
+^ tally
+]
+
+Class PCSet >> swap: oneIndex with: otherIndex
+[
+	"May be overridden by subclasses so that fixCollisions will work"
+array swap: oneIndex with: otherIndex
+]
+
+Class PCSet >> withArray: anArray
+[
+	"private -- for use only in copy"
+array := anArray
 ]
 
 Metaclass

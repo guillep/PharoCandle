@@ -6,56 +6,16 @@ Class
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Objects'.
 
-Class PCObject >> instVarAt: index
+Class PCObject >> -> anObject
 [
-	"Primitive. Answer a fixed variable in an object. The numbering of the 	variables corresponds to the named instance variables. Fail if the index 	is not an Integer or is not the index of a fixed variable. Essential. See 	Object documentation whatIsAPrimitive."
-	"Access beyond fixed variables."
-	<primitive: 73>
-^ self basicAt: index - self class instSize
+	"Answer an Association with myself as its key and anObject as its value."
+^ PCAssociation new key: self value: anObject
 ]
 
-Class PCObject >> initialize
+Class PCObject >> = anObject
 [
-	"Initialize this object. Usually called by new when a new object is created. This default implementation does nothing."
-
-]
-
-Class PCObject >> errorSubscriptBounds: index
-[
-	"Error: the given index is out of range."
-self error: 'Subscript is out of bounds: ' , index printString
-]
-
-Class PCObject >> ifNil: nilBlock
-[
-	"Return self, or evaluate the block if I'm == nil (q.v.)"
-^ self
-]
-
-Class PCObject >> ifNotNil: ifNotNilBlock
-[
-	"Evaluate the block, unless I'm == nil (q.v.)"
-^ ifNotNilBlock value
-]
-
-Class PCObject >> basicAt: index put: value
-[
-	"Primitive. Assumes receiver is indexable. Store the second argument 	value in the indexable element of the receiver indicated by index. Fail 	if the index is not an Integer or is out of bounds. Or fail if the value is 	not of the right type for this kind of collection. Answer the value that 	was stored. Essential. Do not override in a subclass. See Object 	documentation whatIsAPrimitive."
-	<primitive: 61>
-index isInteger	ifTrue: [ 		(index >= 1 and: [ index <= self size ])			ifTrue: [ self errorImproperStore ]			ifFalse: [ self errorSubscriptBounds: index ] ].index isNumber	ifTrue: [ ^ self basicAt: index asInteger put: value ]	ifFalse: [ self errorNonIntegerIndex ]
-]
-
-Class PCObject >> shouldNotImplement
-[
-	"Announce that, although the receiver inherits this message, it should not implement it."
-self error: 'This message is not appropriate for this object'
-]
-
-Class PCObject >> tryPrimitive: primIndex withArgs: argumentArray
-[
-	"This method is a template that the Smalltalk simulator uses to 	execute primitives. See Object documentation whatIsAPrimitive."
-	<primitive: 118 error: #code>
-self primitiveFailed
+	"Answer whether the receiver and the argument represent the same 	object. If = is redefined in any subclass, consider also redefining the 	message hash."
+^ self == anObject
 ]
 
 Class PCObject >> == anObject
@@ -65,90 +25,14 @@ Class PCObject >> == anObject
 self primitiveFailed
 ]
 
-Class PCObject >> basicCopy
+Class PCObject >> asLink
 [
-	"Answer a copy of the receiver that shares the receiver's instance variables. This is usually handled by the primitive, so the code below is for documentation."
-	<primitive: 148>
-| class result sz |class := self class.class isVariable	ifTrue: [ 		sz := self basicSize.		result := class basicNew: sz.		1 to: sz do: [ :i | result basicAt: i put: (self basicAt: i) ] ]	ifFalse: [ result := class basicNew ].1 to: class instSize do: [ :i | result instVarAt: i put: (self instVarAt: i) ].^ result
+^ PCValueLink value: self
 ]
 
-Class PCObject >> ~~ anObject
+Class PCObject >> asString
 [
-	"Answer whether the receiver and the argument are not the same object 	(do not have the same object pointer)."
-self == anObject	ifTrue: [ ^ false ]	ifFalse: [ ^ true ]
-]
-
-Class PCObject >> isSmallInteger
-[
-^ false
-]
-
-Class PCObject >> isBehavior
-[
-	"Answer true if I am a subclass of Behavior."
-^ false
-]
-
-Class PCObject >> isInteger
-[
-	"Overridden to return true in Integer."
-^ false
-]
-
-Class PCObject >> isNumber
-[
-	"Overridden to return true in Number, natch"
-^ false
-]
-
-Class PCObject >> identityHash
-[
-	"Answer a SmallInteger whose value is related to the receiver's identity. This method must not be overridden, except by SmallInteger. Primitive. Fails if the receiver is a SmallInteger. Essential. See Object documentation whatIsAPrimitive. Do not override!"
-^ self basicIdentityHash bitShift: 18
-]
-
-Class PCObject >> isNil
-[
-	"Answer true if the receiver is nil."
-^ false
-]
-
-Class PCObject >> errorImproperStore
-[
-	"Error: an improper store was attempted."
-self error: 'Improper store into indexable object.'
-]
-
-Class PCObject >> beep
-[
-	"Emit a short beep sound. Do nothing if the primitive fails."
-	<primitive: 140>
-
-]
-
-Class PCObject >> become: otherObject
-[
-	"Swap the object pointers of the receiver and the argument. After this, all variables in the entire system that used to point to the receiver now point to the argument, and vice-versa. Fails if either object is a SmallInteger."
-(PCArray with: self) elementsExchangeIdentityWith: (PCArray with: otherObject)
-]
-
-Class PCObject >> yourself
-[
-	"Answer the receiver. Useful in cascaded message expressions."
-
-]
-
-Class PCObject >> perform: selector withArguments: argArray inSuperclass: lookupClass
-[
-	"NOTE:  This is just like perform:withArguments: except that the message lookup process begins, not with the receivers's class, but with the supplied superclass instead. It will fail if lookupClass cannot be found among the receiver's superclasses. Primitive. Essential. See Object documentation whatIsAPrimitive."
-	<primitive: 100>
-selector class = PCSymbol	ifFalse: [ ^ self error: 'selector argument must be a Symbol' ].selector numArgs = argArray size	ifFalse: [ ^ self error: 'incorrect number of arguments' ].(self class == lookupClass or: [ self class inheritsFrom: lookupClass ])	ifFalse: [ ^ self error: 'lookupClass is not in my inheritance chain' ].self primitiveFailed
-]
-
-Class PCObject >> respondsTo: aSymbol
-[
-	"Answer whether the receiver's class or one of its superclasses has the given symbol as a message selector."
-^ self class canUnderstand: aSymbol
+^ self printString
 ]
 
 Class PCObject >> at: index
@@ -158,37 +42,6 @@ Class PCObject >> at: index
 index isInteger	ifTrue: [ self errorSubscriptBounds: index ].index isNumber	ifTrue: [ ^ self basicAt: index asInteger ]	ifFalse: [ self errorNonIntegerIndex ]
 ]
 
-Class PCObject >> printString
-[
-	"Answer a string describing me."
-| stream |stream := PCWriteStream on: (PCString new: 100).self printOn: stream.^ stream contents
-]
-
-Class PCObject >> = anObject
-[
-	"Answer whether the receiver and the argument represent the same 	object. If = is redefined in any subclass, consider also redefining the 	message hash."
-^ self == anObject
-]
-
-Class PCObject >> printOn: aStream
-[
-	"Print a description of me on the given stream."
-| n |n := self class name.aStream	nextPutAll:		(n first isVowel			ifTrue: [ 'an ' ]			ifFalse: [ 'a ' ]) , n
-]
-
-Class PCObject >> isKindOf: aClass
-[
-	"Answer whether the class, aClass, is a superclass or class of the receiver."
-self class == aClass	ifTrue: [ ^ true ]	ifFalse: [ ^ self class inheritsFrom: aClass ]
-]
-
-Class PCObject >> perform: aSymbol
-[
-	"Primitive. Send the receiver the unary message indicated by the 	argument. The argument is the selector of the message. Invoke 	messageNotUnderstood: if the number of arguments expected by the 	selector is not zero. Optional. See Object documentation whatIsAPrimitive."
-	<primitive: 83>
-^ self perform: aSymbol withArguments: (PCArray new: 0)
-]
-
 Class PCObject >> at: index put: value
 [
 	"Primitive. Assumes receiver is indexable. Store the second argument 	value in the indexable element of the receiver indicated by index. Fail 	if the index is not an Integer or is out of bounds. Or fail if the value is 	not of the right type for this kind of collection. Answer the value that 	was stored. Essential. Do not override in a subclass. See Object 	documentation whatIsAPrimitive."
@@ -196,23 +49,32 @@ Class PCObject >> at: index put: value
 index isInteger	ifTrue: [ 		(index >= 1 and: [ index <= self size ])			ifTrue: [ self errorImproperStore ]			ifFalse: [ self errorSubscriptBounds: index ] ].index isNumber	ifTrue: [ ^ self basicAt: index asInteger put: value ]	ifFalse: [ self errorNonIntegerIndex ]
 ]
 
-Class PCObject >> nextObject
+Class PCObject >> basicAt: index
 [
-	"Primitive. Answer the next object after the receiver in the enumeration of all objects. Answer 0 when all objects have been enumerated."
-	<primitive: 139>
+	"Primitive. Assumes receiver is indexable. Answer the value of an indexable element in the receiver. Fail if the argument index is not an  Integer or is out of bounds. Essential. Do not override in a subclass. See Object documentation whatIsAPrimitive."
+	<primitive: 60>
+index isInteger	ifTrue: [ self errorSubscriptBounds: index ].index isNumber	ifTrue: [ ^ self basicAt: index asInteger ]	ifFalse: [ self errorNonIntegerIndex ]
+]
+
+Class PCObject >> basicAt: index put: value
+[
+	"Primitive. Assumes receiver is indexable. Store the second argument 	value in the indexable element of the receiver indicated by index. Fail 	if the index is not an Integer or is out of bounds. Or fail if the value is 	not of the right type for this kind of collection. Answer the value that 	was stored. Essential. Do not override in a subclass. See Object 	documentation whatIsAPrimitive."
+	<primitive: 61>
+index isInteger	ifTrue: [ 		(index >= 1 and: [ index <= self size ])			ifTrue: [ self errorImproperStore ]			ifFalse: [ self errorSubscriptBounds: index ] ].index isNumber	ifTrue: [ ^ self basicAt: index asInteger put: value ]	ifFalse: [ self errorNonIntegerIndex ]
+]
+
+Class PCObject >> basicCopy
+[
+	"Answer a copy of the receiver that shares the receiver's instance variables. This is usually handled by the primitive, so the code below is for documentation."
+	<primitive: 148>
+| class result sz |class := self class.class isVariable	ifTrue: [ 		sz := self basicSize.		result := class basicNew: sz.		1 to: sz do: [ :i | result basicAt: i put: (self basicAt: i) ] ]	ifFalse: [ result := class basicNew ].1 to: class instSize do: [ :i | result instVarAt: i put: (self instVarAt: i) ].^ result
+]
+
+Class PCObject >> basicIdentityHash
+[
+	"Answer a SmallInteger whose value is related to the receiver's identity.	This method must not be overridden, except by SmallInteger.	Primitive. Fails if the receiver is a SmallInteger. Essential.	See Object documentation whatIsAPrimitive.	Do not override. Use #identityHash unless you really know what you're doing.'"
+	<primitive: 75>
 self primitiveFailed
-]
-
-Class PCObject >> ifNil: nilBlock ifNotNil: ifNotNilBlock
-[
-	"Evaluate the block, unless I'm == nil (q.v.)"
-^ ifNotNilBlock value
-]
-
-Class PCObject >> subclassResponsibility
-[
-	"This message sets up a framework for the behavior of subclasses of this class. Announce that the subclass should have implemented this message."
-self error: 'My subclass should have overridden one of my messages.'
 ]
 
 Class PCObject >> basicSize
@@ -222,20 +84,62 @@ Class PCObject >> basicSize
 ^ 0	"for fixed-size objects"
 ]
 
-Class PCObject >> isContextPart
+Class PCObject >> become: otherObject
 [
-^ false
+	"Swap the object pointers of the receiver and the argument. After this, all variables in the entire system that used to point to the receiver now point to the argument, and vice-versa. Fails if either object is a SmallInteger."
+(PCArray with: self) elementsExchangeIdentityWith: (PCArray with: otherObject)
 ]
 
-Class PCObject >> isCompiledMethod
+Class PCObject >> beep
 [
-^ false
+	"Emit a short beep sound. Do nothing if the primitive fails."
+	<primitive: 140>
+
 ]
 
-Class PCObject >> putString: aString
+Class PCObject >> class
 [
-	"Write the given string to the standard output stream."
-aString do: [ :ch | self putAscii: ch asciiValue ]
+	"Primitive. Answer the object which is the receiver's class. Essential. See Object documentation whatIsAPrimitive."
+	<primitive: 111>
+self primitiveFailed
+]
+
+Class PCObject >> copy
+[
+	"Answer a copy of me. Subclasses should usually override this method to change copying behavior, not basicCopy. The exception is classes with unique instances, such as Symbol. This operation does not generally copy all the objects that I refer to.."
+^ self basicCopy
+]
+
+Class PCObject >> doesNotUnderstand: aMessage
+[
+	"Handle a failed attempt to send the given message to the receiver because the receiver does not implement or inherit a method for the message selector. The 'doesNotUnderstand:' message is sent by the virtual machine when a message send fails. If the receiver has an error handling block, invoke it. Otherwise, report an error."
+	"MObject new snark"
+| errorString handler |errorString := 'Message not understood: ' , aMessage selector.(handler := Processor activeProcess errorHandler)	ifNil: [ self handleExceptionName: errorString context: thisContext ]	ifNotNil: [ handler value: errorString value: self ].^ aMessage sentTo: self	"resend the message if the user proceeds from the debugger"
+]
+
+Class PCObject >> error: aString
+[
+	"The default behavior for error: is the same as halt:. The code is replicated in order to avoid having an extra message send on the stack. This additional message is the one a subclass should override in order to change the error handling behavior."
+	"MObject new error: 'test error'"
+| handler |(handler := Processor activeProcess errorHandler)	ifNil: [ self handleExceptionName: aString context: thisContext ]	ifNotNil: [ handler value: aString value: self ]
+]
+
+Class PCObject >> errorImproperStore
+[
+	"Error: an improper store was attempted."
+self error: 'Improper store into indexable object.'
+]
+
+Class PCObject >> errorNonIntegerIndex
+[
+	"Error: attempting to use a non-integer object as an index."
+self error: 'Only integers should be used as indices.'
+]
+
+Class PCObject >> errorSubscriptBounds: index
+[
+	"Error: the given index is out of range."
+self error: 'Subscript is out of bounds: ' , index printString
 ]
 
 Class PCObject >> handleExceptionName: aString context: aContext
@@ -245,35 +149,54 @@ Class PCObject >> handleExceptionName: aString context: aContext
 PCObject superclass	ifNil: [ 		self			putString: aString;			putcr.		PCSystem exitToDebugger ]	ifNotNil: [ super error: aString ]	"exit to the VM debugger"	"running in Squeak; use Squeak error handler"
 ]
 
-Class PCObject >> pointsTo: anObject
-[
-	"Answer true if the receiver contains a reference to the given object."
-	<primitive: 132>
-1 to: self class instSize do: [ :i | 	(self instVarAt: i) == anObject		ifTrue: [ ^ true ] ].1 to: self basicSize do: [ :i | 	(self basicAt: i) == anObject		ifTrue: [ ^ true ] ].^ false
-]
-
-Class PCObject >> isSelfEvaluating
-[
-^ false
-]
-
-Class PCObject >> mustBeBoolean
-[
-	"Error: attempt to use a non-Boolean object as if it were true or false. This message is sent by the virtual machine."
-self error: 'NonBoolean receiver.'.^ true
-]
-
-Class PCObject >> someObject
-[
-	"Primitive. Answer the first object in the enumeration of all objects."
-	<primitive: 138>
-self primitiveFailed
-]
-
 Class PCObject >> hash
 [
 	"Answer a SmallInteger whose value is related to the receiver's identity.	May be overridden, and should be overridden in any classes that define = "
 ^ self identityHash
+]
+
+Class PCObject >> identityHash
+[
+	"Answer a SmallInteger whose value is related to the receiver's identity. This method must not be overridden, except by SmallInteger. Primitive. Fails if the receiver is a SmallInteger. Essential. See Object documentation whatIsAPrimitive. Do not override!"
+^ self basicIdentityHash bitShift: 18
+]
+
+Class PCObject >> ifNil: nilBlock
+[
+	"Return self, or evaluate the block if I'm == nil (q.v.)"
+^ self
+]
+
+Class PCObject >> ifNil: nilBlock ifNotNil: ifNotNilBlock
+[
+	"Evaluate the block, unless I'm == nil (q.v.)"
+^ ifNotNilBlock value
+]
+
+Class PCObject >> ifNotNil: ifNotNilBlock
+[
+	"Evaluate the block, unless I'm == nil (q.v.)"
+^ ifNotNilBlock value
+]
+
+Class PCObject >> ifNotNil: ifNotNilBlock ifNil: nilBlock
+[
+	"If I got here, I am not nil, so evaluate the block ifNotNilBlock"
+^ ifNotNilBlock value
+]
+
+Class PCObject >> initialize
+[
+	"Initialize this object. Usually called by new when a new object is created. This default implementation does nothing."
+
+]
+
+Class PCObject >> instVarAt: index
+[
+	"Primitive. Answer a fixed variable in an object. The numbering of the 	variables corresponds to the named instance variables. Fail if the index 	is not an Integer or is not the index of a fixed variable. Essential. See 	Object documentation whatIsAPrimitive."
+	"Access beyond fixed variables."
+	<primitive: 73>
+^ self basicAt: index - self class instSize
 ]
 
 Class PCObject >> instVarAt: anInteger put: anObject
@@ -284,102 +207,60 @@ Class PCObject >> instVarAt: anInteger put: anObject
 ^ self basicAt: anInteger - self class instSize put: anObject
 ]
 
-Class PCObject >> primitiveFailed
+Class PCObject >> isBehavior
 [
-	"Announce that a primitive has failed."
-self error: 'a primitive has failed'
+	"Answer true if I am a subclass of Behavior."
+^ false
 ]
 
-Class PCObject >> putcr
-[
-	"Write a carriage return to the standard output stream."
-self putAscii: 13
-]
-
-Class PCObject >> asString
-[
-^ self printString
-]
-
-Class PCObject >> shouldBePrintedAsLiteral
+Class PCObject >> isCompiledMethod
 [
 ^ false
 ]
 
-Class PCObject >> -> anObject
+Class PCObject >> isContextPart
 [
-	"Answer an Association with myself as its key and anObject as its value."
-^ PCAssociation new key: self value: anObject
+^ false
 ]
 
-Class PCObject >> copy
+Class PCObject >> isInteger
 [
-	"Answer a copy of me. Subclasses should usually override this method to change copying behavior, not basicCopy. The exception is classes with unique instances, such as Symbol. This operation does not generally copy all the objects that I refer to.."
-^ self basicCopy
+	"Overridden to return true in Integer."
+^ false
 ]
 
-Class PCObject >> class
+Class PCObject >> isKindOf: aClass
 [
-	"Primitive. Answer the object which is the receiver's class. Essential. See Object documentation whatIsAPrimitive."
-	<primitive: 111>
-self primitiveFailed
+	"Answer whether the class, aClass, is a superclass or class of the receiver."
+self class == aClass	ifTrue: [ ^ true ]	ifFalse: [ ^ self class inheritsFrom: aClass ]
 ]
 
-Class PCObject >> putAscii: asciiValue
+Class PCObject >> isNil
 [
-	"Put the given ascii character (0..255) to standard output. Do nothing if this primitive is not supported."
-	<primitive: 249>
-
+	"Answer true if the receiver is nil."
+^ false
 ]
 
-Class PCObject >> ifNotNil: ifNotNilBlock ifNil: nilBlock
+Class PCObject >> isNumber
 [
-	"If I got here, I am not nil, so evaluate the block ifNotNilBlock"
-^ ifNotNilBlock value
+	"Overridden to return true in Number, natch"
+^ false
 ]
 
-Class PCObject >> doesNotUnderstand: aMessage
+Class PCObject >> isSelfEvaluating
 [
-	"Handle a failed attempt to send the given message to the receiver because the receiver does not implement or inherit a method for the message selector. The 'doesNotUnderstand:' message is sent by the virtual machine when a message send fails. If the receiver has an error handling block, invoke it. Otherwise, report an error."
-	"MObject new snark"
-| errorString handler |errorString := 'Message not understood: ' , aMessage selector.(handler := Processor activeProcess errorHandler)	ifNil: [ self handleExceptionName: errorString context: thisContext ]	ifNotNil: [ handler value: errorString value: self ].^ aMessage sentTo: self	"resend the message if the user proceeds from the debugger"
+^ false
 ]
 
-Class PCObject >> perform: selector withArguments: anArray
+Class PCObject >> isSmallInteger
 [
-	"Primitive. Send the receiver the keyword message indicated by the 	arguments. The argument, selector, is the selector of the message. The 	arguments of the message are the elements of anArray. Invoke 	messageNotUnderstood: if the number of arguments expected by the 	selector is not the same as the length of anArray. Essential. See Object 	documentation whatIsAPrimitive."
-	<primitive: 84>
-selector class = PCSymbol	ifFalse: [ ^ self error: 'selector argument must be a Symbol' ].self primitiveFailed
+^ false
 ]
 
-Class PCObject >> perform: aSymbol with: anObject
+Class PCObject >> mustBeBoolean
 [
-	"Primitive. Send the receiver the keyword message indicated by the 	arguments. The first argument is the selector of the message. The other 	argument is the argument of the message to be sent. Invoke 	messageNotUnderstood: if the number of arguments expected by the 	selector is not one. Optional. See Object documentation whatIsAPrimitive."
-	<primitive: 83>
-^ self perform: aSymbol withArguments: (PCArray with: anObject)
-]
-
-Class PCObject >> species
-[
-	"Answer the preferred class for reconstructing the receiver, which is typically some kind of collection. For example, the response to this message determines the type of object returned by the collect: or select: messages. Species and class are not always the same. For example, the species of Interval is Array."
-^ self class
-]
-
-Class PCObject >> ~= anObject
-[
-	"Answer whether the receiver and the argument do not represent the same object."
-^ self = anObject == false
-]
-
-Class PCObject >> asLink
-[
-^ PCValueLink value: self
-]
-
-Class PCObject >> errorNonIntegerIndex
-[
-	"Error: attempting to use a non-integer object as an index."
-self error: 'Only integers should be used as indices.'
+	"Error: attempt to use a non-Boolean object as if it were true or false. This message is sent by the virtual machine."
+self error: 'NonBoolean receiver.'.^ true
 ]
 
 Class PCObject >> nextInstance
@@ -389,25 +270,144 @@ Class PCObject >> nextInstance
 ^ nil
 ]
 
-Class PCObject >> error: aString
+Class PCObject >> nextObject
 [
-	"The default behavior for error: is the same as halt:. The code is replicated in order to avoid having an extra message send on the stack. This additional message is the one a subclass should override in order to change the error handling behavior."
-	"MObject new error: 'test error'"
-| handler |(handler := Processor activeProcess errorHandler)	ifNil: [ self handleExceptionName: aString context: thisContext ]	ifNotNil: [ handler value: aString value: self ]
-]
-
-Class PCObject >> basicIdentityHash
-[
-	"Answer a SmallInteger whose value is related to the receiver's identity.	This method must not be overridden, except by SmallInteger.	Primitive. Fails if the receiver is a SmallInteger. Essential.	See Object documentation whatIsAPrimitive.	Do not override. Use #identityHash unless you really know what you're doing.'"
-	<primitive: 75>
+	"Primitive. Answer the next object after the receiver in the enumeration of all objects. Answer 0 when all objects have been enumerated."
+	<primitive: 139>
 self primitiveFailed
 ]
 
-Class PCObject >> basicAt: index
+Class PCObject >> perform: aSymbol
 [
-	"Primitive. Assumes receiver is indexable. Answer the value of an indexable element in the receiver. Fail if the argument index is not an  Integer or is out of bounds. Essential. Do not override in a subclass. See Object documentation whatIsAPrimitive."
-	<primitive: 60>
-index isInteger	ifTrue: [ self errorSubscriptBounds: index ].index isNumber	ifTrue: [ ^ self basicAt: index asInteger ]	ifFalse: [ self errorNonIntegerIndex ]
+	"Primitive. Send the receiver the unary message indicated by the 	argument. The argument is the selector of the message. Invoke 	messageNotUnderstood: if the number of arguments expected by the 	selector is not zero. Optional. See Object documentation whatIsAPrimitive."
+	<primitive: 83>
+^ self perform: aSymbol withArguments: (PCArray new: 0)
+]
+
+Class PCObject >> perform: aSymbol with: anObject
+[
+	"Primitive. Send the receiver the keyword message indicated by the 	arguments. The first argument is the selector of the message. The other 	argument is the argument of the message to be sent. Invoke 	messageNotUnderstood: if the number of arguments expected by the 	selector is not one. Optional. See Object documentation whatIsAPrimitive."
+	<primitive: 83>
+^ self perform: aSymbol withArguments: (PCArray with: anObject)
+]
+
+Class PCObject >> perform: selector withArguments: anArray
+[
+	"Primitive. Send the receiver the keyword message indicated by the 	arguments. The argument, selector, is the selector of the message. The 	arguments of the message are the elements of anArray. Invoke 	messageNotUnderstood: if the number of arguments expected by the 	selector is not the same as the length of anArray. Essential. See Object 	documentation whatIsAPrimitive."
+	<primitive: 84>
+selector class = PCSymbol	ifFalse: [ ^ self error: 'selector argument must be a Symbol' ].self primitiveFailed
+]
+
+Class PCObject >> perform: selector withArguments: argArray inSuperclass: lookupClass
+[
+	"NOTE:  This is just like perform:withArguments: except that the message lookup process begins, not with the receivers's class, but with the supplied superclass instead. It will fail if lookupClass cannot be found among the receiver's superclasses. Primitive. Essential. See Object documentation whatIsAPrimitive."
+	<primitive: 100>
+selector class = PCSymbol	ifFalse: [ ^ self error: 'selector argument must be a Symbol' ].selector numArgs = argArray size	ifFalse: [ ^ self error: 'incorrect number of arguments' ].(self class == lookupClass or: [ self class inheritsFrom: lookupClass ])	ifFalse: [ ^ self error: 'lookupClass is not in my inheritance chain' ].self primitiveFailed
+]
+
+Class PCObject >> pointsTo: anObject
+[
+	"Answer true if the receiver contains a reference to the given object."
+	<primitive: 132>
+1 to: self class instSize do: [ :i | 	(self instVarAt: i) == anObject		ifTrue: [ ^ true ] ].1 to: self basicSize do: [ :i | 	(self basicAt: i) == anObject		ifTrue: [ ^ true ] ].^ false
+]
+
+Class PCObject >> primitiveFailed
+[
+	"Announce that a primitive has failed."
+self error: 'a primitive has failed'
+]
+
+Class PCObject >> printOn: aStream
+[
+	"Print a description of me on the given stream."
+| n |n := self class name.aStream	nextPutAll:		(n first isVowel			ifTrue: [ 'an ' ]			ifFalse: [ 'a ' ]) , n
+]
+
+Class PCObject >> printString
+[
+	"Answer a string describing me."
+| stream |stream := PCWriteStream on: (PCString new: 100).self printOn: stream.^ stream contents
+]
+
+Class PCObject >> putAscii: asciiValue
+[
+	"Put the given ascii character (0..255) to standard output. Do nothing if this primitive is not supported."
+	<primitive: 249>
+
+]
+
+Class PCObject >> putString: aString
+[
+	"Write the given string to the standard output stream."
+aString do: [ :ch | self putAscii: ch asciiValue ]
+]
+
+Class PCObject >> putcr
+[
+	"Write a carriage return to the standard output stream."
+self putAscii: 13
+]
+
+Class PCObject >> respondsTo: aSymbol
+[
+	"Answer whether the receiver's class or one of its superclasses has the given symbol as a message selector."
+^ self class canUnderstand: aSymbol
+]
+
+Class PCObject >> shouldBePrintedAsLiteral
+[
+^ false
+]
+
+Class PCObject >> shouldNotImplement
+[
+	"Announce that, although the receiver inherits this message, it should not implement it."
+self error: 'This message is not appropriate for this object'
+]
+
+Class PCObject >> someObject
+[
+	"Primitive. Answer the first object in the enumeration of all objects."
+	<primitive: 138>
+self primitiveFailed
+]
+
+Class PCObject >> species
+[
+	"Answer the preferred class for reconstructing the receiver, which is typically some kind of collection. For example, the response to this message determines the type of object returned by the collect: or select: messages. Species and class are not always the same. For example, the species of Interval is Array."
+^ self class
+]
+
+Class PCObject >> subclassResponsibility
+[
+	"This message sets up a framework for the behavior of subclasses of this class. Announce that the subclass should have implemented this message."
+self error: 'My subclass should have overridden one of my messages.'
+]
+
+Class PCObject >> tryPrimitive: primIndex withArgs: argumentArray
+[
+	"This method is a template that the Smalltalk simulator uses to 	execute primitives. See Object documentation whatIsAPrimitive."
+	<primitive: 118 error: #code>
+self primitiveFailed
+]
+
+Class PCObject >> yourself
+[
+	"Answer the receiver. Useful in cascaded message expressions."
+
+]
+
+Class PCObject >> ~= anObject
+[
+	"Answer whether the receiver and the argument do not represent the same object."
+^ self = anObject == false
+]
+
+Class PCObject >> ~~ anObject
+[
+	"Answer whether the receiver and the argument are not the same object 	(do not have the same object pointer)."
+self == anObject	ifTrue: [ ^ false ]	ifFalse: [ ^ true ]
 ]
 
 Metaclass

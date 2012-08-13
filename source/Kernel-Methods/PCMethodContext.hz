@@ -6,28 +6,9 @@ Class
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Methods'.
 
-Class PCMethodContext >> method
+Class PCMethodContext >> asContext
 [
-^ method
-]
-
-Class PCMethodContext >> tempAt: index put: value
-[
-	"Store the argument, value, as the temporary variable whose index is the 	 argument, index.  Primitive. Assumes receiver is indexable. Answer the	 value of an indexable element in the receiver. Fail if the argument index	 is not an Integer or is out of bounds. Essential. See Object documentation	 whatIsAPrimitive.  Override the default at:put: primitive to give latitude to	 the VM in context management."
-	<primitive: 211>
-
-]
-
-Class PCMethodContext >> setSender: s receiver: r method: m closure: c startpc: startpc
-[
-	"Create the receiver's initial state."
-sender := s.receiver := r.method := m.closureOrNil := c.pc := startpc.stackp := 0
-]
-
-Class PCMethodContext >> privRefresh
-[
-	"Reinitialize the receiver so that it is in the state it was at its creation."
-closureOrNil	ifNotNil: [ 		pc := closureOrNil startpc.		self stackp: closureOrNil numArgs + closureOrNil numCopiedValues.		1 to: closureOrNil numCopiedValues do: [ :i | self tempAt: closureOrNil numArgs + i put: (closureOrNil at: i) ] ]	ifNil: [ 		pc := method initialPC.		self stackp: method numTemps.		method numArgs + 1 to: method numTemps do: [ :i | self tempAt: i put: nil ] ]
+^ self
 ]
 
 Class PCMethodContext >> home
@@ -36,15 +17,27 @@ Class PCMethodContext >> home
 closureOrNil == nil	ifTrue: [ ^ self ].^ closureOrNil outerContext home
 ]
 
+Class PCMethodContext >> method
+[
+^ method
+]
+
+Class PCMethodContext >> privRefresh
+[
+	"Reinitialize the receiver so that it is in the state it was at its creation."
+closureOrNil	ifNotNil: [ 		pc := closureOrNil startpc.		self stackp: closureOrNil numArgs + closureOrNil numCopiedValues.		1 to: closureOrNil numCopiedValues do: [ :i | self tempAt: closureOrNil numArgs + i put: (closureOrNil at: i) ] ]	ifNil: [ 		pc := method initialPC.		self stackp: method numTemps.		method numArgs + 1 to: method numTemps do: [ :i | self tempAt: i put: nil ] ]
+]
+
 Class PCMethodContext >> removeSelf
 [
 	"Nil the receiver pointer and answer its former value."
 | result |result := receiver.receiver := nil.^ result
 ]
 
-Class PCMethodContext >> asContext
+Class PCMethodContext >> setSender: s receiver: r method: m closure: c startpc: startpc
 [
-^ self
+	"Create the receiver's initial state."
+sender := s.receiver := r.method := m.closureOrNil := c.pc := startpc.stackp := 0
 ]
 
 Class PCMethodContext >> stackp: newStackp
@@ -53,6 +46,13 @@ Class PCMethodContext >> stackp: newStackp
 	"Once this primitive is implemented, failure code should cause an error"
 	<primitive: 76>
 self error: 'stackp store failure'
+]
+
+Class PCMethodContext >> tempAt: index put: value
+[
+	"Store the argument, value, as the temporary variable whose index is the 	 argument, index.  Primitive. Assumes receiver is indexable. Answer the	 value of an indexable element in the receiver. Fail if the argument index	 is not an Integer or is out of bounds. Essential. See Object documentation	 whatIsAPrimitive.  Override the default at:put: primitive to give latitude to	 the VM in context management."
+	<primitive: 211>
+
 ]
 
 Metaclass

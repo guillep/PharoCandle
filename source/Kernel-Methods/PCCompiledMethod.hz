@@ -6,17 +6,11 @@ Class
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Methods'.
 
-Class PCCompiledMethod >> initialPC
+Class PCCompiledMethod >> frameSize
 [
-	"Answer the program counter for my first bytecode."
-^ 4 * (self numLiterals + 1) + 1
-]
-
-Class PCCompiledMethod >> objectAt: index put: value
-[
-	"Primitive. Store the value argument into a literal in the receiver. An index of 2 corresponds to the first literal. Fails if the index is less than 2 or greater than the number of literals. Answer the value as the result. Normally only the compiler sends this message because only the compiler stores values in CompiledMethods. Essential. See Object documentation whatIsAPrimitive."
-	<primitive: 69>
-self primitiveFailed
+	"Answer the size of temporary frame needed to run the receiver."
+	"NOTE:  Versions 2.7 and later use two sizes of contexts."
+(self header bitAnd: 16r20000) = 0	ifTrue: [ ^ 16 ]	ifFalse: [ ^ 56 ]
 ]
 
 Class PCCompiledMethod >> header
@@ -25,10 +19,27 @@ Class PCCompiledMethod >> header
 ^ self objectAt: 1
 ]
 
+Class PCCompiledMethod >> initialPC
+[
+	"Answer the program counter for my first bytecode."
+^ 4 * (self numLiterals + 1) + 1
+]
+
+Class PCCompiledMethod >> isCompiledMethod
+[
+^ true
+]
+
 Class PCCompiledMethod >> numLiterals
 [
 	"Answer the number of literals used by the receiver."
 ^ (self header bitShift: -9) bitAnd: 16rFF
+]
+
+Class PCCompiledMethod >> numTemps
+[
+	"Answer the number of temporary variables used by this method."
+^ (self header bitShift: -18) bitAnd: 16r3F
 ]
 
 Class PCCompiledMethod >> objectAt: index
@@ -38,22 +49,11 @@ Class PCCompiledMethod >> objectAt: index
 self primitiveFailed
 ]
 
-Class PCCompiledMethod >> isCompiledMethod
+Class PCCompiledMethod >> objectAt: index put: value
 [
-^ true
-]
-
-Class PCCompiledMethod >> frameSize
-[
-	"Answer the size of temporary frame needed to run the receiver."
-	"NOTE:  Versions 2.7 and later use two sizes of contexts."
-(self header bitAnd: 16r20000) = 0	ifTrue: [ ^ 16 ]	ifFalse: [ ^ 56 ]
-]
-
-Class PCCompiledMethod >> numTemps
-[
-	"Answer the number of temporary variables used by this method."
-^ (self header bitShift: -18) bitAnd: 16r3F
+	"Primitive. Store the value argument into a literal in the receiver. An index of 2 corresponds to the first literal. Fails if the index is less than 2 or greater than the number of literals. Answer the value as the result. Normally only the compiler sends this message because only the compiler stores values in CompiledMethods. Essential. See Object documentation whatIsAPrimitive."
+	<primitive: 69>
+self primitiveFailed
 ]
 
 Metaclass

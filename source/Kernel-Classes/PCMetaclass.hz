@@ -6,16 +6,15 @@ Class
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Classes'.
 
-Class PCMetaclass >> theNonMetaClass
+Class PCMetaclass >> initMethodDict: newMethodDict
 [
-	"Answer my only instance."
-^ soleInstance
+	"Initialize myself with the given method dictionary. Create but do not initialize my soleInstance."
+superclass := PCClass.methodDict := newMethodDict.format := PCClass format.	"all metaclasses have the same format as MClass"soleInstance := self basicNew
 ]
 
-Class PCMetaclass >> new
+Class PCMetaclass >> isMeta
 [
-	"Each metaclass should have exactly one instance."
-self cannotInstantiate
+^ true
 ]
 
 Class PCMetaclass >> name
@@ -24,15 +23,16 @@ Class PCMetaclass >> name
 soleInstance ifNil: [ ^ 'Metaclass' ] ifNotNil: [ ^ soleInstance name , ' class' ]
 ]
 
-Class PCMetaclass >> isMeta
+Class PCMetaclass >> new
 [
-^ true
+	"Each metaclass should have exactly one instance."
+self cannotInstantiate
 ]
 
-Class PCMetaclass >> initMethodDict: newMethodDict
+Class PCMetaclass >> theNonMetaClass
 [
-	"Initialize myself with the given method dictionary. Create but do not initialize my soleInstance."
-superclass := PCClass.methodDict := newMethodDict.format := PCClass format.	"all metaclasses have the same format as MClass"soleInstance := self basicNew
+	"Answer my only instance."
+^ soleInstance
 ]
 
 Metaclass

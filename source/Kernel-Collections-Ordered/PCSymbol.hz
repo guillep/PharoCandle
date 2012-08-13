@@ -6,41 +6,9 @@ Class
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Collections-Ordered'.
 
-Class PCSymbol >> replaceFrom: start to: stop with: replacement startingAt: repStart
+Class PCSymbol >> = anObject
 [
-self errorNoModification
-]
-
-Class PCSymbol >> hash
-[
-^ self identityHash
-]
-
-Class PCSymbol >> printOn: aStream
-[
-aStream nextPutAll: self
-]
-
-Class PCSymbol >> asSymbol
-[
-^ self
-]
-
-Class PCSymbol >> errorNoModification
-[
-self error: 'Symbols can not be modified.'
-]
-
-Class PCSymbol >> basicCopy
-[
-	"Answer myself because Symbols are unique."
-
-]
-
-Class PCSymbol >> at: anInteger put: anObject
-[
-	"You cannot modify the receiver."
-self errorNoModification
+^ self == anObject
 ]
 
 Class PCSymbol >> asString
@@ -49,20 +17,52 @@ Class PCSymbol >> asString
 | sz result |sz := self size.result := PCString new: sz.result	replaceFrom: 1	to: sz	with: self	startingAt: 1.^ result
 ]
 
-Class PCSymbol >> = anObject
+Class PCSymbol >> asSymbol
 [
-^ self == anObject
+^ self
 ]
 
-Class PCSymbol >> species
+Class PCSymbol >> at: anInteger put: anObject
 [
-^ PCString
+	"You cannot modify the receiver."
+self errorNoModification
+]
+
+Class PCSymbol >> basicCopy
+[
+	"Answer myself because Symbols are unique."
+
+]
+
+Class PCSymbol >> errorNoModification
+[
+self error: 'Symbols can not be modified.'
+]
+
+Class PCSymbol >> hash
+[
+^ self identityHash
 ]
 
 Class PCSymbol >> initFrom: aString
 [
 	"Warning! Use only to initialize new Symbols. Symbols are assumed to be immutable there after."
 self size = aString size	ifFalse: [ self error: 'size mismatch' ].super	replaceFrom: 1	to: self size	with: aString	startingAt: 1
+]
+
+Class PCSymbol >> printOn: aStream
+[
+aStream nextPutAll: self
+]
+
+Class PCSymbol >> replaceFrom: start to: stop with: replacement startingAt: repStart
+[
+self errorNoModification
+]
+
+Class PCSymbol >> species
+[
+^ PCString
 ]
 
 Metaclass

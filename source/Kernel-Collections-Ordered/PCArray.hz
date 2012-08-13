@@ -6,10 +6,10 @@ Class
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Collections-Ordered'.
 
-Class PCArray >> hash
+Class PCArray >> asArray
 [
-	"Make sure that equal (=) arrays hash equally."
-self size = 0	ifTrue: [ ^ 17171 ].^ (self at: 1) hash + (self at: self size) hash
+	"Answer with the receiver itself."
+^ self
 ]
 
 Class PCArray >> elementsExchangeIdentityWith: otherArray
@@ -19,11 +19,10 @@ Class PCArray >> elementsExchangeIdentityWith: otherArray
 self primitiveFailed
 ]
 
-Class PCArray >> replaceFrom: start to: stop with: replacement startingAt: repStart
+Class PCArray >> hash
 [
-	"Primitive. This destructively replaces elements from start to stop in the receiver starting at index, repStart, in the collection, replacement. Answer the receiver. Range checks are performed in the primitive only. Optional. See Object documentation whatIsAPrimitive."
-	<primitive: 105>
-super	replaceFrom: start	to: stop	with: replacement	startingAt: repStart
+	"Make sure that equal (=) arrays hash equally."
+self size = 0	ifTrue: [ ^ 17171 ].^ (self at: 1) hash + (self at: self size) hash
 ]
 
 Class PCArray >> printOn: aStream
@@ -31,10 +30,11 @@ Class PCArray >> printOn: aStream
 aStream nextPutAll: '#('.self	do: [ :each | 		each printOn: aStream.		aStream space ].aStream nextPut: $)
 ]
 
-Class PCArray >> asArray
+Class PCArray >> replaceFrom: start to: stop with: replacement startingAt: repStart
 [
-	"Answer with the receiver itself."
-^ self
+	"Primitive. This destructively replaces elements from start to stop in the receiver starting at index, repStart, in the collection, replacement. Answer the receiver. Range checks are performed in the primitive only. Optional. See Object documentation whatIsAPrimitive."
+	<primitive: 105>
+super	replaceFrom: start	to: stop	with: replacement	startingAt: repStart
 ]
 
 Metaclass

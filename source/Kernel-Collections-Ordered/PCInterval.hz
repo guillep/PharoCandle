@@ -6,48 +6,10 @@ Class
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Collections-Ordered'.
 
-Class PCInterval >> hash
+Class PCInterval >> = anInterval
 [
-	"Hash is reimplemented because = is implemented."
-^ (((start hash bitShift: 2) bitOr: stop hash) bitShift: 1) bitOr: self size
-]
-
-Class PCInterval >> includes: aNumber
-[
-^ aNumber between: self first and: self last
-]
-
-Class PCInterval >> do: aBlock
-[
-| aValue |aValue := start.step < 0	ifTrue: [ 		[ stop <= aValue ]			whileTrue: [ 				aBlock value: aValue.				aValue := aValue + step ] ]	ifFalse: [ 		[ stop >= aValue ]			whileTrue: [ 				aBlock value: aValue.				aValue := aValue + step ] ]
-]
-
-Class PCInterval >> setFrom: startInteger to: stopInteger by: stepInteger
-[
-start := startInteger.stop := stopInteger.step := stepInteger
-]
-
-Class PCInterval >> increment
-[
-	"Answer the receiver's interval increment."
-^ step
-]
-
-Class PCInterval >> printOn: aStream
-[
-aStream nextPut: $(.start printOn: aStream.aStream nextPutAll: ' to: '.stop printOn: aStream.step ~= 1	ifTrue: [ 		aStream nextPutAll: ' by: '.		step printOn: aStream ].aStream nextPut: $)
-]
-
-Class PCInterval >> first
-[
-	"Refer to the comment in SequenceableCollection|first."
-^ start
-]
-
-Class PCInterval >> at: anInteger
-[
-	"Answer the anInteger'th element."
-(anInteger >= 1 and: [ anInteger <= self size ])	ifTrue: [ ^ start + (step * (anInteger - 1)) ]	ifFalse: [ self errorSubscriptBounds: anInteger ]
+	"Answer true if my species and anInterval species are equal, and	if our starts, steps and sizes are equal."
+self species == anInterval species	ifTrue: [ ^ start = anInterval first and: [ step = anInterval increment and: [ self size = anInterval size ] ] ]	ifFalse: [ ^ false ]
 ]
 
 Class PCInterval >> add: newObject
@@ -56,15 +18,10 @@ Class PCInterval >> add: newObject
 self shouldNotImplement
 ]
 
-Class PCInterval >> size
+Class PCInterval >> at: anInteger
 [
-step < 0	ifTrue: [ 		start < stop			ifTrue: [ ^ 0 ]			ifFalse: [ ^ (stop - start) // step + 1 ] ]	ifFalse: [ 		stop < start			ifTrue: [ ^ 0 ]			ifFalse: [ ^ (stop - start) // step + 1 ] ]
-]
-
-Class PCInterval >> = anInterval
-[
-	"Answer true if my species and anInterval species are equal, and	if our starts, steps and sizes are equal."
-self species == anInterval species	ifTrue: [ ^ start = anInterval first and: [ step = anInterval increment and: [ self size = anInterval size ] ] ]	ifFalse: [ ^ false ]
+	"Answer the anInteger'th element."
+(anInteger >= 1 and: [ anInteger <= self size ])	ifTrue: [ ^ start + (step * (anInteger - 1)) ]	ifFalse: [ self errorSubscriptBounds: anInteger ]
 ]
 
 Class PCInterval >> at: anInteger put: anObject
@@ -78,15 +35,32 @@ Class PCInterval >> collect: aBlock
 | nextValue result |result := self species new: self size.nextValue := start.1 to: result size do: [ :i | 	result at: i put: (aBlock value: nextValue).	nextValue := nextValue + step ].^ result
 ]
 
-Class PCInterval >> species
+Class PCInterval >> do: aBlock
 [
-^ PCArray
+| aValue |aValue := start.step < 0	ifTrue: [ 		[ stop <= aValue ]			whileTrue: [ 				aBlock value: aValue.				aValue := aValue + step ] ]	ifFalse: [ 		[ stop >= aValue ]			whileTrue: [ 				aBlock value: aValue.				aValue := aValue + step ] ]
 ]
 
-Class PCInterval >> remove: newObject
+Class PCInterval >> first
 [
-	"Removing from an Interval is not allowed."
-self error: 'elements cannot be removed from an Interval'
+	"Refer to the comment in SequenceableCollection|first."
+^ start
+]
+
+Class PCInterval >> hash
+[
+	"Hash is reimplemented because = is implemented."
+^ (((start hash bitShift: 2) bitOr: stop hash) bitShift: 1) bitOr: self size
+]
+
+Class PCInterval >> includes: aNumber
+[
+^ aNumber between: self first and: self last
+]
+
+Class PCInterval >> increment
+[
+	"Answer the receiver's interval increment."
+^ step
 ]
 
 Class PCInterval >> last
@@ -95,19 +69,45 @@ Class PCInterval >> last
 ^ stop - ((stop - start) \\ step)
 ]
 
+Class PCInterval >> printOn: aStream
+[
+aStream nextPut: $(.start printOn: aStream.aStream nextPutAll: ' to: '.stop printOn: aStream.step ~= 1	ifTrue: [ 		aStream nextPutAll: ' by: '.		step printOn: aStream ].aStream nextPut: $)
+]
+
+Class PCInterval >> remove: newObject
+[
+	"Removing from an Interval is not allowed."
+self error: 'elements cannot be removed from an Interval'
+]
+
+Class PCInterval >> setFrom: startInteger to: stopInteger by: stepInteger
+[
+start := startInteger.stop := stopInteger.step := stepInteger
+]
+
+Class PCInterval >> size
+[
+step < 0	ifTrue: [ 		start < stop			ifTrue: [ ^ 0 ]			ifFalse: [ ^ (stop - start) // step + 1 ] ]	ifFalse: [ 		stop < start			ifTrue: [ ^ 0 ]			ifFalse: [ ^ (stop - start) // step + 1 ] ]
+]
+
+Class PCInterval >> species
+[
+^ PCArray
+]
+
 Metaclass
 	name: #PCInterval;
 	instanceVariables: #().
-
-Metaclass PCInterval >> from: startInteger to: stopInteger by: stepInteger
-[
-	"Answer an instance of me, starting at startNumber, ending at stopNumber, and with an interval increment of stepNumber."
-^ self basicNew setFrom: startInteger to: stopInteger by: stepInteger
-]
 
 Metaclass PCInterval >> from: startInteger to: stopInteger
 [
 	"Answer an instance of me, starting at startNumber, ending at stopNumber, and with an interval increment of 1."
 ^ self basicNew setFrom: startInteger to: stopInteger by: 1
+]
+
+Metaclass PCInterval >> from: startInteger to: stopInteger by: stepInteger
+[
+	"Answer an instance of me, starting at startNumber, ending at stopNumber, and with an interval increment of stepNumber."
+^ self basicNew setFrom: startInteger to: stopInteger by: stepInteger
 ]
 

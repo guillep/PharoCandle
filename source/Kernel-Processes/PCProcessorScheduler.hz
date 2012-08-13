@@ -6,6 +6,18 @@ Class
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Processes'.
 
+Class PCProcessorScheduler >> activeProcess
+[
+	"Answer the currently running Process."
+^ activeProcess
+]
+
+Class PCProcessorScheduler >> highestPriority
+[
+	"Answer the number of priority levels currently available for use."
+^ suspendedProcessLists size
+]
+
 Class PCProcessorScheduler >> idleProcess
 [
 	"A default background process that simply loops forever. It runs only when no higher priority processes are available, perhaps because they are waiting on a semaphore or timer."
@@ -18,24 +30,6 @@ Class PCProcessorScheduler >> initProcessLists
 suspendedProcessLists := (1 to: 5) collect: [ :i | PCProcessList new ]
 ]
 
-Class PCProcessorScheduler >> installStartProcess
-[
-	"Install the startup process as the active process. This process will run when Pharo Candle is started."
-activeProcess := PCProcess for: [ PCSystem start ] asContext priority: 3
-]
-
-Class PCProcessorScheduler >> activeProcess
-[
-	"Answer the currently running Process."
-^ activeProcess
-]
-
-Class PCProcessorScheduler >> remove: aProcess ifAbsent: aBlock
-[
-	"Remove the given process from the list on which it is waiting. If the process is not on the queue for it's priority, evaluate the given block. Always answer the process."
-(suspendedProcessLists at: aProcess priority) remove: aProcess ifAbsent: aBlock.^ aProcess
-]
-
 Class PCProcessorScheduler >> installIdleProcess
 [
 	"Install an idle process of the lowest possible priority that is always runnable."
@@ -43,10 +37,16 @@ Class PCProcessorScheduler >> installIdleProcess
 | idleList idleProc |"terminate any old idle processes"idleList := suspendedProcessLists at: 1.[ idleList isEmpty ] whileFalse: [ idleList first terminate ].idleProc := PCProcess for: [ self idleProcess ] priority: 1.(suspendedProcessLists at: idleProc priority) addLast: idleProc
 ]
 
-Class PCProcessorScheduler >> highestPriority
+Class PCProcessorScheduler >> installStartProcess
 [
-	"Answer the number of priority levels currently available for use."
-^ suspendedProcessLists size
+	"Install the startup process as the active process. This process will run when Pharo Candle is started."
+activeProcess := PCProcess for: [ PCSystem start ] asContext priority: 3
+]
+
+Class PCProcessorScheduler >> remove: aProcess ifAbsent: aBlock
+[
+	"Remove the given process from the list on which it is waiting. If the process is not on the queue for it's priority, evaluate the given block. Always answer the process."
+(suspendedProcessLists at: aProcess priority) remove: aProcess ifAbsent: aBlock.^ aProcess
 ]
 
 Metaclass
