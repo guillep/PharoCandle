@@ -2,7 +2,7 @@ Class
 	name: #PCBehavior;
 	superclass: #ClassPCObject;
 	instanceSpecification: #(#pointers #words );
-	instanceVariables: #(#superclass #methodDict #format #dummy1 #dummy2 #dummy3 );
+	instanceVariables: #(#superclass #methodDict #format );
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Classes'.
 
