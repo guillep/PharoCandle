@@ -1,7 +1,7 @@
 Class
 	name: #PCCompiledMethod;
 	superclass: #ClassPCByteArray;
-	instanceSpecification: #(#variable #byte );
+	instanceSpecification: #(#compiledMethod);
 	instanceVariables: #();
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Methods'.
