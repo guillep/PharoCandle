@@ -23,11 +23,6 @@ Class PCBlock >> home
 ^ outerContext home
 ]
 
-Class PCBlock >> home: aMethodContext startpc: initialPC nargs: argCount
-[
-home := aMethodContext.startpc := initialPC.nargs := argCount
-]
-
 Class PCBlock >> ifError: errorHandlerBlock
 [
 	"Evaluate the block represented by the receiver. If an error occurs the given handler block is evaluated. The handler block can be either a zero- or two-argument block; if the latter, then the error message and receiver are supplied to it as parameters. Answer the value returned by the handler block if the receiver gets an error."
@@ -38,7 +33,7 @@ Class PCBlock >> ifError: errorHandlerBlock
 
 Class PCBlock >> method
 [
-^ home method
+^ self home method
 ]
 
 Class PCBlock >> msecs
