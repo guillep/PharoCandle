@@ -6,6 +6,13 @@ Class
 	classVariables: #(#CharacterTable );
 	package: #'PharoCandle-Kernel-Numeric'.
 
+
+
+Class PCCharacter >> setValue: newValue
+[
+	value ifNotNil:[ ^ self error:'Characters are immutable' ].
+	value := newValue.
+]
 Class PCCharacter >> < aCharacter
 [
 	"Answer true if my value is less than the given character's value."
@@ -129,6 +136,16 @@ Metaclass
 	name: #PCCharacter;
 	instanceVariables: #().
 
+Metaclass PCCharacter >> initialize
+[
+	"Create the table of DigitsValues."
+	"self initialize"
+	
+	CharacterTable ifNil: [
+		"Initialize only once to ensure that byte characters are unique"
+		CharacterTable := PCArray new: 256.
+		1 to: 256 do: [:i | CharacterTable at: i put: (self basicNew setValue: i - 1)]].
+]
 Metaclass PCCharacter >> asciiValue: anInteger
 [
 	"Answer the Character whose ASCII value is anInteger."
