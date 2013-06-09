@@ -23,7 +23,7 @@ Once downloaded and built, a _results_ folder will be created. The results folde
 Usage
 -----
 
-To run the bootstrap you need to open the PharoCandleBootstrap.image with the VM supporting ui. That can be done in the command line with the following script:
+To create a PharoCandle image from source code, we bootstrap it following the process described in [here](http://playingwithobjects.wordpress.com/2013/05/06/bootstrap-revival-the-basics/). To run the bootstrap you need to open the PharoCandleBootstrap.image with the VM supporting ui. That can be done in the command line with the following script:
 
 ```bash
 cd results
@@ -52,6 +52,7 @@ builder objectSpace: objectSpace.
 builder kernelSpec: seed.
 builder	buildKernel.
 ```
+
 
 Browse the bootstrapped objectSpace by doing
 ```smalltalk
