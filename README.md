@@ -1,7 +1,9 @@
 PharoCandle
 ===========
 
-This project contains the code of PharoCandle. PharoCandle is a minimal [Pharo](http://www.pharo.org) distribution, based on [MicroSqueak](http://web.media.mit.edu/~jmaloney/microsqueak/readme.txt), work of John Maloney. This distribution is currently for research purposes, but you can take it and use it for your own purposes.
+	This project contains the current development branch of PharoCandle. For a stable version, check other branches.
+
+PharoCandle is a minimal [Pharo](http://www.pharo.org) distribution, based on [MicroSqueak](http://web.media.mit.edu/~jmaloney/microsqueak/readme.txt), work of John Maloney. This distribution is currently for research purposes, but you can take it and use it for your own purposes.
 
 The main purpose of this project is the Bootstrap of a PharoCandle image using the sourcecode under the _source_ folder. In order to bootstrap, we need to install the bootstrap library into a Pharo environment. Look at _installation_ and _usage_ for more details.
 
