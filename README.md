@@ -76,5 +76,5 @@ Metaclass PCSystem >> start
 
 TODOs
 ----------------------
-- [ ] asd
-- [ ] an autre asd
+- Autogenerate this script :)
+- In the latest version, we lost the possibility to serialize the image. Recover it!
