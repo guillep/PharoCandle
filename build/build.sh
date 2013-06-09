@@ -1,16 +1,35 @@
+#!/bin/bash
+set -e
+
+RESULTS_FOLDER="results"
+#Work in temporal directory
+if [ -a $RESULTS_FOLDER ]; then
+		echo "cannot create directory named \""$RESULTS_FOLDER"\": file already exists"
+		exit 1
+fi
+
+mkdir $RESULTS_FOLDER
+cd $RESULTS_FOLDER
+
 #Load image for this project
-wget -qO - http://get.pharo.org/20+vm | bash
+
+wget -O - get.pharo.org/20+vm | bash
+./pharo Pharo.image save PharoCandleBootstrap --delete-old
+
+
 
 #Load stable version of the monticello configuration, according to this git sources
 REPO=http://smalltalkhub.com/mc/Guille/Seed/main
-./pharo $JOB_NAME.image config $REPO ConfigurationOfHazelnut --install=stable
+./pharo PharoCandleBootstrap.image config $REPO ConfigurationOfHazelnut --install=stable
 
-echo "
+echo "Configuration Loaded. Opening script..."
+
+echo -e "
 Workspace openContents: '\"I am a builder for a Pharo Candle system. I bootstrap the system using an object space. You configure myself by providing mi a kernelSpec, and sending me the message #buildKernel.\"
 
 \"Load a seed from the folder of the downloaded sources\"
 seed := PharoCandleSeed new
-    fromDirectoryNamed: 'PharoCandle/source';
+    fromDirectoryNamed: ''../source'';
     buildSeed.
 
 \"Create an object space that will use an AST evaluator to run some code\"
@@ -24,9 +43,11 @@ builder kernelSpec: seed.
 builder	buildKernel.
 
 \"Browse me\"
-objectSpace browse.'" > ./script.st
+objectSpace browse.'.
+Smalltalk snapshot: true andQuit: true." > ./script.st
 
-./pharo $JOB_NAME.image script.st
-mkdir results
-mv ¢JOB_NAME.* results
+./pharo PharoCandleBootstrap.image script.st
+rm script.st
+rm PharoDebug.log
+echo "Script created and loaded. Finished! :D"
 #./pharo $JOB_NAME.image test --junit-xml-output "Seed.*"
