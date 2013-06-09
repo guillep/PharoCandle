@@ -1,7 +1,7 @@
 PharoCandle
 ===========
 
-	This project contains the current development branch of PharoCandle. For a stable version, check other branches.
+	WARNING: This project contains the current development branch of PharoCandle. For a stable version, check other branches.
 
 PharoCandle is a minimal [Pharo](http://www.pharo.org) distribution, based on [MicroSqueak](http://web.media.mit.edu/~jmaloney/microsqueak/readme.txt), work of John Maloney. This distribution is currently for research purposes, but you can take it and use it for your own purposes.
 
