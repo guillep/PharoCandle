@@ -35,7 +35,7 @@ The Pharo image will contain the Pharo 2.0 welcome workspace, and a workspace wi
 Load the sourcecode into the image:
 ```smalltalk
 seed := PharoCandleSeed new
-    fromDirectoryNamed: ''../source'';
+    fromDirectoryNamed: '../source';
     buildSeed.
 ```
 
