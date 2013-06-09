@@ -75,6 +75,8 @@ PCSystem >> start
 	PCObject superclass ifNil: [ self quit ]
 ```
 
+Currently, to run a PharoCandle distribution, a special VM is needed that allows the context switch between different images inside the same VM process. The ability for serializing an image into a file will be re-added soon.
+
 TODOs
 ----------------------
 - Autogenerate this script :)
