@@ -60,3 +60,21 @@ objectSpace browse.
 
 PharoCandle's Overview
 ----------------------
+
+PharoCandle is a minimal Pharo distribution containing only 49 classes. Those 49 classes define a whole Pharo kernel including classes such as PCString, PCObject, PCClass or PCSmallInteger. Additionally, it contains a minimal Collection library. PharoCandle classes are prefixed with 'PC' only for documentation purposes, but the prefix is not necessary for the bootstrap.
+
+When run, a PharoCandle image runs the method """PCSystem>>start""". This method satisfies the role of a main method of other languages. The current distribution's _start_ method is as:
+
+```smalltalk
+Metaclass PCSystem >> start
+	self log: 'Welcome to Pharo Candle edition!'.
+	self log: self tinyBenchmarks.
+	self log: PCForm new primScreenSize printString.
+	self beep.
+	PCObject superclass ifNil: [ self quit ]
+```
+
+TODOs
+----------------------
+- [ ] asd
+- [ ] an autre asd
