@@ -1,7 +1,15 @@
 #!/bin/bash
 set -e
 
+#Setup arguments
 RESULTS_FOLDER="results"
+if [ $# == 0 ]; then
+	VERSION=stable
+else
+	VERSION=$1
+fi
+
+
 #Work in temporal directory
 if [ -a $RESULTS_FOLDER ]; then
 		echo "cannot create directory named \""$RESULTS_FOLDER"\": file already exists"
@@ -20,7 +28,7 @@ wget -O - get.pharo.org/20+vm | bash
 
 #Load stable version of the monticello configuration, according to this git sources
 REPO=http://smalltalkhub.com/mc/Guille/Seed/main
-./pharo PharoCandleBootstrap.image config $REPO ConfigurationOfHazelnut --install=stable
+./pharo PharoCandleBootstrap.image config $REPO ConfigurationOfHazelnut --install=$VERSION
 
 echo "Configuration Loaded. Opening script..."
 
