@@ -9,36 +9,36 @@ Class
 Class PCUndefinedObject >> basicCopy
 [
 	"There is the only one instance of me, so answer myself."
-
+	^ self 
 ]
 
 Class PCUndefinedObject >> ifNil: aBlock
 [
 	"A convenient test, in conjunction with Object ifNil:"
-^ aBlock value
+	^ aBlock value
 ]
 
 Class PCUndefinedObject >> ifNil: nilBlock ifNotNil: ifNotNilBlock
 [
 	"Evaluate the block for nil because I'm == nil"
-^ nilBlock value
+	^ nilBlock value
 ]
 
 Class PCUndefinedObject >> ifNotNil: aBlock
 [
 	"A convenient test, in conjunction with Object ifNotNil:"
-^ self
+	^ self
 ]
 
 Class PCUndefinedObject >> isNil
 [
 	"Answer true if the receiver is nil."
-^ true
+	^ true
 ]
 
 Class PCUndefinedObject >> printOn: aStream
 [
-aStream nextPutAll: 'nil'
+	aStream nextPutAll: 'nil'
 ]
 
 Metaclass
@@ -48,6 +48,6 @@ Metaclass
 Metaclass PCUndefinedObject >> new
 [
 	"There is a single unique instance of me."
-self cannotInstantiate
+	self cannotInstantiate
 ]
 

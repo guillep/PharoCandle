@@ -1,0 +1,53 @@
+Candle Light remarks
+
+instSize -> instanceSize
+
+instSpec -> instanceSpec ??
+"missing comment"
+
+why do you need Class in 
+Class PCBehavior>>...
+	[
+	]
+	
+	
+Metaclass
+	name: #PCBehavior;
+	instanceVariables: #().
+	
+
+ClassDescription does not exist
+
+I have to rethink
+
+Class PCMetaclass >> initMethodDict: newMethodDict
+[
+	"Initialize myself with the given method dictionary. Create but do not initialize my soleInstance."
+	superclass := PCClass.
+	methodDict := newMethodDict.
+	format := PCClass format.	"all metaclasses have the same format as PClass"
+	soleInstance := self basicNew
+]
+
+Would be nice to have Boolean
+
+Why this crap on Object
+
+Class PCObject >> putAscii: asciiValue
+[
+	"Put the given ascii character (0..255) to standard output. Do nothing if this primitive is not supported."
+	<primitive: 249>
+
+]
+
+Class PCObject >> putString: aString
+[
+	"Write the given string to the standard output stream."
+	aString do: [ :ch | self putAscii: ch asciiValue ]
+]
+
+Class PCObject >> putcr
+[
+	"Write a carriage return to the standard output stream."
+	self putAscii: 13
+]
