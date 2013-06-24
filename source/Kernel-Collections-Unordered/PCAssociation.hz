@@ -9,50 +9,57 @@ Class
 Class PCAssociation >> < aLookupKey
 [
 	"Sort by keys."
-^ key < aLookupKey key
+	^ key < aLookupKey key
 ]
 
 Class PCAssociation >> = anAssociation
 [
 	"True if the receiver and argument have equal keys."
-self species = anAssociation species	ifTrue: [ ^ key = anAssociation key ]	ifFalse: [ ^ false ]
+	self species = anAssociation species
+		ifTrue: [ ^ key = anAssociation key ]
+		ifFalse: [ ^ false ]
 ]
 
 Class PCAssociation >> hash
 [
 	"Hash is reimplemented because = is implemented."
-^ key hash
+	^ key hash
 ]
 
 Class PCAssociation >> key
 [
-^ key
+	^ key
 ]
 
 Class PCAssociation >> key: anObject
 [
-key := anObject
+	key := anObject
 ]
 
 Class PCAssociation >> key: aKey value: anObject
 [
-key := aKey.value := anObject
+	key := aKey.
+	value := anObject
 ]
 
 Class PCAssociation >> printOn: aStream
 [
 	"Print in the format (key->value)."
-aStream nextPut: $(.key printOn: aStream.aStream nextPutAll: '->'.value printOn: aStream.aStream nextPut: $)
+	aStream nextPut: $(.
+	key printOn: aStream.
+	aStream nextPutAll: '->'.
+	value printOn: aStream.
+	aStream nextPut: $)
 ]
 
 Class PCAssociation >> value
 [
-^ value
+	^ value
 ]
 
 Class PCAssociation >> value: anObject
 [
-value := anObject
+	value := anObject
 ]
 
 Metaclass
@@ -62,6 +69,6 @@ Metaclass
 Metaclass PCAssociation >> key: newKey value: newValue
 [
 	"Answer a new Association with the given key and value."
-^ self new key: newKey value: newValue
+	^ self new key: newKey value: newValue
 ]
 

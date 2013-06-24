@@ -16,120 +16,131 @@ Class PCCharacter >> setValue: newValue
 Class PCCharacter >> < aCharacter
 [
 	"Answer true if my value is less than the given character's value."
-^ self asciiValue < aCharacter asciiValue
+	^ self asciiValue < aCharacter asciiValue
 ]
 
 Class PCCharacter >> = aCharacter
 [
 	"Primitive. Answer true if the receiver and the argument are the same object (have the same object pointer) and false otherwise. Optional. See Object documentation whatIsAPrimitive."
 	<primitive: 110>
-^ self == aCharacter
+	^ self == aCharacter
 ]
 
 Class PCCharacter >> > aCharacter
 [
 	"Answer true if my value is greater than the given character's value."
-^ self asciiValue > aCharacter asciiValue
+	^ self asciiValue > aCharacter asciiValue
 ]
 
 Class PCCharacter >> asCharacter
 [
 	"Answer the receiver itself."
-^ self
+	^ self
 ]
 
 Class PCCharacter >> asInteger
 [
 	"Answer my ASCII value."
-^ value
+	^ value
 ]
 
 Class PCCharacter >> asLowercase
 [
 	"If I am uppercase, answer the matching lowercase Character. Otherwise, answer myself."
-(65 <= value and: [ value <= 90 ])	ifTrue: [ ^ (value + 32) asCharacter ]	ifFalse: [ ^ self ]	"self isUppercase"
+	(65 <= value and: [ value <= 90 ])
+		ifTrue: [ ^ (value + 32) asCharacter ]
+		ifFalse: [ ^ self ]	"self isUppercase"
 ]
 
 Class PCCharacter >> asString
 [
-^ PCString with: self
+	^ PCString with: self
 ]
 
 Class PCCharacter >> asUppercase
 [
 	"If the receiver is lowercase, answer its matching uppercase Character."
-(97 <= value and: [ value <= 122 ])	ifTrue: [ ^ (value - 32) asCharacter ]	ifFalse: [ ^ self ]	"self isLowercase"
+	(97 <= value and: [ value <= 122 ])
+		ifTrue: [ ^ (value - 32) asCharacter ]
+		ifFalse: [ ^ self ]	"self isLowercase"
 ]
 
 Class PCCharacter >> asciiValue
 [
 	"Answer the value of the receiver that represents its ascii encoding."
-^ value
+	^ value
 ]
 
 Class PCCharacter >> basicCopy
 [
 	"Answer myself because Characters are unique."
-
+	^ self
 ]
 
 Class PCCharacter >> digitValue
 [
 	"Answer 0-9 if the receiver is $0-$9, 10-35 if it is $A-$Z, and -1 otherwise. This is used to parse literal numbers of radix 2-36."
-value <= $9 asciiValue	ifTrue: [ ^ value - $0 asciiValue ].value >= $A asciiValue	ifTrue: [ 		value <= $Z asciiValue			ifTrue: [ ^ value - $A asciiValue + 10 ] ].^ -1
+	value <= $9 asciiValue
+		ifTrue: [ ^ value - $0 asciiValue ].
+	value >= $A asciiValue
+		ifTrue: [ 
+			value <= $Z asciiValue
+				ifTrue: [ ^ value - $A asciiValue + 10 ] ].
+	^ -1
 ]
 
 Class PCCharacter >> hash
 [
 	"My hash is my value."
-^ value
+	^ value
 ]
 
 Class PCCharacter >> isDigit
 [
 	"Answer whether the receiver is a digit."
-^ value >= 48 and: [ value <= 57 ]
+	^ value >= 48 and: [ value <= 57 ]
 ]
 
 Class PCCharacter >> isLetter
 [
 	"Answer whether the receiver is a letter."
-^ (65 <= value and: [ value <= 90 ]) or: [ 97 <= value and: [ value <= 122 ] ]
+	^ (65 <= value and: [ value <= 90 ]) or: [ 97 <= value and: [ value <= 122 ] ]
 ]
 
 Class PCCharacter >> isSpecial
 [
 	"Answer whether the receiver is one of the special characters"
-^ '+/\*~<>=@%|&?!' includes: self
+	^ '+/\*~<>=@%|&?!' includes: self
 ]
 
 Class PCCharacter >> isUppercase
 [
 	"Answer whether the receiver is an uppercase letter."
-^ 65 <= value and: [ value <= 90 ]
+	^ 65 <= value and: [ value <= 90 ]
 ]
 
 Class PCCharacter >> isVowel
 [
 	"Answer true if the receiver is one of the vowels AEIOU (either upper- or lowercase)."
-^ 'AEIOU' includes: self asUppercase
+	^ 'AEIOU' includes: self asUppercase
 ]
 
 Class PCCharacter >> printOn: aStream
 [
-aStream nextPut: $$.aStream nextPut: self
+	aStream nextPut: $$.
+	aStream nextPut: self
 ]
 
 Class PCCharacter >> to: other
 [
 	"Answer with a collection of all characters in the given ASCII range. For example, $a to: $z"
-^ (self asciiValue to: other asciiValue) collect: [ :i | i asCharacter ]
+	^ (self asciiValue to: other asciiValue) collect: [ :i | i asCharacter ]
 ]
 
 Class PCCharacter >> tokenish
 [
 	"Answer true if the receiver is a valid token-character--that is, a letter, digit, or colon."
-^ self isLetter or: [ self isDigit or: [ self = $: ] ]
+	^ self isLetter or: [ self isDigit or: [ self = $: ] ]
 ]
 
 Metaclass
@@ -146,56 +157,63 @@ Metaclass PCCharacter >> initialize
 		CharacterTable := PCArray new: 256.
 		1 to: 256 do: [:i | CharacterTable at: i put: (self basicNew setValue: i - 1)]].
 ]
+
 Metaclass PCCharacter >> asciiValue: anInteger
 [
 	"Answer the Character whose ASCII value is anInteger."
-^ CharacterTable at: anInteger + 1
+	^ CharacterTable at: anInteger + 1
 ]
 
 Metaclass PCCharacter >> cr
 [
 	"Answer the Character representing a carriage return."
-^ 13 asCharacter
+	^ 13 asCharacter
 ]
 
 Metaclass PCCharacter >> digitValue: x
 [
 	"Answer the Character whose digit value is x. For example, answer $9 for x=9, $0 for x=0, $A for x=10, $Z for x=35."
-| i |i := x asInteger.^ CharacterTable	at:		(i < 10			ifTrue: [ 48 + i ]			ifFalse: [ 55 + i ]) + 1
+	| i |
+	i := x asInteger.
+	^ CharacterTable
+		at:
+			(i < 10
+				ifTrue: [ 48 + i ]
+				ifFalse: [ 55 + i ]) + 1
 ]
 
 Metaclass PCCharacter >> lf
 [
 	"Answer the Character representing a linefeed."
-^ 10 asCharacter
+	^ 10 asCharacter
 ]
 
 Metaclass PCCharacter >> new
 [
 	"There are 256 unique Characters; creating new ones is not allowed."
-self cannotInstantiate
+	self cannotInstantiate
 ]
 
 Metaclass PCCharacter >> setCharacterTable: aCharacterTable
 [
-CharacterTable := aCharacterTable
+	CharacterTable := aCharacterTable
 ]
 
 Metaclass PCCharacter >> space
 [
 	"Answer the Character representing a space."
-^ 32 asCharacter
+	^ 32 asCharacter
 ]
 
 Metaclass PCCharacter >> tab
 [
 	"Answer the Character representing a tab."
-^ 9 asCharacter
+	^ 9 asCharacter
 ]
 
 Metaclass PCCharacter >> value: anInteger
 [
 	"Answer the MCharacter whose ascii value is anInteger."
-^ CharacterTable at: anInteger + 1
+	^ CharacterTable at: anInteger + 1
 ]
 
