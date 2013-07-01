@@ -24,6 +24,6 @@ REPO=http://smalltalkhub.com/mc/Guille/Seed/main
 
 echo "Configuration Loaded. running tests"
 
-./pharo PharoCandleBootstrap.image test --junit-xml-output "(Seed.*)|(AtomObjectSpaces.*)"
+./pharo PharoCandleBootstrap.image test --junit-xml-output "(Seed.*)|(OzObjectSpace.*)"
 
 echo "Script created and loaded. Finished! :D"
