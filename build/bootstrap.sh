@@ -35,7 +35,7 @@ echo "Configuration Loaded. Opening script..."
 echo -e "
 \"Load a seed from the folder of the downloaded sources\"
 seed := PharoCandleSeed new
-    fromDirectoryNamed: ''../source'';
+    fromDirectoryNamed: '../source';
     buildSeed.
 
 \"Create an object space that will use an AST evaluator to run some code\"
