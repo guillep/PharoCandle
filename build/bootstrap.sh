@@ -49,7 +49,8 @@ builder objectSpace: objectSpace.
 builder kernelSpec: seed.
 builder	buildKernel.
 
-objectSpace serializeInFileNamed: 'PharoCandle.image'
+objectSpace serializeInFileNamed: 'PharoCandle.image'.
+Smalltalk snapshot: false andQuit: true.
 " > ./script.st
 
 ./pharo PharoCandleBootstrap.image script.st
