@@ -57,9 +57,14 @@ builder	buildKernel.
 ```
 
 
-Browse the bootstrapped objectSpace by doing
+Browse the bootstrapped objectSpace by evaluating
 ```smalltalk
 objectSpace browse.
+```
+
+You can serialize the objectSpace into an image file (Cog format) by evaluating
+```smalltalk
+objectSpace serializeInFileNamed: 'PharoCandle.image'.
 ```
 
 PharoCandle's Overview
@@ -83,4 +88,3 @@ Currently, to run a PharoCandle distribution, a special VM is needed that allows
 TODOs
 ----------------------
 - Autogenerate this script :)
-- In the latest version, we lost the possibility to serialize the image. Recover it!
