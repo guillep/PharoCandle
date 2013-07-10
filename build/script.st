@@ -5,7 +5,7 @@ seed := PharoCandleSeed new
     fromDirectoryNamed: '../source';
     buildSeed.
 
-"Builder, do it!"
+"Builder, do it"
 builder := HazelKernelBuilder new.
 builder kernelSpec: seed.
 builder buildKernel.

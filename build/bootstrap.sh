@@ -17,7 +17,7 @@ cd $RESULTS_FOLDER
 
 #Load image for this project
 
-wget -O - get.pharo.org/20+vm | bash
+wget -O- get.pharo.org/20+vm | bash
 ./pharo Pharo.image save PharoCandleBootstrap --delete-old
 
 

@@ -17,7 +17,7 @@ cd $RESULTS_FOLDER
 
 #Load image for this project
 
-wget -O - get.pharo.org/20+vm | bash
+wget -O- get.pharo.org/20+vm | bash
 ./pharo Pharo.image save PharoCandleBootstrap --delete-old
 
 
@@ -28,6 +28,6 @@ REPO=http://smalltalkhub.com/mc/Guille/Seed/main
 
 echo "Configuration Loaded. Opening script..."
 
-./pharo PharoCandleBootstrap.image eval "Workspace openContents: '../build/script.st' asFileReference readStream upToEnd. Smalltalk snapshot: true andQuit: true. "
+./pharo PharoCandleBootstrap.image eval "Workspace openContents: '../build/script.st' asFileReference readStream upToEnd. "
 
 echo "Script created and loaded. Finished! :D"
