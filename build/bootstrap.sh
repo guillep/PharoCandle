@@ -3,11 +3,7 @@ set -e
 
 #Setup arguments
 RESULTS_FOLDER="results"
-if [ $# == 0 ]; then
-	VERSION=stable
-else
-	VERSION=$1
-fi
+VERSION=1.0
 
 
 #Work in temporal directory
@@ -32,28 +28,6 @@ REPO=http://smalltalkhub.com/mc/Guille/Seed/main
 
 echo "Configuration Loaded. Opening script..."
 
-echo -e "
-\"Load a seed from the folder of the downloaded sources\"
-seed := PharoCandleSeed new
-    fromDirectoryNamed: '../source';
-    buildSeed.
+./pharo PharoCandleBootstrap.image ../build/script.st
 
-\"Create an object space that will use an AST evaluator to run some code\"
-objectSpace := AtObjectSpace new.
-objectSpace worldConfiguration: OzPharoCandle world.
-objectSpace interpreter: (AtASTEvaluator new codeProvider: seed; yourself).
-
-\"Create a builder, and tell it to bootstrap. Voilá, the objectSpace will be full\"
-builder := PharoCandleBuilder new.
-builder objectSpace: objectSpace.
-builder kernelSpec: seed.
-builder	buildKernel.
-
-objectSpace serializeInFileNamed: 'PharoCandle.image'.
-Smalltalk snapshot: false andQuit: true.
-" > ./script.st
-
-./pharo PharoCandleBootstrap.image script.st
-rm script.st
-rm PharoDebug.log
 echo "Script created and loaded. Finished! :D"
