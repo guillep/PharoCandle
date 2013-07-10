@@ -16,3 +16,5 @@ writer format: HzCogImageFormat new.
 seed appySubstitutionsOn: writer forEnvironment: builder bootstrapEnvironment.
 writer imageFileName: 'candle'.
 writer writeImage: builder bootstrapEnvironment.
+
+Smalltalk snapshot: true andQuit: true.
