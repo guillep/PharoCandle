@@ -4,7 +4,7 @@ set -e
 #Setup arguments
 RESULTS_FOLDER="results"
 if [ $# == 0 ]; then
-	VERSION=stable
+	VERSION=2.1
 else
 	VERSION=$1
 fi
@@ -50,6 +50,9 @@ builder := PharoCandleBuilder new.
 builder objectSpace: objectSpace.
 builder kernelSpec: seed.
 builder	buildKernel.
+
+\"Serialize me into an image file\"
+objectSpace serializeInFileNamed: 'PharoCandle.image'.
 
 \"Browse me\"
 objectSpace browse.'.

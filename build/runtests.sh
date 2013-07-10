@@ -20,7 +20,7 @@ wget -O - get.pharo.org/20+vm | bash
 
 #Load stable version of the monticello configuration, according to this git sources
 REPO=http://smalltalkhub.com/mc/Guille/Seed/main
-./pharo PharoCandleBootstrap.image config $REPO ConfigurationOfHazelnut --install=bleedingEdge
+./pharo PharoCandleBootstrap.image config $REPO ConfigurationOfHazelnut --install=2.1
 
 echo "Configuration Loaded. running tests"
 

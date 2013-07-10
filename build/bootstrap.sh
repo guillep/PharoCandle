@@ -4,7 +4,7 @@ set -e
 #Setup arguments
 RESULTS_FOLDER="results"
 if [ $# == 0 ]; then
-	VERSION=stable
+	VERSION=2.1
 else
 	VERSION=$1
 fi
