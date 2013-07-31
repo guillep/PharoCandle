@@ -1,5 +1,4 @@
-Class
-	name: #PCMagnitude;
+PCMagnitude
 	superclass: #ClassPCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #();
@@ -68,7 +67,6 @@ Class PCMagnitude >> min: aMagnitude
 		ifFalse: [ ^ aMagnitude ]
 ]
 
-Metaclass
-	name: #PCMagnitude;
+PCMagnitude class
 	instanceVariables: #().
 

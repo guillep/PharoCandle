@@ -1,5 +1,4 @@
-Class
-	name: #PCMetaclass;
+PCMetaclass
 	superclass: #ClassPCBehavior;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#soleInstance );
@@ -38,7 +37,6 @@ Class PCMetaclass >> theNonMetaClass
 	^ soleInstance
 ]
 
-Metaclass
-	name: #PCMetaclass;
+PCMetaclass class
 	instanceVariables: #().
 

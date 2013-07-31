@@ -1,5 +1,4 @@
-Class
-	name: #PCBlock;
+PCBlock
 	superclass: #ClassPCObject;
 	instanceSpecification: #(#variable #pointers #words );
 	instanceVariables: #(#outerContext #startpc #nargs );
@@ -119,7 +118,6 @@ Class PCBlock >> valueWithArguments: anArray
 		ifFalse: [ self error: 'This block requires ' , nargs printString , ' arguments.' ]
 ]
 
-Metaclass
-	name: #PCBlock;
+PCBlock class
 	instanceVariables: #().
 

@@ -1,5 +1,4 @@
-Class
-	name: #PCObject;
+PCObject
 	superclass: nil;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #();
@@ -527,8 +526,7 @@ Class PCObject >> ~~ anObject
 		ifFalse: [ ^ true ]
 ]
 
-Metaclass
-	name: #PCObject;
+PCObject class
 	instanceVariables: #().
 
 Metaclass PCObject >> cannotInstantiate

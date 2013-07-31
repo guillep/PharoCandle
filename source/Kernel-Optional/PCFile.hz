@@ -1,5 +1,4 @@
-Class
-	name: #PCFile;
+PCFile
 	superclass: #ClassPCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#name #fileID );
@@ -9,7 +8,10 @@ Class
 Class PCFile >> close
 [
 	"Close this file."
-fileID	ifNotNil: [ 		self primClose: fileID.		fileID := nil ]
+fileID
+	ifNotNil: [ 
+		self primClose: fileID.
+		fileID := nil ]
 ]
 
 Class PCFile >> cr
@@ -21,7 +23,16 @@ Class PCFile >> localFolderPath
 [
 	"Answer the path for the folder containing the image file."
 	"MFile new localFolderPath"
-| imagePath delimiter i |imagePath := self primImageName.delimiter := $/.(imagePath includes: delimiter)	ifFalse: [ delimiter := $\ ].i := imagePath size.[ i > 0 and: [ (imagePath at: i) ~= delimiter ] ] whileTrue: [ i := i - 1 ].i = 0	ifTrue: [ ^ '' ].^ imagePath copyFrom: 1 to: i
+| imagePath delimiter i |
+imagePath := self primImageName.
+delimiter := $/.
+(imagePath includes: delimiter)
+	ifFalse: [ delimiter := $\ ].
+i := imagePath size.
+[ i > 0 and: [ (imagePath at: i) ~= delimiter ] ] whileTrue: [ i := i - 1 ].
+i = 0
+	ifTrue: [ ^ '' ].
+^ imagePath copyFrom: 1 to: i
 ]
 
 Class PCFile >> name
@@ -33,25 +44,42 @@ Class PCFile >> name
 Class PCFile >> next: count
 [
 	"Answer a String containing the next count bytes of the file. If there are not count bytes left in the file, answer a String with as many bytes as available."
-| buffer n |buffer := '' class new: count.n := self	primRead: fileID	into: buffer	startingAt: 1	count: count.n < count	ifTrue: [ buffer := buffer copyFrom: 1 to: n ].^ buffer
+| buffer n |
+buffer := '' class new: count.
+n := self
+	primRead: fileID
+	into: buffer
+	startingAt: 1
+	count: count.
+n < count
+	ifTrue: [ buffer := buffer copyFrom: 1 to: n ].
+^ buffer
 ]
 
 Class PCFile >> nextPutAll: buffer
 [
 	"Write the contents of the given bytes or words object to this file."
-^ self	primWrite: fileID	from: buffer	startingAt: 1	count: buffer basicSize
+^ self
+	primWrite: fileID
+	from: buffer
+	startingAt: 1
+	count: buffer basicSize
 ]
 
 Class PCFile >> openReadOnly: fileName
 [
 	"Open the file with the given name for reading and writing."
-name := nil.fileID := self primOpen: fileName writable: false.name := fileName
+name := nil.
+fileID := self primOpen: fileName writable: false.
+name := fileName
 ]
 
 Class PCFile >> openReadWrite: fileName
 [
 	"Open the file with the given name for reading only."
-name := nil.fileID := self primOpen: fileName writable: true.name := fileName
+name := nil.
+fileID := self primOpen: fileName writable: true.
+name := fileName
 ]
 
 Class PCFile >> position
@@ -89,7 +117,13 @@ self primitiveFailed
 
 Class PCFile >> primOpen: fileName writable: writableFlag
 [
-	"Open a file of the given name, and return the file ID obtained.	If writableFlag is true, then		if there is none with this name, then create one		else prepare to overwrite the existing from the beginning	otherwise		if the file exists, open it read-only		else return nil"
+	"Open a file of the given name, and return the file ID obtained.
+	If writableFlag is true, then
+		if there is none with this name, then create one
+		else prepare to overwrite the existing from the beginning
+	otherwise
+		if the file exists, open it read-only
+		else return nil"
 	<primitive: 'primitiveFileOpen' module: 'FilePlugin'>
 self primitiveFailed
 ]
@@ -125,7 +159,11 @@ self primitiveFailed
 Class PCFile >> readInto: buffer startingAt: startIndex count: count
 [
 	"Read up to count elements into the given array and answer the number of elements actually read. The buffer may either a byte- or word-indexable object."
-^ self	primRead: fileID	into: buffer	startingAt: startIndex	count: count
+^ self
+	primRead: fileID
+	into: buffer
+	startingAt: startIndex
+	count: count
 ]
 
 Class PCFile >> size
@@ -134,7 +172,6 @@ Class PCFile >> size
 ^ self primSize: fileID
 ]
 
-Metaclass
-	name: #PCFile;
+PCFile class
 	instanceVariables: #().
 

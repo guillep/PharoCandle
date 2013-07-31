@@ -1,5 +1,4 @@
-Class
-	name: #PCMessage;
+PCMessage
 	superclass: #ClassPCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#selector #arguments #lookupClass );
@@ -41,7 +40,5 @@ Class PCMessage >> sentTo: anObject
 		ifFalse: [ ^ anObject perform: selector withArguments: arguments inSuperclass: lookupClass ]
 ]
 
-Metaclass
-	name: #PCMessage;
+PCMessage class
 	instanceVariables: #().
-

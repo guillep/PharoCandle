@@ -1,5 +1,4 @@
-Class
-	name: #PCArray;
+PCArray
 	superclass: #ClassPCArrayedCollection;
 	instanceSpecification: #(#variable #pointers #words );
 	instanceVariables: #();
@@ -22,22 +21,31 @@ self primitiveFailed
 Class PCArray >> hash
 [
 	"Make sure that equal (=) arrays hash equally."
-self size = 0	ifTrue: [ ^ 17171 ].^ (self at: 1) hash + (self at: self size) hash
+self size = 0
+	ifTrue: [ ^ 17171 ].
+^ (self at: 1) hash + (self at: self size) hash
 ]
 
 Class PCArray >> printOn: aStream
 [
-aStream nextPutAll: '#('.self	do: [ :each | 		each printOn: aStream.		aStream space ].aStream nextPut: $)
+aStream nextPutAll: '#('.
+self
+	do: [ :each | 
+		each printOn: aStream.
+		aStream space ].
+aStream nextPut: $)
 ]
 
 Class PCArray >> replaceFrom: start to: stop with: replacement startingAt: repStart
 [
 	"Primitive. This destructively replaces elements from start to stop in the receiver starting at index, repStart, in the collection, replacement. Answer the receiver. Range checks are performed in the primitive only. Optional. See Object documentation whatIsAPrimitive."
 	<primitive: 105>
-super	replaceFrom: start	to: stop	with: replacement	startingAt: repStart
+super
+	replaceFrom: start
+	to: stop
+	with: replacement
+	startingAt: repStart
 ]
 
-Metaclass
-	name: #PCArray;
+PCArray class
 	instanceVariables: #().
-

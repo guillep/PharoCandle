@@ -1,5 +1,4 @@
-Class
-	name: #PCContext;
+PCContext
 	superclass: #ClassPCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#sender #pc #stackp );
@@ -24,8 +23,7 @@ Class PCContext >> sender
 ^ sender
 ]
 
-Metaclass
-	name: #PCContext;
+PCContext class
 	instanceVariables: #().
 
 Metaclass PCContext >> newForMethod: aMethod

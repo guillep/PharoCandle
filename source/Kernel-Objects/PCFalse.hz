@@ -1,5 +1,4 @@
-Class
-	name: #PCFalse;
+PCFalse
 	superclass: #ClassPCTrue;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #();
@@ -59,7 +58,5 @@ Class PCFalse >> | aBoolean
 	^ aBoolean
 ]
 
-Metaclass
-	name: #PCFalse;
+PCFalse class
 	instanceVariables: #().
-

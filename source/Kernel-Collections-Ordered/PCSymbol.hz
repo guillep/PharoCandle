@@ -1,5 +1,4 @@
-Class
-	name: #PCSymbol;
+PCSymbol
 	superclass: #ClassPCString;
 	instanceSpecification: #(#variable #byte );
 	instanceVariables: #();
@@ -14,7 +13,15 @@ Class PCSymbol >> = anObject
 Class PCSymbol >> asString
 [
 	"Answer a string containing my characters."
-| sz result |sz := self size.result := PCString new: sz.result	replaceFrom: 1	to: sz	with: self	startingAt: 1.^ result
+| sz result |
+sz := self size.
+result := PCString new: sz.
+result
+	replaceFrom: 1
+	to: sz
+	with: self
+	startingAt: 1.
+^ result
 ]
 
 Class PCSymbol >> asSymbol
@@ -47,7 +54,13 @@ Class PCSymbol >> hash
 Class PCSymbol >> initFrom: aString
 [
 	"Warning! Use only to initialize new Symbols. Symbols are assumed to be immutable there after."
-self size = aString size	ifFalse: [ self error: 'size mismatch' ].super	replaceFrom: 1	to: self size	with: aString	startingAt: 1
+self size = aString size
+	ifFalse: [ self error: 'size mismatch' ].
+super
+	replaceFrom: 1
+	to: self size
+	with: aString
+	startingAt: 1
 ]
 
 Class PCSymbol >> printOn: aStream
@@ -65,8 +78,7 @@ Class PCSymbol >> species
 ^ PCString
 ]
 
-Metaclass
-	name: #PCSymbol;
+PCSymbol class
 	instanceVariables: #().
 
 Metaclass PCSymbol >> new: size

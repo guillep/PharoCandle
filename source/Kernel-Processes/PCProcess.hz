@@ -1,5 +1,4 @@
-Class
-	name: #PCProcess;
+PCProcess
 	superclass: #ClassPCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#nextLink #suspendedContext #priority #myList #threadId #errorHandler );
@@ -18,7 +17,8 @@ errorHandler := aBlock
 
 Class PCProcess >> initSuspendedContext: aContext
 [
-suspendedContext := aContext.priority := 1	"lowest priority"
+suspendedContext := aContext.
+priority := 1	"lowest priority"
 ]
 
 Class PCProcess >> nextLink
@@ -33,7 +33,9 @@ nextLink := aLink
 
 Class PCProcess >> printOn: aStream
 [
-super printOn: aStream.aStream nextPutAll: ' in '.suspendedContext printOn: aStream
+super printOn: aStream.
+aStream nextPutAll: ' in '.
+suspendedContext printOn: aStream
 ]
 
 Class PCProcess >> priority
@@ -59,7 +61,11 @@ Class PCProcess >> suspend
 [
 	"Primitive. Stop this process in such a way that it can be restarted later (see resume). If the receiver is the active process, suspend it. Otherwise, remove the receiver from its suspended process list. Essential. See Object documentation whatIsAPrimitive."
 	<primitive: 88>
-Processor activeProcess == self	ifTrue: [ self primitiveFailed ]	ifFalse: [ 		Processor remove: self ifAbsent: [ self error: 'This process was not active' ].		myList := nil ]
+Processor activeProcess == self
+	ifTrue: [ self primitiveFailed ]
+	ifFalse: [ 
+		Processor remove: self ifAbsent: [ self error: 'This process was not active' ].
+		myList := nil ]
 ]
 
 Class PCProcess >> suspendedContext
@@ -70,16 +76,24 @@ Class PCProcess >> suspendedContext
 Class PCProcess >> terminate
 [
 	"Stop this process forever."
-Processor activeProcess == self	ifTrue: [ thisContext removeSelf suspend ]	ifFalse: [ 		myList			ifNotNil: [ 				myList remove: self ifAbsent: [  ].				myList := nil ].		suspendedContext := nil ]
+Processor activeProcess == self
+	ifTrue: [ thisContext removeSelf suspend ]
+	ifFalse: [ 
+		myList
+			ifNotNil: [ 
+				myList remove: self ifAbsent: [  ].
+				myList := nil ].
+		suspendedContext := nil ]
 ]
 
-Metaclass
-	name: #PCProcess;
+PCProcess class
 	instanceVariables: #().
 
 Metaclass PCProcess >> for: aContext priority: anInteger
 [
 	"Answer an instance of me for the given context (usually a Block) at the given priority."
-^ self new	initSuspendedContext: aContext;	priority: anInteger
+^ self new
+	initSuspendedContext: aContext;
+	priority: anInteger
 ]
 

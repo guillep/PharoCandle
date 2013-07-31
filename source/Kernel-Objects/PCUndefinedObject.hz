@@ -1,5 +1,4 @@
-Class
-	name: #PCUndefinedObject;
+PCUndefinedObject
 	superclass: #ClassPCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #();
@@ -41,8 +40,7 @@ Class PCUndefinedObject >> printOn: aStream
 	aStream nextPutAll: 'nil'
 ]
 
-Metaclass
-	name: #PCUndefinedObject;
+PCUndefinedObject class
 	instanceVariables: #().
 
 Metaclass PCUndefinedObject >> new

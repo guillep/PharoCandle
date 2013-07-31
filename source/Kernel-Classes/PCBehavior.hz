@@ -1,5 +1,4 @@
-Class
-	name: #PCBehavior;
+PCBehavior
 	superclass: #ClassPCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#superclass #methodDict #format );
@@ -253,7 +252,6 @@ Class PCBehavior >> superclass: aBehaviorOrNil
 	superclass := aBehaviorOrNil
 ]
 
-Metaclass
-	name: #PCBehavior;
+PCBehavior class
 	instanceVariables: #().
 

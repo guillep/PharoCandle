@@ -1,5 +1,4 @@
-Class
-	name: #PCNumber;
+PCNumber
 	superclass: #ClassPCMagnitude;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #();
@@ -350,8 +349,7 @@ Class PCNumber >> truncated
 	^ self quo: 1
 ]
 
-Metaclass
-	name: #PCNumber;
+PCNumber class
 	instanceVariables: #().
 
 Metaclass PCNumber >> readFrom: stringOrStream

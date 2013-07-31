@@ -1,5 +1,4 @@
-Class
-	name: #PCCharacter;
+PCCharacter
 	superclass: #ClassPCMagnitude;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#value );
@@ -143,8 +142,7 @@ Class PCCharacter >> tokenish
 	^ self isLetter or: [ self isDigit or: [ self = $: ] ]
 ]
 
-Metaclass
-	name: #PCCharacter;
+PCCharacter class
 	instanceVariables: #().
 
 Metaclass PCCharacter >> initialize

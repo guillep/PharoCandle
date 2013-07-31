@@ -1,5 +1,4 @@
-Class
-	name: #PCPoint;
+PCPoint
 	superclass: #ClassPCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#x #y );
@@ -9,36 +8,48 @@ Class
 Class PCPoint >> * arg
 [
 	"Answer a Point that is the product of the receiver and arg."
-arg isPoint	ifTrue: [ ^ (x * arg x) @ (y * arg y) ].^ arg adaptToPoint: self andSend: #*
+arg isPoint
+	ifTrue: [ ^ (x * arg x) @ (y * arg y) ].
+^ arg adaptToPoint: self andSend: #*
 ]
 
 Class PCPoint >> + arg
 [
 	"Answer a Point that is the sum of the receiver and arg."
-arg isPoint	ifTrue: [ ^ (x + arg x) @ (y + arg y) ].^ arg adaptToPoint: self andSend: #+
+arg isPoint
+	ifTrue: [ ^ (x + arg x) @ (y + arg y) ].
+^ arg adaptToPoint: self andSend: #+
 ]
 
 Class PCPoint >> - arg
 [
 	"Answer a Point that is the difference of the receiver and arg."
-arg isPoint	ifTrue: [ ^ (x - arg x) @ (y - arg y) ].^ arg adaptToPoint: self andSend: #-
+arg isPoint
+	ifTrue: [ ^ (x - arg x) @ (y - arg y) ].
+^ arg adaptToPoint: self andSend: #-
 ]
 
 Class PCPoint >> / arg
 [
 	"Answer a Point that is the quotient of the receiver and arg."
-arg isPoint	ifTrue: [ ^ (x / arg x) @ (y / arg y) ].^ arg adaptToPoint: self andSend: #/
+arg isPoint
+	ifTrue: [ ^ (x / arg x) @ (y / arg y) ].
+^ arg adaptToPoint: self andSend: #/
 ]
 
 Class PCPoint >> // arg
 [
 	"Answer a Point that is the quotient of the receiver and arg."
-arg isPoint	ifTrue: [ ^ (x // arg x) @ (y // arg y) ].^ arg adaptToPoint: self andSend: #//
+arg isPoint
+	ifTrue: [ ^ (x // arg x) @ (y // arg y) ].
+^ arg adaptToPoint: self andSend: #//
 ]
 
 Class PCPoint >> = aPoint
 [
-self species = aPoint species	ifTrue: [ ^ x = aPoint x and: [ y = aPoint y ]	"Refer to the comment in Object|=." ]	ifFalse: [ ^ false ]
+self species = aPoint species
+	ifTrue: [ ^ x = aPoint x and: [ y = aPoint y ]	"Refer to the comment in Object|=." ]
+	ifFalse: [ ^ false ]
 ]
 
 Class PCPoint >> abs
@@ -74,7 +85,21 @@ Class PCPoint >> crossProduct: aPoint
 Class PCPoint >> degrees
 [
 	"Answer the angle the receiver makes with origin in degrees. Right is 0; down is 90."
-| tan theta |x = 0	ifTrue: [ 		y >= 0			ifTrue: [ ^ 90.0 ]			ifFalse: [ ^ 270.0 ] ]	ifFalse: [ 		tan := y asFloat / x asFloat.		theta := tan arcTan.		x >= 0			ifTrue: [ 				y >= 0					ifTrue: [ ^ theta radiansToDegrees ]					ifFalse: [ ^ 360.0 + theta radiansToDegrees ] ]			ifFalse: [ ^ 180.0 + theta radiansToDegrees ] ]
+| tan theta |
+x = 0
+	ifTrue: [ 
+		y >= 0
+			ifTrue: [ ^ 90.0 ]
+			ifFalse: [ ^ 270.0 ] ]
+	ifFalse: [ 
+		tan := y asFloat / x asFloat.
+		theta := tan arcTan.
+		x >= 0
+			ifTrue: [ 
+				y >= 0
+					ifTrue: [ ^ theta radiansToDegrees ]
+					ifFalse: [ ^ 360.0 + theta radiansToDegrees ] ]
+			ifFalse: [ ^ 180.0 + theta radiansToDegrees ] ]
 ]
 
 Class PCPoint >> dist: aPoint
@@ -116,7 +141,9 @@ Class PCPoint >> negated
 Class PCPoint >> printOn: aStream
 [
 	"The receiver prints on aStream in terms of infix notation."
-x printOn: aStream.aStream nextPut: $@.y printOn: aStream
+x printOn: aStream.
+aStream nextPut: $@.
+y printOn: aStream
 ]
 
 Class PCPoint >> r
@@ -128,29 +155,51 @@ Class PCPoint >> r
 Class PCPoint >> rounded
 [
 	"Answer a Point that is the receiver's x and y rounded. Answer the receiver if its coordinates are already integral."
-(x isInteger and: [ y isInteger ])	ifTrue: [ ^ self ].^ x rounded @ y rounded
+(x isInteger and: [ y isInteger ])
+	ifTrue: [ ^ self ].
+^ x rounded @ y rounded
 ]
 
 Class PCPoint >> setR: rho degrees: theta
 [
-| radians |radians := theta asFloat degreesToRadians.x := rho asFloat * radians cos.y := rho asFloat * radians sin
+| radians |
+radians := theta asFloat degreesToRadians.
+x := rho asFloat * radians cos.
+y := rho asFloat * radians sin
 ]
 
 Class PCPoint >> setX: xValue setY: yValue
 [
-x := xValue.y := yValue
+x := xValue.
+y := yValue
 ]
 
 Class PCPoint >> theta
 [
 	"Answer the angle the receiver makes with origin in radians. See degrees."
-| tan theta |x = 0	ifTrue: [ 		y >= 0			ifTrue: [ ^ 1.5708	"90.0 degreesToRadians" ]			ifFalse: [ ^ 4.71239	"270.0 degreesToRadians" ] ]	ifFalse: [ 		tan := y asFloat / x asFloat.		theta := tan arcTan.		x >= 0			ifTrue: [ 				y >= 0					ifTrue: [ ^ theta ]					ifFalse: [ ^ 360.0 degreesToRadians + theta ] ]			ifFalse: [ ^ 180.0 degreesToRadians + theta ] ]
+| tan theta |
+x = 0
+	ifTrue: [ 
+		y >= 0
+			ifTrue: [ ^ 1.5708	"90.0 degreesToRadians" ]
+			ifFalse: [ ^ 4.71239	"270.0 degreesToRadians" ] ]
+	ifFalse: [ 
+		tan := y asFloat / x asFloat.
+		theta := tan arcTan.
+		x >= 0
+			ifTrue: [ 
+				y >= 0
+					ifTrue: [ ^ theta ]
+					ifFalse: [ ^ 360.0 degreesToRadians + theta ] ]
+			ifFalse: [ ^ 180.0 degreesToRadians + theta ] ]
 ]
 
 Class PCPoint >> truncated
 [
 	"Answer a Point whose x and y coordinates are integers. Answer the receiver if its coordinates are already integral."
-(x isInteger and: [ y isInteger ])	ifTrue: [ ^ self ].^ x truncated @ y truncated
+(x isInteger and: [ y isInteger ])
+	ifTrue: [ ^ self ].
+^ x truncated @ y truncated
 ]
 
 Class PCPoint >> x
@@ -163,8 +212,7 @@ Class PCPoint >> y
 ^ y
 ]
 
-Metaclass
-	name: #PCPoint;
+PCPoint class
 	instanceVariables: #().
 
 Metaclass PCPoint >> r: rho degrees: theta

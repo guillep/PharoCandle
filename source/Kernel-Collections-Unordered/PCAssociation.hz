@@ -1,5 +1,4 @@
-Class
-	name: #PCAssociation;
+PCAssociation
 	superclass: #ClassPCMagnitude;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#key #value );
@@ -62,8 +61,7 @@ Class PCAssociation >> value: anObject
 	value := anObject
 ]
 
-Metaclass
-	name: #PCAssociation;
+PCAssociation class
 	instanceVariables: #().
 
 Metaclass PCAssociation >> key: newKey value: newValue

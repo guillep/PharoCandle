@@ -1,5 +1,4 @@
-Class
-	name: #PCSemaphore;
+PCSemaphore
 	superclass: #ClassPCLinkedList;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#excessSignals );
@@ -14,7 +13,11 @@ Class PCSemaphore >> = anObject
 Class PCSemaphore >> critical: aBlock
 [
 	"Evaluate the given block immediated if the receiver is not currently running the critical: method. If it is, evaluate the given block when the current critical: message is finished. Answer the result of evaluating the block."
-| result |self wait.result := aBlock value.self signal.^ result
+| result |
+self wait.
+result := aBlock value.
+self signal.
+^ result
 ]
 
 Class PCSemaphore >> hash
@@ -42,7 +45,6 @@ Class PCSemaphore >> wait
 self primitiveFailed
 ]
 
-Metaclass
-	name: #PCSemaphore;
+PCSemaphore class
 	instanceVariables: #().
 

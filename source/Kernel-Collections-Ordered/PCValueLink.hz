@@ -1,5 +1,4 @@
-Class
-	name: #PCValueLink;
+PCValueLink
 	superclass: #ClassPCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#nextLink #value );
@@ -8,7 +7,8 @@ Class
 
 Class PCValueLink >> = anotherObject
 [
-^ self species == anotherObject species	and: [ self value = anotherObject value and: [ self nextLink == anotherObject nextLink ] ]
+^ self species == anotherObject species
+	and: [ self value = anotherObject value and: [ self nextLink == anotherObject nextLink ] ]
 ]
 
 Class PCValueLink >> asLink
@@ -33,7 +33,9 @@ nextLink := aLink
 
 Class PCValueLink >> printOn: aStream
 [
-aStream nextPutAll: 'ValueLink('.value printOn: aStream.aStream nextPut: $)
+aStream nextPutAll: 'ValueLink('.
+value printOn: aStream.
+aStream nextPut: $)
 ]
 
 Class PCValueLink >> value
@@ -46,8 +48,7 @@ Class PCValueLink >> value: aValue
 value := aValue
 ]
 
-Metaclass
-	name: #PCValueLink;
+PCValueLink class
 	instanceVariables: #().
 
 Metaclass PCValueLink >> value: aValue
