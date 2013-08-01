@@ -5,13 +5,13 @@ PCAssociation
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Collections-Unordered'.
 
-Class PCAssociation >> < aLookupKey
+PCAssociation >> < aLookupKey
 [
 	"Sort by keys."
 	^ key < aLookupKey key
 ]
 
-Class PCAssociation >> = anAssociation
+PCAssociation >> = anAssociation
 [
 	"True if the receiver and argument have equal keys."
 	self species = anAssociation species
@@ -19,29 +19,29 @@ Class PCAssociation >> = anAssociation
 		ifFalse: [ ^ false ]
 ]
 
-Class PCAssociation >> hash
+PCAssociation >> hash
 [
 	"Hash is reimplemented because = is implemented."
 	^ key hash
 ]
 
-Class PCAssociation >> key
+PCAssociation >> key
 [
 	^ key
 ]
 
-Class PCAssociation >> key: anObject
+PCAssociation >> key: anObject
 [
 	key := anObject
 ]
 
-Class PCAssociation >> key: aKey value: anObject
+PCAssociation >> key: aKey value: anObject
 [
 	key := aKey.
 	value := anObject
 ]
 
-Class PCAssociation >> printOn: aStream
+PCAssociation >> printOn: aStream
 [
 	"Print in the format (key->value)."
 	aStream nextPut: $(.
@@ -51,12 +51,12 @@ Class PCAssociation >> printOn: aStream
 	aStream nextPut: $)
 ]
 
-Class PCAssociation >> value
+PCAssociation >> value
 [
 	^ value
 ]
 
-Class PCAssociation >> value: anObject
+PCAssociation >> value: anObject
 [
 	value := anObject
 ]
@@ -64,7 +64,7 @@ Class PCAssociation >> value: anObject
 PCAssociation class
 	instanceVariables: #().
 
-Metaclass PCAssociation >> key: newKey value: newValue
+PCAssociation class >> key: newKey value: newValue
 [
 	"Answer a new Association with the given key and value."
 	^ self new key: newKey value: newValue

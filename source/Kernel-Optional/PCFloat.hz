@@ -5,7 +5,7 @@ PCFloat
 	classVariables: #(#Epsilon #RadiansPerDegree #Twopi #Infinity #Ln10 #MaxValLn #Halfpi #NegativeInfinity #Ln2 #NegativeZero #NaN #MaxVal #MinValLogBase2 #Pi #E #Sqrt2 );
 	package: #'PharoCandle-Kernel-Optional'.
 
-Class PCFloat >> * aNumber
+PCFloat >> * aNumber
 [
 	"Primitive. Answer the result of multiplying the receiver by aNumber.
 	Fail if the argument is not a Float. Essential. See Object documentation
@@ -14,7 +14,7 @@ Class PCFloat >> * aNumber
 ^ aNumber adaptToFloat: self andSend: #*
 ]
 
-Class PCFloat >> + aNumber
+PCFloat >> + aNumber
 [
 	"Primitive. Answer the sum of the receiver and aNumber. Essential.
 	Fail if the argument is not a Float. See Object documentation
@@ -23,7 +23,7 @@ Class PCFloat >> + aNumber
 ^ aNumber adaptToFloat: self andSend: #+
 ]
 
-Class PCFloat >> - aNumber
+PCFloat >> - aNumber
 [
 	"Primitive. Answer the difference between the receiver and aNumber.
 	Fail if the argument is not a Float. Essential. See Object documentation
@@ -32,7 +32,7 @@ Class PCFloat >> - aNumber
 ^ aNumber adaptToFloat: self andSend: #-
 ]
 
-Class PCFloat >> / aNumber
+PCFloat >> / aNumber
 [
 	"Primitive. Answer the result of dividing receiver by aNumber.
 	Fail if the argument is not a Float. Essential. See Object documentation
@@ -43,7 +43,7 @@ aNumber = 0
 ^ aNumber adaptToFloat: self andSend: #/
 ]
 
-Class PCFloat >> < aNumber
+PCFloat >> < aNumber
 [
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is less than the argument. Otherwise return false.
@@ -53,7 +53,7 @@ Class PCFloat >> < aNumber
 ^ aNumber adaptToFloat: self andSend: #<
 ]
 
-Class PCFloat >> <= aNumber
+PCFloat >> <= aNumber
 [
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is less than or equal to the argument. Otherwise return
@@ -63,7 +63,7 @@ Class PCFloat >> <= aNumber
 ^ aNumber adaptToFloat: self andSend: #<=
 ]
 
-Class PCFloat >> = aNumber
+PCFloat >> = aNumber
 [
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is equal to the argument. Otherwise return false.
@@ -75,7 +75,7 @@ aNumber isNumber
 ^ aNumber adaptToFloat: self andSend: #=
 ]
 
-Class PCFloat >> > aNumber
+PCFloat >> > aNumber
 [
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is greater than the argument. Otherwise return false.
@@ -85,7 +85,7 @@ Class PCFloat >> > aNumber
 ^ aNumber adaptToFloat: self andSend: #>
 ]
 
-Class PCFloat >> >= aNumber
+PCFloat >> >= aNumber
 [
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is greater than or equal to the argument. Otherwise return
@@ -95,7 +95,7 @@ Class PCFloat >> >= aNumber
 ^ aNumber adaptToFloat: self andSend: #>
 ]
 
-Class PCFloat >> abs
+PCFloat >> abs
 [
 	"This is faster than using Number abs."
 self < 0.0
@@ -103,7 +103,7 @@ self < 0.0
 	ifFalse: [ ^ self ]
 ]
 
-Class PCFloat >> absPrintOn: aStream base: base
+PCFloat >> absPrintOn: aStream base: base
 [
 	"Print my value on a stream in the given base.  Assumes that my value is strictly
 	positive; negative numbers, zero, and NaNs have already been handled elsewhere.
@@ -196,19 +196,19 @@ fixedFormat
 		aStream nextPutAll: (baseExpEstimate - 1) printString ]
 ]
 
-Class PCFloat >> adaptToInteger: rcvr andSend: selector
+PCFloat >> adaptToInteger: rcvr andSend: selector
 [
 	"If I am involved in arithmetic with an Integer, convert it to a Float."
 ^ rcvr asFloat perform: selector with: self
 ]
 
-Class PCFloat >> arcCos
+PCFloat >> arcCos
 [
 	"Answer the angle in radians."
 ^ Halfpi - self arcSin
 ]
 
-Class PCFloat >> arcSin
+PCFloat >> arcSin
 [
 	"Answer the angle in radians."
 (self < -1.0 or: [ self > 1.0 ])
@@ -218,7 +218,7 @@ Class PCFloat >> arcSin
 	ifFalse: [ ^ (self / (1.0 - (self * self)) sqrt) arcTan ]
 ]
 
-Class PCFloat >> arcTan
+PCFloat >> arcTan
 [
 	"Answer the angle in radians.
 	 Optional. See Object documentation whatIsAPrimitive."
@@ -238,25 +238,25 @@ step := theta.
 ^ theta
 ]
 
-Class PCFloat >> asFloat
+PCFloat >> asFloat
 [
 	"Answer the receiver itself."
 ^ self
 ]
 
-Class PCFloat >> cos
+PCFloat >> cos
 [
 	"Answer the cosine of the receiver taken as an angle in radians."
 ^ (self + Halfpi) sin
 ]
 
-Class PCFloat >> degreesToRadians
+PCFloat >> degreesToRadians
 [
 	"Answer the receiver in radians. Assumes the receiver is in degrees."
 ^ self * RadiansPerDegree
 ]
 
-Class PCFloat >> exp
+PCFloat >> exp
 [
 	"Answer E raised to the receiver power.
 	 Optional. See Object documentation whatIsAPrimitive."
@@ -284,7 +284,7 @@ correction := correction + delta.
 ^ base * correction
 ]
 
-Class PCFloat >> exponent
+PCFloat >> exponent
 [
 	"Primitive. Consider the receiver to be represented as a power of two
 	multiplied by a mantissa (between one and two). Answer with the
@@ -305,13 +305,13 @@ self = 0.0
 ^ self negated exponent
 ]
 
-Class PCFloat >> floorLog: radix
+PCFloat >> floorLog: radix
 [
 	"Answer the floor of the log base radix of the receiver."
 ^ (self log: radix) floor
 ]
 
-Class PCFloat >> fractionPart
+PCFloat >> fractionPart
 [
 	"Primitive. Answer a Float whose value is the difference between the 
 	receiver and the receiver's asInteger value. Optional. See Object 
@@ -320,25 +320,25 @@ Class PCFloat >> fractionPart
 ^ self - self truncated asFloat
 ]
 
-Class PCFloat >> hash
+PCFloat >> hash
 [
 	"Hash is reimplemented because = is implemented. Both words of the float are used; 8 bits are removed from each end to clear most of the exponent regardless of the byte ordering. (The bitAnd:'s ensure that the intermediate results do not become a large integer.) Slower than the original version in the ratios 12:5 to 2:1 depending on values. (DNS, 11 May, 1997)"
 ^ ((self basicAt: 1) bitAnd: 16r00FFFF00) + ((self basicAt: 2) bitAnd: 16r00FFFF00) bitShift: -8
 ]
 
-Class PCFloat >> isInfinite
+PCFloat >> isInfinite
 [
 	"Return true if the receiver is positive or negative infinity."
 ^ self = Infinity or: [ self = NegativeInfinity ]
 ]
 
-Class PCFloat >> isNaN
+PCFloat >> isNaN
 [
 	"simple, byte-order independent test for Not-a-Number"
 ^ self ~= self
 ]
 
-Class PCFloat >> ln
+PCFloat >> ln
 [
 	"Answer the natural logarithm of the receiver.
 	 Optional. See Object documentation whatIsAPrimitive."
@@ -368,19 +368,19 @@ eps := Epsilon * (n abs + 1.0).
 ^ n + sum	"2.718284 ln 1.0"
 ]
 
-Class PCFloat >> log
+PCFloat >> log
 [
 	"Answer the base 10 logarithm of the receiver."
 ^ self ln / Ln10
 ]
 
-Class PCFloat >> negated
+PCFloat >> negated
 [
 	"Answer a Number that is the negation of the receiver."
 ^ 0.0 - self
 ]
 
-Class PCFloat >> printOn: aStream base: base
+PCFloat >> printOn: aStream base: base
 [
 	"Handle sign, zero, and NaNs; all other values passed to absPrintOn:base:"
 self isNaN
@@ -399,13 +399,13 @@ self > 0.0
 			ifFalse: [ self negated absPrintOn: aStream base: base ] ]
 ]
 
-Class PCFloat >> radiansToDegrees
+PCFloat >> radiansToDegrees
 [
 	"Answer the receiver in degrees. Assumes the receiver is in radians."
 ^ self / RadiansPerDegree
 ]
 
-Class PCFloat >> raisedTo: aNumber
+PCFloat >> raisedTo: aNumber
 [
 	"Answer the receiver raised to aNumber."
 0.0 = aNumber
@@ -413,12 +413,12 @@ Class PCFloat >> raisedTo: aNumber
 ^ (self ln * aNumber asFloat) exp
 ]
 
-Class PCFloat >> reciprocal
+PCFloat >> reciprocal
 [
 ^ 1.0 / self
 ]
 
-Class PCFloat >> reciprocalLogBase2
+PCFloat >> reciprocalLogBase2
 [
 	"optimized for self = 10, for use in conversion for printing"
 ^ self = 10.0
@@ -426,7 +426,7 @@ Class PCFloat >> reciprocalLogBase2
 	ifFalse: [ Ln2 / self ln ]
 ]
 
-Class PCFloat >> rounded
+PCFloat >> rounded
 [
 	"Answer the integer nearest the receiver."
 self >= 0.0
@@ -434,7 +434,7 @@ self >= 0.0
 	ifFalse: [ ^ (self - 0.5) truncated ]
 ]
 
-Class PCFloat >> sign
+PCFloat >> sign
 [
 	"Answer 1 if the receiver is greater than 0, -1 if less than 0, else 0.
 	Handle IEEE-754 negative-zero by reporting a sign of -1"
@@ -445,12 +445,12 @@ self > 0
 ^ 0
 ]
 
-Class PCFloat >> significand
+PCFloat >> significand
 [
 ^ self timesTwoPower: self exponent negated
 ]
 
-Class PCFloat >> sin
+PCFloat >> sin
 [
 	"Answer the sine of the receiver taken as an angle in radians.
 	 Optional. See Object documentation whatIsAPrimitive."
@@ -479,7 +479,7 @@ i := 2.0.
 ^ sum
 ]
 
-Class PCFloat >> sqrt
+PCFloat >> sqrt
 [
 	"Answer the square root of the receiver.
 	 Optional. See Object documentation whatIsAPrimitive."
@@ -502,13 +502,13 @@ delta := (self - (guess * guess)) / (guess * 2.0).
 ^ guess
 ]
 
-Class PCFloat >> tan
+PCFloat >> tan
 [
 	"Answer the tangent of the receiver taken as an angle in radians."
 ^ self sin / self cos
 ]
 
-Class PCFloat >> timesTwoPower: anInteger
+PCFloat >> timesTwoPower: anInteger
 [
 	"Primitive. Answer with the receiver multiplied by 2.0 raised
 	to the power of the argument.
@@ -523,7 +523,7 @@ anInteger < 30
 ^ self * (2.0 raisedToInteger: anInteger)
 ]
 
-Class PCFloat >> truncated
+PCFloat >> truncated
 [
 	"Answer with a SmallInteger equal to the value of the receiver without 
 	its fractional part. The primitive fails if the truncated value cannot be 
@@ -540,7 +540,7 @@ self abs < 2.0e16
 	ifFalse: [ ^ self error: 'not yet implemented' ]
 ]
 
-Class PCFloat >> ~= aNumber
+PCFloat >> ~= aNumber
 [
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is not equal to the argument. Otherwise return false.
@@ -553,7 +553,7 @@ Class PCFloat >> ~= aNumber
 PCFloat class
 	instanceVariables: #().
 
-Metaclass PCFloat >> initialize
+PCFloat class >> initialize
 [
 	"Float initialize"
 	"Constants from Computer Approximations, pp. 182-183:
@@ -581,13 +581,13 @@ NaN := Infinity - Infinity.
 NegativeZero := 1.0 / Infinity negated
 ]
 
-Metaclass PCFloat >> pi
+PCFloat class >> pi
 [
 	"Answer the constant, Pi."
 ^ Pi
 ]
 
-Metaclass PCFloat >> readFrom: aStream
+PCFloat class >> readFrom: aStream
 [
 	"Answer a new Float as described on the stream, aStream."
 ^ (PCNumber readFrom: aStream) asFloat

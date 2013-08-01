@@ -5,7 +5,7 @@ PCForm
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Optional-Graphics'.
 
-Class PCForm >> beDisplayDepth: d
+PCForm >> beDisplayDepth: d
 [
 	"Install myself as the Display. Drawing onto me will then cause the screen or window to be updated."
 | screenExtent |
@@ -14,12 +14,12 @@ self setWidth: (screenExtent instVarAt: 1) height: (screenExtent instVarAt: 2) d
 PCSystem specialObjectsArray at: 15 put: self	"make this Form the Display"
 ]
 
-Class PCForm >> bits
+PCForm >> bits
 [
 ^ bits
 ]
 
-Class PCForm >> copyX: x y: y width: w height: h
+PCForm >> copyX: x y: y width: w height: h
 [
 	"Answer a new form containing given rectangular portion of this form."
 | result |
@@ -33,12 +33,12 @@ PCBitBlt new
 ^ result
 ]
 
-Class PCForm >> depth
+PCForm >> depth
 [
 ^ depth
 ]
 
-Class PCForm >> drawForm: aForm x: x y: y rule: anInteger
+PCForm >> drawForm: aForm x: x y: y rule: anInteger
 [
 	"Fill the given rectangle with the current fill color."
 | oldFill |
@@ -55,7 +55,7 @@ bitBlt sourceForm: nil.
 bitBlt fillWords: oldFill
 ]
 
-Class PCForm >> fillRectX: x y: y w: w h: h
+PCForm >> fillRectX: x y: y w: w h: h
 [
 	"Fill the given rectangle with the current fill color."
 bitBlt
@@ -66,25 +66,25 @@ bitBlt
 	copyBits
 ]
 
-Class PCForm >> height
+PCForm >> height
 [
 ^ height
 ]
 
-Class PCForm >> primScreenSize
+PCForm >> primScreenSize
 [
 	"Answer the actual screen size. In Pharo Candle, this will be an Association object since Pharo Candle doesn't have Points."
 	<primitive: 106>
 self primitiveFailed
 ]
 
-Class PCForm >> setColorR: r g: g b: b
+PCForm >> setColorR: r g: g b: b
 [
 	"Set the fill color for rectangle drawing operations."
 bitBlt fillR: r g: g b: b
 ]
 
-Class PCForm >> setWidth: w height: h depth: d
+PCForm >> setWidth: w height: h depth: d
 [
 | wordsPerLine |
 wordsPerLine := (w * d + 31) // 32.
@@ -97,7 +97,7 @@ bitBlt := PCBitBlt new
 	fillR: 255 g: 0 b: 0	"default color"
 ]
 
-Class PCForm >> width
+PCForm >> width
 [
 ^ width
 ]
@@ -105,17 +105,17 @@ Class PCForm >> width
 PCForm class
 	instanceVariables: #().
 
-Metaclass PCForm >> over
+PCForm class >> over
 [
 ^ 3
 ]
 
-Metaclass PCForm >> paint
+PCForm class >> paint
 [
 ^ 25
 ]
 
-Metaclass PCForm >> width: w height: h depth: d
+PCForm class >> width: w height: h depth: d
 [
 ^ self basicNew setWidth: w height: h depth: d
 ]

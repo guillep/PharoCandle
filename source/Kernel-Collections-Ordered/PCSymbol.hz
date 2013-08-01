@@ -5,12 +5,12 @@ PCSymbol
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Collections-Ordered'.
 
-Class PCSymbol >> = anObject
+PCSymbol >> = anObject
 [
 ^ self == anObject
 ]
 
-Class PCSymbol >> asString
+PCSymbol >> asString
 [
 	"Answer a string containing my characters."
 | sz result |
@@ -24,34 +24,34 @@ result
 ^ result
 ]
 
-Class PCSymbol >> asSymbol
+PCSymbol >> asSymbol
 [
 ^ self
 ]
 
-Class PCSymbol >> at: anInteger put: anObject
+PCSymbol >> at: anInteger put: anObject
 [
 	"You cannot modify the receiver."
 self errorNoModification
 ]
 
-Class PCSymbol >> basicCopy
+PCSymbol >> basicCopy
 [
 	"Answer myself because Symbols are unique."
 
 ]
 
-Class PCSymbol >> errorNoModification
+PCSymbol >> errorNoModification
 [
 self error: 'Symbols can not be modified.'
 ]
 
-Class PCSymbol >> hash
+PCSymbol >> hash
 [
 ^ self identityHash
 ]
 
-Class PCSymbol >> initFrom: aString
+PCSymbol >> initFrom: aString
 [
 	"Warning! Use only to initialize new Symbols. Symbols are assumed to be immutable there after."
 self size = aString size
@@ -63,17 +63,17 @@ super
 	startingAt: 1
 ]
 
-Class PCSymbol >> printOn: aStream
+PCSymbol >> printOn: aStream
 [
 aStream nextPutAll: self
 ]
 
-Class PCSymbol >> replaceFrom: start to: stop with: replacement startingAt: repStart
+PCSymbol >> replaceFrom: start to: stop with: replacement startingAt: repStart
 [
 self errorNoModification
 ]
 
-Class PCSymbol >> species
+PCSymbol >> species
 [
 ^ PCString
 ]
@@ -81,7 +81,7 @@ Class PCSymbol >> species
 PCSymbol class
 	instanceVariables: #().
 
-Metaclass PCSymbol >> new: size
+PCSymbol class >> new: size
 [
 	"Symbols are unique. You can create a new Symbol from a String using 'asSymbol'."
 self cannotInstantiate

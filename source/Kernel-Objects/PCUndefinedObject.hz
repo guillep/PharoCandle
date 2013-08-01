@@ -5,37 +5,37 @@ PCUndefinedObject
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Objects'.
 
-Class PCUndefinedObject >> basicCopy
+PCUndefinedObject >> basicCopy
 [
 	"There is the only one instance of me, so answer myself."
 	^ self 
 ]
 
-Class PCUndefinedObject >> ifNil: aBlock
+PCUndefinedObject >> ifNil: aBlock
 [
 	"A convenient test, in conjunction with Object ifNil:"
 	^ aBlock value
 ]
 
-Class PCUndefinedObject >> ifNil: nilBlock ifNotNil: ifNotNilBlock
+PCUndefinedObject >> ifNil: nilBlock ifNotNil: ifNotNilBlock
 [
 	"Evaluate the block for nil because I'm == nil"
 	^ nilBlock value
 ]
 
-Class PCUndefinedObject >> ifNotNil: aBlock
+PCUndefinedObject >> ifNotNil: aBlock
 [
 	"A convenient test, in conjunction with Object ifNotNil:"
 	^ self
 ]
 
-Class PCUndefinedObject >> isNil
+PCUndefinedObject >> isNil
 [
 	"Answer true if the receiver is nil."
 	^ true
 ]
 
-Class PCUndefinedObject >> printOn: aStream
+PCUndefinedObject >> printOn: aStream
 [
 	aStream nextPutAll: 'nil'
 ]
@@ -43,7 +43,7 @@ Class PCUndefinedObject >> printOn: aStream
 PCUndefinedObject class
 	instanceVariables: #().
 
-Metaclass PCUndefinedObject >> new
+PCUndefinedObject class >> new
 [
 	"There is a single unique instance of me."
 	self cannotInstantiate

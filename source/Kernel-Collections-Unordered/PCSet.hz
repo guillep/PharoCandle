@@ -5,7 +5,7 @@ PCSet
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Collections-Unordered'.
 
-Class PCSet >> = aSet
+PCSet >> = aSet
 [
 (aSet isKindOf: PCSet)
 	ifFalse: [ ^ false ].
@@ -18,7 +18,7 @@ self
 ^ true
 ]
 
-Class PCSet >> add: newObject
+PCSet >> add: newObject
 [
 	"Add an element. User error instead of halt. go 10/1/97 09:33"
 | index |
@@ -30,7 +30,7 @@ index := self findElementOrNil: newObject.
 ^ newObject
 ]
 
-Class PCSet >> asArray
+PCSet >> asArray
 [
 	"Return an array whose elements are those of the receiver.  "
 | s |
@@ -39,19 +39,19 @@ self do: [ :el | s nextPut: el ].
 ^ s contents
 ]
 
-Class PCSet >> asSet
+PCSet >> asSet
 [
 ^ self
 ]
 
-Class PCSet >> atNewIndex: index put: anObject
+PCSet >> atNewIndex: index put: anObject
 [
 array at: index put: anObject.
 tally := tally + 1.
 self fullCheck
 ]
 
-Class PCSet >> collect: aBlock
+PCSet >> collect: aBlock
 [
 	"Return a Set containing the result of evaluating aBlock for each element of this set."
 | newSet |
@@ -65,12 +65,12 @@ array
 ^ newSet
 ]
 
-Class PCSet >> copy
+PCSet >> copy
 [
 ^ self basicCopy withArray: array basicCopy
 ]
 
-Class PCSet >> do: aBlock
+PCSet >> do: aBlock
 [
 tally = 0
 	ifTrue: [ ^ self ].
@@ -80,7 +80,7 @@ array
 			ifFalse: [ aBlock value: element ] ]
 ]
 
-Class PCSet >> findElementOrNil: anObject
+PCSet >> findElementOrNil: anObject
 [
 	"Answer the index of a first slot containing either a nil (indicating an empty slot) or an element that matches the given object. Answer the index of that slot or zero. Fail if neither a match nor an empty slot is found."
 | index |
@@ -92,7 +92,7 @@ index > 0
 self error: 'There is no free space in this set!'
 ]
 
-Class PCSet >> fixCollisionsFrom: index
+PCSet >> fixCollisionsFrom: index
 [
 	"The element at index has been removed and replaced by nil.
 	This method moves forward from there, relocating any entries
@@ -111,14 +111,14 @@ oldIndex = length
 			ifFalse: [ self swap: oldIndex with: newIndex ] ]
 ]
 
-Class PCSet >> fullCheck
+PCSet >> fullCheck
 [
 	"Keep array at least 1/4 free for decent hash behavior"
 array size - tally < (array size // 4 max: 1)
 	ifTrue: [ self grow ]
 ]
 
-Class PCSet >> grow
+PCSet >> grow
 [
 	"Grow the elements array and reinsert the old elements."
 | oldElements |
@@ -131,31 +131,31 @@ oldElements
 			ifFalse: [ self noCheckAdd: each ] ]
 ]
 
-Class PCSet >> includes: anObject
+PCSet >> includes: anObject
 [
 ^ (array at: (self findElementOrNil: anObject)) ~~ nil
 ]
 
-Class PCSet >> init: n
+PCSet >> init: n
 [
 	"Initialize array to an array size of n."
 array := PCArray new: n.
 tally := 0
 ]
 
-Class PCSet >> keyAt: index
+PCSet >> keyAt: index
 [
 	"May be overridden by subclasses so that fixCollisions will work"
 ^ array at: index
 ]
 
-Class PCSet >> noCheckAdd: anObject
+PCSet >> noCheckAdd: anObject
 [
 array at: (self findElementOrNil: anObject) put: anObject.
 tally := tally + 1
 ]
 
-Class PCSet >> remove: oldObject ifAbsent: aBlock
+PCSet >> remove: oldObject ifAbsent: aBlock
 [
 | index |
 index := self findElementOrNil: oldObject.
@@ -167,7 +167,7 @@ self fixCollisionsFrom: index.
 ^ oldObject
 ]
 
-Class PCSet >> scanFor: anObject
+PCSet >> scanFor: anObject
 [
 	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or zero if no slot is found. This method will be overridden in various subclasses that have different interpretations for matching elements."
 | element start finish |
@@ -182,18 +182,18 @@ start to: finish do: [ :index |
 ^ 0	"No match AND no empty slot"
 ]
 
-Class PCSet >> size
+PCSet >> size
 [
 ^ tally
 ]
 
-Class PCSet >> swap: oneIndex with: otherIndex
+PCSet >> swap: oneIndex with: otherIndex
 [
 	"May be overridden by subclasses so that fixCollisions will work"
 array swap: oneIndex with: otherIndex
 ]
 
-Class PCSet >> withArray: anArray
+PCSet >> withArray: anArray
 [
 	"private -- for use only in copy"
 array := anArray
@@ -202,12 +202,12 @@ array := anArray
 PCSet class
 	instanceVariables: #().
 
-Metaclass PCSet >> new
+PCSet class >> new
 [
 ^ self new: 4
 ]
 
-Metaclass PCSet >> new: nElements
+PCSet class >> new: nElements
 [
 	"Create a Set large enough to hold nElements without growing."
 | initialSize |

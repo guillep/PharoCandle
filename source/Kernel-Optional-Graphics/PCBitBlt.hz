@@ -5,7 +5,7 @@ PCBitBlt
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Optional-Graphics'.
 
-Class PCBitBlt >> clipX: x y: y width: w height: h
+PCBitBlt >> clipX: x y: y width: w height: h
 [
 	"Set my clipping boundaries. Setting the clipping bounds is optional."
 clipX := x.
@@ -14,21 +14,21 @@ clipWidth := w.
 clipHeight := h
 ]
 
-Class PCBitBlt >> copyBits
+PCBitBlt >> copyBits
 [
 	"Primitive. Perform the movement of bits from the source form to the destination form. Fail if any variables are not of the right type or if the combination rule is not implemented."
 	<primitive: 96>
 self primitiveFailed
 ]
 
-Class PCBitBlt >> copyBitsTranslucent: factor
+PCBitBlt >> copyBitsTranslucent: factor
 [
 	"This entry point to BitBlt supplies an extra argument to specify translucency for operations 30 and 31.  The argument must be an integer between 0 and 255."
 	<primitive: 96>
 self primitiveFailed
 ]
 
-Class PCBitBlt >> destForm: aForm
+PCBitBlt >> destForm: aForm
 [
 	"Set my destination Form."
 destForm := aForm.
@@ -38,7 +38,7 @@ clipWidth := aForm width.
 clipHeight := aForm height
 ]
 
-Class PCBitBlt >> destX: x y: y width: w height: h
+PCBitBlt >> destX: x y: y width: w height: h
 [
 	"Set the destination rectangle for this operation."
 destX := x.
@@ -47,7 +47,7 @@ width := w.
 height := h
 ]
 
-Class PCBitBlt >> fillR: r g: g b: b
+PCBitBlt >> fillR: r g: g b: b
 [
 	"Set my fill color to the given RGB value, where r, g, and b are in the range 0-255. The destination form must be set before calling this method, since the pixel pattern created depends on the destination depth."
 	"Note: The ranges of r, g, and b are not checked."
@@ -67,19 +67,19 @@ d = 32
 self error: 'color is supported only for depths 8, 16, and 32'
 ]
 
-Class PCBitBlt >> fillWords
+PCBitBlt >> fillWords
 [
 	"Answer the array of pixel words using for filling with a color."
 ^ fillWords
 ]
 
-Class PCBitBlt >> fillWords: aBitmapOrNil
+PCBitBlt >> fillWords: aBitmapOrNil
 [
 	"Set the array of pixel words using for filling with a color."
 fillWords := aBitmapOrNil
 ]
 
-Class PCBitBlt >> initialize
+PCBitBlt >> initialize
 [
 rule := PCForm over.
 sourceX := sourceY := 0.
@@ -88,26 +88,26 @@ clipX := clipY := 0.
 clipWidth := clipHeight := 100000
 ]
 
-Class PCBitBlt >> rule: anInteger
+PCBitBlt >> rule: anInteger
 [
 	"Set the combination rule, an integer between 0 and 34 that determines how pixels are combined in this operation."
 rule := anInteger
 ]
 
-Class PCBitBlt >> sourceForm: aForm
+PCBitBlt >> sourceForm: aForm
 [
 	"Set my source and destination forms. The source form may be nil if filling with a color."
 sourceForm := aForm
 ]
 
-Class PCBitBlt >> sourceX: x y: y
+PCBitBlt >> sourceX: x y: y
 [
 	"Set the top-left corner of the destination rectangle for this operation."
 sourceX := x.
 sourceY := y
 ]
 
-Class PCBitBlt >> width: w height: h
+PCBitBlt >> width: w height: h
 [
 	"Set the width and height for this operation."
 width := w.

@@ -5,15 +5,15 @@ PCClass
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Classes'.
 
-Class PCClass >> classVariables
+PCClass >> classVariables
 [
 	"Answer the dictionary of class variables that I share with my sole instance, or nil if I have none."
 	^ classVariables
 ]
 
-Class PCClass >> initFrom: aPharoClass methodDict: newMethodDict
+PCClass >> initFrom: aPharoClass methodDict: newMethodDict
 [
-	"Fill in my instance variables from the given Squeak Class using the given MethodDictionary."
+	"Fill in my instance variables from the given Squeak using the given MethodDictionary."
 	superclass := PCObject.	"corrected later"
 	methodDict := newMethodDict.
 	format := aPharoClass format.
@@ -26,29 +26,29 @@ Class PCClass >> initFrom: aPharoClass methodDict: newMethodDict
 		ifTrue: [ classVariables := nil ]
 ]
 
-Class PCClass >> instVarNames
+PCClass >> instVarNames
 [
 	"Answer an Array of the receiver's instance variable names."
 	instVarNames ifNil: [ ^ #() ].
 	^ instVarNames
 ]
 
-Class PCClass >> isMeta
+PCClass >> isMeta
 [
 	^ false
 ]
 
-Class PCClass >> name
+PCClass >> name
 [
 	^ name
 ]
 
-Class PCClass >> theNonMetaClass
+PCClass >> theNonMetaClass
 [
 	^ self
 ]
 
-Class PCClass >> classSide
+PCClass >> classSide
 [
 	^ self class
 ]

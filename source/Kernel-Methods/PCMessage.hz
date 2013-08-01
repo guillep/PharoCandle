@@ -5,19 +5,19 @@ PCMessage
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Methods'.
 
-Class PCMessage >> arguments
+PCMessage >> arguments
 [
 	"Answer the message arguments array."
 	^ arguments
 ]
 
-Class PCMessage >> lookupClass
+PCMessage >> lookupClass
 [
 	"Answer the message lookupClass."
 	^ lookupClass
 ]
 
-Class PCMessage >> printOn: aStream
+PCMessage >> printOn: aStream
 [
 	"Refer to the comment in Object|printOn:."
 	super printOn: aStream.
@@ -26,18 +26,18 @@ Class PCMessage >> printOn: aStream
 		nextPutAll: ' args: ' , arguments printString
 ]
 
-Class PCMessage >> selector
+PCMessage >> selector
 [
 	"Answer the message selector."
 	^ selector
 ]
 
-Class PCMessage >> sentTo: anObject
+PCMessage >> sentTo: anObject
 [
 	"Answer the result of sending this message to the given object."
 	lookupClass == nil
 		ifTrue: [ ^ anObject perform: selector withArguments: arguments ]
-		ifFalse: [ ^ anObject perform: selector withArguments: arguments inSuperclass: lookupClass ]
+		ifFalse: [ ^ anObject perform: selector withArguments: arguments inSuperclass: lookupClass]
 ]
 
 PCMessage class

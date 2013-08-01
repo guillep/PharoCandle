@@ -5,7 +5,7 @@ PCFile
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Optional'.
 
-Class PCFile >> close
+PCFile >> close
 [
 	"Close this file."
 fileID
@@ -14,12 +14,12 @@ fileID
 		fileID := nil ]
 ]
 
-Class PCFile >> cr
+PCFile >> cr
 [
 self nextPutAll: (PCString with: PCCharacter cr)
 ]
 
-Class PCFile >> localFolderPath
+PCFile >> localFolderPath
 [
 	"Answer the path for the folder containing the image file."
 	"MFile new localFolderPath"
@@ -35,13 +35,13 @@ i = 0
 ^ imagePath copyFrom: 1 to: i
 ]
 
-Class PCFile >> name
+PCFile >> name
 [
 	"Answer the name of this file."
 ^ name
 ]
 
-Class PCFile >> next: count
+PCFile >> next: count
 [
 	"Answer a String containing the next count bytes of the file. If there are not count bytes left in the file, answer a String with as many bytes as available."
 | buffer n |
@@ -56,7 +56,7 @@ n < count
 ^ buffer
 ]
 
-Class PCFile >> nextPutAll: buffer
+PCFile >> nextPutAll: buffer
 [
 	"Write the contents of the given bytes or words object to this file."
 ^ self
@@ -66,7 +66,7 @@ Class PCFile >> nextPutAll: buffer
 	count: buffer basicSize
 ]
 
-Class PCFile >> openReadOnly: fileName
+PCFile >> openReadOnly: fileName
 [
 	"Open the file with the given name for reading and writing."
 name := nil.
@@ -74,7 +74,7 @@ fileID := self primOpen: fileName writable: false.
 name := fileName
 ]
 
-Class PCFile >> openReadWrite: fileName
+PCFile >> openReadWrite: fileName
 [
 	"Open the file with the given name for reading only."
 name := nil.
@@ -82,40 +82,40 @@ fileID := self primOpen: fileName writable: true.
 name := fileName
 ]
 
-Class PCFile >> position
+PCFile >> position
 [
 	"Answer the current file position in bytes."
 ^ self primGetPosition: fileID
 ]
 
-Class PCFile >> position: newPosition
+PCFile >> position: newPosition
 [
 	"Seek to the given file position in bytes."
 ^ self primSetPosition: fileID to: newPosition
 ]
 
-Class PCFile >> primClose: id
+PCFile >> primClose: id
 [
 	"Close this file. Don't raise an error if the primitive fails."
 	<primitive: 'primitiveFileClose' module: 'FilePlugin'>
 
 ]
 
-Class PCFile >> primGetPosition: id
+PCFile >> primGetPosition: id
 [
 	"Get this files current position."
 	<primitive: 'primitiveFileGetPosition' module: 'FilePlugin'>
 self primitiveFailed
 ]
 
-Class PCFile >> primImageName
+PCFile >> primImageName
 [
 	"Answer the full path name for the current image."
 	<primitive: 121>
 self primitiveFailed
 ]
 
-Class PCFile >> primOpen: fileName writable: writableFlag
+PCFile >> primOpen: fileName writable: writableFlag
 [
 	"Open a file of the given name, and return the file ID obtained.
 	If writableFlag is true, then
@@ -128,35 +128,35 @@ Class PCFile >> primOpen: fileName writable: writableFlag
 self primitiveFailed
 ]
 
-Class PCFile >> primRead: id into: byteArray startingAt: startIndex count: count
+PCFile >> primRead: id into: byteArray startingAt: startIndex count: count
 [
 	"Read up to count elements into the given buffer and answer the number of elements actually read. The buffer may either a byte- or word-indexable object."
 	<primitive: 'primitiveFileRead' module: 'FilePlugin'>
 self primitiveFailed
 ]
 
-Class PCFile >> primSetPosition: id to: anInteger
+PCFile >> primSetPosition: id to: anInteger
 [
 	"Set this file to the given position."
 	<primitive: 'primitiveFileSetPosition' module: 'FilePlugin'>
 self primitiveFailed
 ]
 
-Class PCFile >> primSize: id
+PCFile >> primSize: id
 [
 	"Answer the size of this file."
 	<primitive: 'primitiveFileSize' module: 'FilePlugin'>
 self primitiveFailed
 ]
 
-Class PCFile >> primWrite: id from: buffer startingAt: startIndex count: count
+PCFile >> primWrite: id from: buffer startingAt: startIndex count: count
 [
 	"Write up to count elements from the given buffer and answer the number of elements actually written. The buffer may either a byte- or word-indexable object."
 	<primitive: 'primitiveFileWrite' module: 'FilePlugin'>
 self primitiveFailed
 ]
 
-Class PCFile >> readInto: buffer startingAt: startIndex count: count
+PCFile >> readInto: buffer startingAt: startIndex count: count
 [
 	"Read up to count elements into the given array and answer the number of elements actually read. The buffer may either a byte- or word-indexable object."
 ^ self
@@ -166,7 +166,7 @@ Class PCFile >> readInto: buffer startingAt: startIndex count: count
 	count: count
 ]
 
-Class PCFile >> size
+PCFile >> size
 [
 	"Answer the size of this file in bytes."
 ^ self primSize: fileID

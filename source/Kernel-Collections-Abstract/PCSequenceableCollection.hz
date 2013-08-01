@@ -5,7 +5,7 @@ PCSequenceableCollection
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Collections-Abstract'.
 
-Class PCSequenceableCollection >> , otherCollection
+PCSequenceableCollection >> , otherCollection
 [
 	"Concatenate two Strings or Collections."
 ^ self copyReplaceFrom: self size + 1 to: self size with: otherCollection	"
@@ -14,7 +14,7 @@ Class PCSequenceableCollection >> , otherCollection
 "
 ]
 
-Class PCSequenceableCollection >> = otherCollection
+PCSequenceableCollection >> = otherCollection
 [
 	"Answer whether the species of the receiver is the same as
 	otherCollection's species, and the receiver's size is the same as
@@ -31,7 +31,7 @@ self species == otherCollection species
 ^ true
 ]
 
-Class PCSequenceableCollection >> asArray
+PCSequenceableCollection >> asArray
 [
 	"Answer an Array whose elements are the elements of the receiver, in the same order."
 | newArray |
@@ -40,7 +40,7 @@ newArray := PCArray new: self size.
 ^ newArray
 ]
 
-Class PCSequenceableCollection >> at: index ifAbsent: absentBlock
+PCSequenceableCollection >> at: index ifAbsent: absentBlock
 [
 	"Answer the element at the given index. If I do not contain an element at that index, answer the result of evaluating the argument, absentBlock."
 (index between: 1 and: self size)
@@ -48,7 +48,7 @@ Class PCSequenceableCollection >> at: index ifAbsent: absentBlock
 ^ absentBlock value
 ]
 
-Class PCSequenceableCollection >> collect: aBlock
+PCSequenceableCollection >> collect: aBlock
 [
 	"Refer to the comment in Collection|collect:."
 | result |
@@ -57,7 +57,7 @@ result := self species new: self size.
 ^ result
 ]
 
-Class PCSequenceableCollection >> copyFrom: start to: stop
+PCSequenceableCollection >> copyFrom: start to: stop
 [
 	"Answer a copy of a subset of the receiver, starting from element at 
 	index start until element at index stop."
@@ -70,7 +70,7 @@ newSize := stop - start + 1.
 	startingAt: start
 ]
 
-Class PCSequenceableCollection >> copyReplaceFrom: start to: stop with: replacementCollection
+PCSequenceableCollection >> copyReplaceFrom: start to: stop with: replacementCollection
 [
 	"Answer a copy of the receiver satisfying the following conditions: If 
 	stop is less than start, then this is an insertion; stop should be exactly 
@@ -99,7 +99,7 @@ newSequenceableCollection
 ^ newSequenceableCollection
 ]
 
-Class PCSequenceableCollection >> copyWith: newElement
+PCSequenceableCollection >> copyWith: newElement
 [
 	"Answer a copy of the receiver that is 1 bigger than the receiver and has 
 	newElement at the last element."
@@ -114,13 +114,13 @@ newIC at: newIC size put: newElement.
 ^ newIC
 ]
 
-Class PCSequenceableCollection >> do: aBlock
+PCSequenceableCollection >> do: aBlock
 [
 	"Refer to the comment in Collection|do:."
 1 to: self size do: [ :index | aBlock value: (self at: index) ]
 ]
 
-Class PCSequenceableCollection >> first
+PCSequenceableCollection >> first
 [
 	"Answer the first element of the receiver. Create an error notification if 
 	the receiver contains no elements."
@@ -128,13 +128,13 @@ self emptyCheck.
 ^ self at: 1
 ]
 
-Class PCSequenceableCollection >> indexOf: anObject ifAbsent: absentBlock
+PCSequenceableCollection >> indexOf: anObject ifAbsent: absentBlock
 [
 	"Answer the index of the given object within me. If I do not contain the given object, answer the result of evaluating the given block."
 ^ self indexOf: anObject startingAt: 1 ifAbsent: absentBlock
 ]
 
-Class PCSequenceableCollection >> indexOf: anObject startingAt: startIndex ifAbsent: absentBlock
+PCSequenceableCollection >> indexOf: anObject startingAt: startIndex ifAbsent: absentBlock
 [
 	"Answer the index of the given object within me starting the search at the given index. If I do not contain the given object, answer the result of evaluating the given block."
 startIndex to: self size do: [ :i | 
@@ -143,7 +143,7 @@ startIndex to: self size do: [ :i |
 ^ absentBlock value
 ]
 
-Class PCSequenceableCollection >> last
+PCSequenceableCollection >> last
 [
 	"Answer the last element of the receiver. Create an error notification if 
 	the receiver contains no elements."
@@ -151,13 +151,13 @@ self emptyCheck.
 ^ self at: self size
 ]
 
-Class PCSequenceableCollection >> remove: oldObject ifAbsent: anExceptionBlock
+PCSequenceableCollection >> remove: oldObject ifAbsent: anExceptionBlock
 [
 	"SequencableCollections cannot implement removing."
 self shouldNotImplement
 ]
 
-Class PCSequenceableCollection >> replaceFrom: start to: stop with: replacement
+PCSequenceableCollection >> replaceFrom: start to: stop with: replacement
 [
 	"This destructively replaces elements from start to stop in the receiver. 
 	Answer the receiver itself. Use copyReplaceFrom:to:with: for 
@@ -171,7 +171,7 @@ replacement size = (stop - start + 1)
 	startingAt: 1
 ]
 
-Class PCSequenceableCollection >> replaceFrom: start to: stop with: replacement startingAt: repStart
+PCSequenceableCollection >> replaceFrom: start to: stop with: replacement startingAt: repStart
 [
 	"This destructively replaces elements from start to stop in the receiver 
 	starting at index, repStart, in the sequenceable collection, 
@@ -183,7 +183,7 @@ index := start - 1.
 [ (index := index + 1) <= stop ] whileTrue: [ self at: index put: (replacement at: repOff + index) ]
 ]
 
-Class PCSequenceableCollection >> select: aBlock
+PCSequenceableCollection >> select: aBlock
 [
 	"Refer to the comment in Collection|select:."
 | s |
@@ -194,12 +194,12 @@ s := PCWriteStream on: (self species new: self size).
 ^ s contents
 ]
 
-Class PCSequenceableCollection >> size
+PCSequenceableCollection >> size
 [
 self subclassResponsibility
 ]
 
-Class PCSequenceableCollection >> swap: oneIndex with: anotherIndex
+PCSequenceableCollection >> swap: oneIndex with: anotherIndex
 [
 	"Move the element at oneIndex to anotherIndex, and vice-versa."
 | element |

@@ -5,12 +5,12 @@ PCArrayedCollection
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Collections-Abstract'.
 
-Class PCArrayedCollection >> add: newObject
+PCArrayedCollection >> add: newObject
 [
 self shouldNotImplement
 ]
 
-Class PCArrayedCollection >> mergeFirst: first middle: middle last: last into: dst by: aBlock
+PCArrayedCollection >> mergeFirst: first middle: middle last: last into: dst by: aBlock
 [
 	"Private! Merge the sorted ranges [first..middle] and [middle+1..last] of the receiver into the range [first..last] of dst."
 | i1 i2 val1 val2 out |
@@ -45,7 +45,7 @@ i1 <= middle
 			startingAt: i2 ]
 ]
 
-Class PCArrayedCollection >> mergeSortFrom: startIndex to: stopIndex by: aBlock
+PCArrayedCollection >> mergeSortFrom: startIndex to: stopIndex by: aBlock
 [
 	"Sort the given range of indices using the mergesort algorithm. Mergesort is a worst-case O(N log N) sorting algorithm that usually does only half as many comparisons as heapsort or quicksort."
 	"Details: recursively split the range to be sorted into two halves, mergesort each half, then merge the two halves together. An extra copy of the data is used as temporary storage and successive merge phases copy data back and forth between the receiver and this copy. The recursion is set up so that the final merge is performed into the receiver, resulting in the receiver being completely sorted."
@@ -67,7 +67,7 @@ self
 	by: aBlock
 ]
 
-Class PCArrayedCollection >> mergeSortFrom: first to: last src: src dst: dst by: aBlock
+PCArrayedCollection >> mergeSortFrom: first to: last src: src dst: dst by: aBlock
 [
 	"Private! Split the range to be sorted in half, sort each half, and merge the two half-ranges into dst."
 | middle |
@@ -94,20 +94,20 @@ src
 	by: aBlock
 ]
 
-Class PCArrayedCollection >> size
+PCArrayedCollection >> size
 [
 	"Primitive. Answer the number of indexable fields in the receiver. This value is the same as the largest legal subscript. Primitive is specified here to override MSequenceableCollection size. Essential. See Object documentation whatIsAPrimitive. "
 	<primitive: 62>
 ^ self basicSize
 ]
 
-Class PCArrayedCollection >> sort
+PCArrayedCollection >> sort
 [
 	"Sort this array into ascending order using the '<' operator."
 self mergeSortFrom: 1 to: self size by: [ :el1 :el2 | el1 < el2 ]
 ]
 
-Class PCArrayedCollection >> sort: aBlock
+PCArrayedCollection >> sort: aBlock
 [
 	"Sort this array using the given comparision block. The block should take two arguments and return true if the first element should precede the second in the sorted result."
 self mergeSortFrom: 1 to: self size by: aBlock
@@ -116,13 +116,13 @@ self mergeSortFrom: 1 to: self size by: aBlock
 PCArrayedCollection class
 	instanceVariables: #().
 
-Metaclass PCArrayedCollection >> new
+PCArrayedCollection class >> new
 [
 	"Answer a new instance of me, with size = 0."
 ^ self new: 0
 ]
 
-Metaclass PCArrayedCollection >> with: anObject
+PCArrayedCollection class >> with: anObject
 [
 	"Answer a new instance of me, containing only anObject."
 | newCollection |
@@ -131,7 +131,7 @@ newCollection at: 1 put: anObject.
 ^ newCollection
 ]
 
-Metaclass PCArrayedCollection >> with: firstObject with: secondObject
+PCArrayedCollection class >> with: firstObject with: secondObject
 [
 	"Answer a new instance of me containing the two arguments as elements."
 | newCollection |
@@ -141,7 +141,7 @@ newCollection at: 2 put: secondObject.
 ^ newCollection
 ]
 
-Metaclass PCArrayedCollection >> with: firstObject with: secondObject with: thirdObject
+PCArrayedCollection class >> with: firstObject with: secondObject with: thirdObject
 [
 	"Answer a new instance of me, containing the three arguments as elements."
 | newCollection |

@@ -5,7 +5,7 @@ PCLargePositiveInteger
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Numeric'.
 
-Class PCLargePositiveInteger >> * anInteger
+PCLargePositiveInteger >> * anInteger
 [
 	"Primitive. Multiply the receiver by the argument and answer with an
 	Integer result. Fail if either the argument or the result is not a
@@ -15,7 +15,7 @@ Class PCLargePositiveInteger >> * anInteger
 ^ super * anInteger
 ]
 
-Class PCLargePositiveInteger >> + anInteger
+PCLargePositiveInteger >> + anInteger
 [
 	"Primitive. Add the receiver to the argument and answer with an
 	Integer result. Fail if either the argument or the result is not a
@@ -25,7 +25,7 @@ Class PCLargePositiveInteger >> + anInteger
 ^ super + anInteger
 ]
 
-Class PCLargePositiveInteger >> - anInteger
+PCLargePositiveInteger >> - anInteger
 [
 	"Primitive. Subtract the argument from the receiver and answer with an
 	Integer result. Fail if either the argument or the result is not a
@@ -35,7 +35,7 @@ Class PCLargePositiveInteger >> - anInteger
 ^ super - anInteger
 ]
 
-Class PCLargePositiveInteger >> / anInteger
+PCLargePositiveInteger >> / anInteger
 [
 	"Primitive. Divide the receiver by the argument and answer with the
 	result if the division is exact. Fail if the result is not a whole integer.
@@ -46,7 +46,7 @@ Class PCLargePositiveInteger >> / anInteger
 ^ super / anInteger
 ]
 
-Class PCLargePositiveInteger >> // anInteger
+PCLargePositiveInteger >> // anInteger
 [
 	"Primitive. Divide the receiver by the argument and return the result.
 	Round the result down towards negative infinity to make it a whole
@@ -57,7 +57,7 @@ Class PCLargePositiveInteger >> // anInteger
 ^ super // anInteger
 ]
 
-Class PCLargePositiveInteger >> < anInteger
+PCLargePositiveInteger >> < anInteger
 [
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is less than the argument. Otherwise answer false. Fail if the
@@ -67,7 +67,7 @@ Class PCLargePositiveInteger >> < anInteger
 ^ super < anInteger
 ]
 
-Class PCLargePositiveInteger >> <= anInteger
+PCLargePositiveInteger >> <= anInteger
 [
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is less than or equal to the argument. Otherwise answer false.
@@ -77,7 +77,7 @@ Class PCLargePositiveInteger >> <= anInteger
 ^ super <= anInteger
 ]
 
-Class PCLargePositiveInteger >> = anInteger
+PCLargePositiveInteger >> = anInteger
 [
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is equal to the argument. Otherwise answer false. Fail if the
@@ -87,7 +87,7 @@ Class PCLargePositiveInteger >> = anInteger
 ^ super = anInteger
 ]
 
-Class PCLargePositiveInteger >> > anInteger
+PCLargePositiveInteger >> > anInteger
 [
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is greater than the argument. Otherwise answer false. Fail if
@@ -97,7 +97,7 @@ Class PCLargePositiveInteger >> > anInteger
 ^ super > anInteger
 ]
 
-Class PCLargePositiveInteger >> >= anInteger
+PCLargePositiveInteger >> >= anInteger
 [
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is greater than or equal to the argument. Otherwise answer
@@ -107,7 +107,7 @@ Class PCLargePositiveInteger >> >= anInteger
 ^ super >= anInteger
 ]
 
-Class PCLargePositiveInteger >> \\ anInteger
+PCLargePositiveInteger >> \\ anInteger
 [
 	"Primitive. Take the receiver modulo the argument. The result is the
 	remainder rounded towards negative infinity, of the receiver divided
@@ -118,12 +118,12 @@ Class PCLargePositiveInteger >> \\ anInteger
 ^ super \\ anInteger
 ]
 
-Class PCLargePositiveInteger >> abs
+PCLargePositiveInteger >> abs
 [
 
 ]
 
-Class PCLargePositiveInteger >> bitAnd: anInteger
+PCLargePositiveInteger >> bitAnd: anInteger
 [
 	"Primitive. Answer an Integer whose bits are the logical AND of the
 	receiver's bits and those of the argument. Fail if the receiver or argument
@@ -132,7 +132,7 @@ Class PCLargePositiveInteger >> bitAnd: anInteger
 ^ super bitAnd: anInteger
 ]
 
-Class PCLargePositiveInteger >> bitOr: anInteger
+PCLargePositiveInteger >> bitOr: anInteger
 [
 	"Primitive. Answer an Integer whose bits are the logical OR of the
 	receiver's bits and those of the argument. Fail if the receiver or argument
@@ -141,7 +141,7 @@ Class PCLargePositiveInteger >> bitOr: anInteger
 ^ super bitOr: anInteger
 ]
 
-Class PCLargePositiveInteger >> bitShift: anInteger
+PCLargePositiveInteger >> bitShift: anInteger
 [
 	"Primitive. Answer an Integer whose value (in twos-complement 
 	representation) is the receiver's value (in twos-complement
@@ -154,7 +154,7 @@ Class PCLargePositiveInteger >> bitShift: anInteger
 ^ super bitShift: anInteger
 ]
 
-Class PCLargePositiveInteger >> bitXor: anInteger
+PCLargePositiveInteger >> bitXor: anInteger
 [
 	"Primitive. Answer an Integer whose bits are the logical XOR of the
 	receiver's bits and those of the argument. Fail if the receiver or argument
@@ -163,7 +163,7 @@ Class PCLargePositiveInteger >> bitXor: anInteger
 ^ super bitXor: anInteger
 ]
 
-Class PCLargePositiveInteger >> digitAt: index
+PCLargePositiveInteger >> digitAt: index
 [
 	"Primitive. Answer the value of an indexable field in the receiver. Fail if 
 	the argument (the index) is not an Integer or is out of bounds. Essential. 
@@ -174,7 +174,7 @@ self digitLength < index
 	ifFalse: [ ^ super at: index ]
 ]
 
-Class PCLargePositiveInteger >> digitAt: index put: value
+PCLargePositiveInteger >> digitAt: index put: value
 [
 	"Primitive. Store the second argument (value) in the indexable field of 
 	the receiver indicated by index. Fail if the value is negative or is larger 
@@ -185,7 +185,7 @@ Class PCLargePositiveInteger >> digitAt: index put: value
 ^ super at: index put: value
 ]
 
-Class PCLargePositiveInteger >> digitLength
+PCLargePositiveInteger >> digitLength
 [
 	"Primitive. Answer the number of indexable fields in the receiver. This 
 	value is the same as the largest legal subscript. Essential. See Object 
@@ -194,7 +194,7 @@ Class PCLargePositiveInteger >> digitLength
 self primitiveFailed
 ]
 
-Class PCLargePositiveInteger >> highBit
+PCLargePositiveInteger >> highBit
 [
 	"Answer the index of the high order bit of the receiver, or zero if the receiver is zero. This method is allowed (and needed) for LargeNegativeIntegers as well, since Squeak's LargeIntegers are sign/magnitude."
 | realLength lastDigit |
@@ -206,18 +206,18 @@ realLength := self digitLength.
 ^ lastDigit highBit + (8 * (realLength - 1))
 ]
 
-Class PCLargePositiveInteger >> negated
+PCLargePositiveInteger >> negated
 [
 ^ (self copyto: (PCLargeNegativeInteger new: self digitLength)) normalize	"Need to normalize to catch SmallInteger minVal"
 ]
 
-Class PCLargePositiveInteger >> negative
+PCLargePositiveInteger >> negative
 [
 	"Answer whether the receiver is mathematically negative."
 ^ false
 ]
 
-Class PCLargePositiveInteger >> normalize
+PCLargePositiveInteger >> normalize
 [
 	"Check for leading zeroes and return shortened copy if so"
 | sLen val len oldLen |
@@ -239,7 +239,7 @@ len < oldLen
 	ifFalse: [ ^ self ]
 ]
 
-Class PCLargePositiveInteger >> quo: anInteger
+PCLargePositiveInteger >> quo: anInteger
 [
 	"Primitive. Divide the receiver by the argument and return the result.
 	Round the result down towards zero to make it a whole integer. Fail if
@@ -250,7 +250,7 @@ Class PCLargePositiveInteger >> quo: anInteger
 ^ super quo: anInteger
 ]
 
-Class PCLargePositiveInteger >> replaceFrom: start to: stop with: replacement startingAt: repStart
+PCLargePositiveInteger >> replaceFrom: start to: stop with: replacement startingAt: repStart
 [
 	"Primitive. This destructively replaces elements from start to stop in the receiver starting at index, repStart, in the collection, replacement. Answer the receiver. Range checks are performed in the primitive only. Optional. See Object documentation whatIsAPrimitive."
 	<primitive: 105>
@@ -261,13 +261,13 @@ Class PCLargePositiveInteger >> replaceFrom: start to: stop with: replacement st
 	startingAt: repStart
 ]
 
-Class PCLargePositiveInteger >> sign
+PCLargePositiveInteger >> sign
 [
 	"Optimization. Answer 1 since receiver is greater than 0."
 ^ 1
 ]
 
-Class PCLargePositiveInteger >> ~= anInteger
+PCLargePositiveInteger >> ~= anInteger
 [
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is equal to the argument. Otherwise answer false. Fail if the

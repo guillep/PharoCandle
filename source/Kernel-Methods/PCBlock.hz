@@ -5,13 +5,13 @@ PCBlock
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Methods'.
 
-Class PCBlock >> asContext
+PCBlock >> asContext
 [
 	"Create a MethodContext that is ready to execute self.  Assumes self takes no args (if it does the args will be nil)"
 	^ self asContextWithSender: nil
 ]
 
-Class PCBlock >> asContextWithSender: aContext
+PCBlock >> asContextWithSender: aContext
 [
 	"Inner private support method for evaluation.  Do not use unless you know what you're doing."
 	^ (PCMethodContext newForMethod: outerContext method)
@@ -23,12 +23,12 @@ Class PCBlock >> asContextWithSender: aContext
 		privRefresh
 ]
 
-Class PCBlock >> home
+PCBlock >> home
 [
 	^ outerContext home
 ]
 
-Class PCBlock >> ifError: errorHandlerBlock
+PCBlock >> ifError: errorHandlerBlock
 [
 	"Evaluate the block represented by the receiver. If an error occurs the given handler block is evaluated. The handler block can be either a zero- or two-argument block; if the latter, then the error message and receiver are supplied to it as parameters. Answer the value returned by the handler block if the receiver gets an error."
 	"Warning: The receiver should not contain an explicit return since that would leave an obsolete error handler hanging around."
@@ -54,12 +54,12 @@ Class PCBlock >> ifError: errorHandlerBlock
 	^ val
 ]
 
-Class PCBlock >> method
+PCBlock >> method
 [
 	^ self home method
 ]
 
-Class PCBlock >> msecs
+PCBlock >> msecs
 [
 	"Answer the number of milliseconds it took to evaluate this block."
 	| startMSecs |
@@ -68,12 +68,12 @@ Class PCBlock >> msecs
 	^ PCSystem milliseconds - startMSecs
 ]
 
-Class PCBlock >> numArgs
+PCBlock >> numArgs
 [
 	^ nargs
 ]
 
-Class PCBlock >> numCopiedValues
+PCBlock >> numCopiedValues
 [
 	"Answer the number of copied values of the receiver.  Since these are
 	 stored in the receiver's indexable fields this is the receiver's basic size.
@@ -83,33 +83,33 @@ Class PCBlock >> numCopiedValues
 	^ self basicSize
 ]
 
-Class PCBlock >> outerContext
+PCBlock >> outerContext
 [
 	^ outerContext
 ]
 
-Class PCBlock >> value
+PCBlock >> value
 [
 	"Evaluate this block without any arguments."
 	<primitive: 201>
 	^ self valueWithArguments: #()
 ]
 
-Class PCBlock >> value: arg
+PCBlock >> value: arg
 [
 	"Evaluate this block with one argument."
 	<primitive: 202>
 	^ self valueWithArguments: (PCArray with: arg)
 ]
 
-Class PCBlock >> value: arg1 value: arg2
+PCBlock >> value: arg1 value: arg2
 [
 	"Evaluate this block with two arguments."
 	<primitive: 203>
 	^ self valueWithArguments: (PCArray with: arg1 with: arg2)
 ]
 
-Class PCBlock >> valueWithArguments: anArray
+PCBlock >> valueWithArguments: anArray
 [
 	"Primitive. Evaluate the block represented by the receiver. The argument is an Array whose elements are the arguments for the block. Fail if the length of the Array is not the same as the the number of arguments that the block was expecting. Fail if the block is already being executed. Essential. See Object documentation whatIsAPrimitive."
 	<primitive: 206>

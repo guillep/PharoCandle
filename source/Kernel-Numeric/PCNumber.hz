@@ -5,31 +5,31 @@ PCNumber
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Numeric'.
 
-Class PCNumber >> * aNumber
+PCNumber >> * aNumber
 [
 	"Answer the result of multiplying the receiver by aNumber."
 	self subclassResponsibility
 ]
 
-Class PCNumber >> + aNumber
+PCNumber >> + aNumber
 [
 	"Answer the sum of the receiver and aNumber."
 	self subclassResponsibility
 ]
 
-Class PCNumber >> - aNumber
+PCNumber >> - aNumber
 [
 	"Answer the difference between the receiver and aNumber."
 	self subclassResponsibility
 ]
 
-Class PCNumber >> / aNumber
+PCNumber >> / aNumber
 [
 	"Answer the result of dividing the receiver by aNumber."
 	self subclassResponsibility
 ]
 
-Class PCNumber >> // aNumber
+PCNumber >> // aNumber
 [
 	"Integer quotient defined by division with truncation toward negative 
 	infinity. 9//4 = 2, -9//4 = -3. -0.9//0.4 = -3. \\ answers the remainder 
@@ -37,14 +37,14 @@ Class PCNumber >> // aNumber
 	^ (self / aNumber) floor
 ]
 
-Class PCNumber >> \\ aNumber
+PCNumber >> \\ aNumber
 [
 	"modulo. Remainder defined in terms of //. Answer a Number with the 
 	same sign as aNumber. e.g. 9\\4 = 1, -9\\4 = 3, 9\\-4 = -3, 0.9\\0.4 = 0.1."
 	^ self - (self // aNumber * aNumber)
 ]
 
-Class PCNumber >> abs
+PCNumber >> abs
 [
 	"Answer a Number that is the absolute value (positive magnitude) of the 
 	receiver."
@@ -53,46 +53,46 @@ Class PCNumber >> abs
 		ifFalse: [ ^ self ]
 ]
 
-Class PCNumber >> adaptToFloat: rcvr andSend: selector
+PCNumber >> adaptToFloat: rcvr andSend: selector
 [
 	"If I am involved in arithmetic with a Float, convert me to a Float."
 	^ rcvr perform: selector with: self asFloat
 ]
 
-Class PCNumber >> adaptToInteger: rcvr andSend: selector
+PCNumber >> adaptToInteger: rcvr andSend: selector
 [
 	"If I am involved in arithmetic with a Integer, convert us and evaluate exprBlock."
 	^ self subclassResponsibility
 ]
 
-Class PCNumber >> arcCos
+PCNumber >> arcCos
 [
 	"The receiver is the cosine of an angle. Answer the angle measured in 
 	radians."
 	^ self asFloat arcCos
 ]
 
-Class PCNumber >> arcSin
+PCNumber >> arcSin
 [
 	"The receiver is the sine of an angle. Answer the angle measured in 
 	radians."
 	^ self asFloat arcSin
 ]
 
-Class PCNumber >> arcTan
+PCNumber >> arcTan
 [
 	"The receiver is the tangent of an angle. Answer the angle measured in 
 	radians."
 	^ self asFloat arcTan
 ]
 
-Class PCNumber >> asInteger
+PCNumber >> asInteger
 [
 	"Answer an Integer nearest the receiver toward zero."
 	^ self truncated
 ]
 
-Class PCNumber >> ceiling
+PCNumber >> ceiling
 [
 	"Answer the integer nearest the receiver toward positive infinity."
 	self <= 0
@@ -100,26 +100,26 @@ Class PCNumber >> ceiling
 		ifFalse: [ ^ self negated floor negated ]
 ]
 
-Class PCNumber >> cos
+PCNumber >> cos
 [
 	"The receiver represents an angle measured in radians. Answer its cosine."
 	^ self asFloat cos
 ]
 
-Class PCNumber >> degreesToRadians
+PCNumber >> degreesToRadians
 [
 	"The receiver is assumed to represent degrees. Answer the conversion to 
 	radians."
 	^ self asFloat degreesToRadians
 ]
 
-Class PCNumber >> exp
+PCNumber >> exp
 [
 	"Answer the exponential of the receiver as a floating point number."
 	^ self asFloat exp
 ]
 
-Class PCNumber >> floor
+PCNumber >> floor
 [
 	"Answer the integer nearest the receiver toward negative infinity."
 | truncation |
@@ -131,54 +131,54 @@ self = truncation
 	ifFalse: [ ^ truncation - 1 ]
 ]
 
-Class PCNumber >> floorLog: radix
+PCNumber >> floorLog: radix
 [
 	"Answer the floor of the log base radix of the receiver."
 ^ self asFloat floorLog: radix
 ]
 
-Class PCNumber >> isNumber
+PCNumber >> isNumber
 [
 ^ true
 ]
 
-Class PCNumber >> ln
+PCNumber >> ln
 [
 	"Answer the natural log of the receiver."
 ^ self asFloat ln
 ]
 
-Class PCNumber >> log
+PCNumber >> log
 [
 	"Answer the base-10 log of the receiver."
 	^ self asFloat log
 ]
 
-Class PCNumber >> log: aNumber
+PCNumber >> log: aNumber
 [
 	"Answer the log base aNumber of the receiver."
 	^ self ln / aNumber ln
 ]
 
-Class PCNumber >> negated
+PCNumber >> negated
 [
 	"Answer a Number that is the negation of the receiver."
 	^ 0 - self
 ]
 
-Class PCNumber >> negative
+PCNumber >> negative
 [
 	"Answer whether the receiver is mathematically negative."
 	^ self < 0
 ]
 
-Class PCNumber >> printOn: aStream
+PCNumber >> printOn: aStream
 [
 	"Default print radix is 10"
 	self printOn: aStream base: 10
 ]
 
-Class PCNumber >> printStringBase: base
+PCNumber >> printStringBase: base
 [
 	| stream |
 	stream := PCWriteStream on: (PCString new: 100).
@@ -186,21 +186,21 @@ Class PCNumber >> printStringBase: base
 	^ stream contents
 ]
 
-Class PCNumber >> quo: aNumber
+PCNumber >> quo: aNumber
 [
 	"Integer quotient defined by division with truncation toward zero. -9 quo: 
 	4 = -2, -0.9 quo: 0.4 = -2. rem: answers the remainder from this division."
 	^ (self / aNumber) truncated
 ]
 
-Class PCNumber >> radiansToDegrees
+PCNumber >> radiansToDegrees
 [
 	"The receiver is assumed to represent radians. Answer the conversion to 
 	degrees."
 	^ self asFloat radiansToDegrees
 ]
 
-Class PCNumber >> raisedTo: aNumber
+PCNumber >> raisedTo: aNumber
 [
 	"Answer the receiver raised to aNumber."
 	aNumber isInteger
@@ -214,7 +214,7 @@ Class PCNumber >> raisedTo: aNumber
 	^ (aNumber * self ln) exp	"Otherwise raise it to the power using logarithms"
 ]
 
-Class PCNumber >> raisedToInteger: anInteger
+PCNumber >> raisedToInteger: anInteger
 [
 	"Answer the receiver raised to the power anInteger where the argument 
 	must be a kind of Integer. This is a special case of raisedTo:."
@@ -229,7 +229,7 @@ Class PCNumber >> raisedToInteger: anInteger
 	^ (self raisedToInteger: anInteger negated) reciprocal
 ]
 
-Class PCNumber >> reciprocal
+PCNumber >> reciprocal
 [
 	"Answer 1 divided by the receiver. Create an error notification if the 
 	receiver is 0."
@@ -238,33 +238,33 @@ Class PCNumber >> reciprocal
 		ifFalse: [ ^ 1 / self ]
 ]
 
-Class PCNumber >> rem: aNumber
+PCNumber >> rem: aNumber
 [
 	"Remainder defined in terms of quo:. Answer a Number with the same 
 	sign as self. e.g. 9 rem: 4 = 1, -9 rem: 4 = -1. 0.9 rem: 0.4 = 0.1."
 	^ self - ((self quo: aNumber) * aNumber)
 ]
 
-Class PCNumber >> roundTo: aNumber
+PCNumber >> roundTo: aNumber
 [
 	"Answer the integer that is a multiple of aNumber that is nearest the 
 	receiver."
 	^ (self / aNumber) rounded * aNumber
 ]
 
-Class PCNumber >> roundUpTo: aNumber
+PCNumber >> roundUpTo: aNumber
 [
 	"Answer the next multiple of aNumber toward infinity that is nearest the receiver."
 	^ (self / aNumber) ceiling * aNumber
 ]
 
-Class PCNumber >> rounded
+PCNumber >> rounded
 [
 	"Answer the integer nearest the receiver."
 	^ (self + (self sign / 2)) truncated
 ]
 
-Class PCNumber >> sign
+PCNumber >> sign
 [
 	"Answer 1 if the receiver is greater than 0, -1 if less than 0, else 0."
 	self > 0
@@ -274,38 +274,38 @@ Class PCNumber >> sign
 	^ 0
 ]
 
-Class PCNumber >> sin
+PCNumber >> sin
 [
 	"The receiver represents an angle measured in radians. Answer its sine."
 	^ self asFloat sin
 ]
 
-Class PCNumber >> sqrt
+PCNumber >> sqrt
 [
 	"Answer the square root of the receiver."
 	^ self asFloat sqrt
 ]
 
-Class PCNumber >> tan
+PCNumber >> tan
 [
 	"The receiver represents an angle measured in radians. Answer its 
 	tangent."
 	^ self asFloat tan
 ]
 
-Class PCNumber >> to: stop
+PCNumber >> to: stop
 [
 	"Answer an Interval from the receiver up to the argument incrementing by 1."
 	^ PCInterval from: self to: stop by: 1
 ]
 
-Class PCNumber >> to: stop by: step
+PCNumber >> to: stop by: step
 [
 	"Answer an Interval from the receiver up to stop incrementing by step."
 	^ PCInterval from: self to: stop by: step
 ]
 
-Class PCNumber >> to: stop by: step do: aBlock
+PCNumber >> to: stop by: step do: aBlock
 [
 	"Normally compiled in-line, and therefore not overridable.
 	Evaluate aBlock for each element of the interval (self to: stop by: step)."
@@ -324,7 +324,7 @@ Class PCNumber >> to: stop by: step do: aBlock
 					nextValue := nextValue + step ] ]
 ]
 
-Class PCNumber >> to: stop do: aBlock
+PCNumber >> to: stop do: aBlock
 [
 	"Normally compiled in-line, and therefore not overridable.
 	Evaluate aBlock for each element of the interval (self to: stop by: 1)."
@@ -336,14 +336,14 @@ Class PCNumber >> to: stop do: aBlock
 			nextValue := nextValue + 1 ]
 ]
 
-Class PCNumber >> truncateTo: aNumber
+PCNumber >> truncateTo: aNumber
 [
 	"Answer the next multiple of aNumber toward zero that is nearest the 
 	receiver."
 	^ (self quo: aNumber) * aNumber
 ]
 
-Class PCNumber >> truncated
+PCNumber >> truncated
 [
 	"Answer an integer nearest the receiver toward zero."
 	^ self quo: 1
@@ -352,7 +352,7 @@ Class PCNumber >> truncated
 PCNumber class
 	instanceVariables: #().
 
-Metaclass PCNumber >> readFrom: stringOrStream
+PCNumber class >> readFrom: stringOrStream
 [
 	"Answer a number as described on aStream. The number may include a leading radix specification, as in 16rFADE."
 	| value base aStream sign |
@@ -379,7 +379,7 @@ Metaclass PCNumber >> readFrom: stringOrStream
 		withSign: sign
 ]
 
-Metaclass PCNumber >> readFrom: stringOrStream base: base
+PCNumber class >> readFrom: stringOrStream base: base
 [
 	"Answer a number as described on aStream in the given number base."
 	| aStream sign |
@@ -396,7 +396,7 @@ Metaclass PCNumber >> readFrom: stringOrStream base: base
 		withSign: sign
 ]
 
-Metaclass PCNumber >> readRemainderOf: integerPart from: aStream base: base withSign: sign
+PCNumber class >> readRemainderOf: integerPart from: aStream base: base withSign: sign
 [
 	"Read optional fractional part and exponent, and return the final result"
 	"MNumber readFrom: (ReadStream on: '3r-22.2')"

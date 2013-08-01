@@ -5,13 +5,13 @@ PCCollection
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Collections-Abstract'.
 
-Class PCCollection >> add: newObject
+PCCollection >> add: newObject
 [
 	"Include newObject as one of my elements. Answer newObject. ArrayedCollections cannot respond to this message."
 self subclassResponsibility
 ]
 
-Class PCCollection >> asArray
+PCCollection >> asArray
 [
 	"Answer an Array whose elements are the elements of this collection. The order in which elements are added depends on the order in which this collection enumerates its elements. In the case of unordered collections, the ordering is not necessarily the same for multiple requests for the conversion."
 | result i |
@@ -21,7 +21,7 @@ self do: [ :each | result at: (i := i + 1) put: each ].
 ^ result
 ]
 
-Class PCCollection >> asByteArray
+PCCollection >> asByteArray
 [
 	"Answer a ByteArray containing my elements."
 | result i |
@@ -31,7 +31,7 @@ self do: [ :each | result at: (i := i + 1) put: each ].
 ^ result
 ]
 
-Class PCCollection >> asSet
+PCCollection >> asSet
 [
 	"Answer a Set whose elements are the unique elements of the receiver."
 | aSet |
@@ -40,7 +40,7 @@ self do: [ :each | aSet add: each ].
 ^ aSet
 ]
 
-Class PCCollection >> collect: aBlock
+PCCollection >> collect: aBlock
 [
 	"Evaluate aBlock with each of the receiver's elements as the argument. 
 	Collect the resulting values into a collection like the receiver. Answer 
@@ -51,7 +51,7 @@ self do: [ :each | newCollection add: (aBlock value: each) ].
 ^ newCollection
 ]
 
-Class PCCollection >> detect: aBlock ifNone: exceptionBlock
+PCCollection >> detect: aBlock ifNone: exceptionBlock
 [
 	"Evaluate aBlock with each of the receiver's elements as the argument. 
 	Answer the first element for which aBlock evaluates to true. If none 
@@ -63,29 +63,29 @@ self
 ^ exceptionBlock value
 ]
 
-Class PCCollection >> do: aBlock
+PCCollection >> do: aBlock
 [
 	"Evaluate aBlock with each of the receiver's elements as the argument."
 self subclassResponsibility
 ]
 
-Class PCCollection >> emptyCheck
+PCCollection >> emptyCheck
 [
 self isEmpty
 	ifTrue: [ self errorEmptyCollection ]
 ]
 
-Class PCCollection >> errorEmptyCollection
+PCCollection >> errorEmptyCollection
 [
 self error: 'this collection is empty'
 ]
 
-Class PCCollection >> errorNotFound
+PCCollection >> errorNotFound
 [
 self error: 'Object is not in the collection.'
 ]
 
-Class PCCollection >> includes: anObject
+PCCollection >> includes: anObject
 [
 	"Answer whether anObject is one of the receiver's elements."
 self
@@ -95,13 +95,13 @@ self
 ^ false
 ]
 
-Class PCCollection >> isEmpty
+PCCollection >> isEmpty
 [
 	"Answer whether the receiver contains any elements."
 ^ self size = 0
 ]
 
-Class PCCollection >> printOn: aStream
+PCCollection >> printOn: aStream
 [
 	"Refer to the comment in Object|printOn:."
 aStream nextPutAll: self class name , ' ('.
@@ -112,7 +112,7 @@ self
 aStream nextPut: $)
 ]
 
-Class PCCollection >> remove: oldObject
+PCCollection >> remove: oldObject
 [
 	"Remove oldObject as one of the receiver's elements. Answer oldObject 
 	unless no element is equal to oldObject, in which case, create an error 
@@ -120,7 +120,7 @@ Class PCCollection >> remove: oldObject
 ^ self remove: oldObject ifAbsent: [ self errorNotFound ]
 ]
 
-Class PCCollection >> remove: oldObject ifAbsent: anExceptionBlock
+PCCollection >> remove: oldObject ifAbsent: anExceptionBlock
 [
 	"Remove oldObject as one of the receiver's elements. If several of the 
 	elements are equal to oldObject, only one is removed. If no element is 
@@ -130,7 +130,7 @@ Class PCCollection >> remove: oldObject ifAbsent: anExceptionBlock
 self subclassResponsibility
 ]
 
-Class PCCollection >> select: aBlock
+PCCollection >> select: aBlock
 [
 	"Evaluate aBlock with each of the receiver's elements as the argument. 
 	Collect into a new collection like the receiver, only those elements for 
@@ -144,7 +144,7 @@ self
 ^ newCollection
 ]
 
-Class PCCollection >> size
+PCCollection >> size
 [
 	"Answer how many elements the receiver contains."
 | count |
@@ -153,7 +153,7 @@ self do: [ :each | count := count + 1 ].
 ^ count
 ]
 
-Class PCCollection >> sum
+PCCollection >> sum
 [
 	"Answer the sum of the elements of this collection. If the collection is empty, answer zero."
 	"Details: Use an arbitrary element of the collection as the initial value so this method will work for collections of any kind of object that understands + and -."
@@ -166,7 +166,7 @@ self do: [ :el | total := total + el ].
 PCCollection class
 	instanceVariables: #().
 
-Metaclass PCCollection >> with: anObject
+PCCollection class >> with: anObject
 [
 	"Answer an instance of me containing anObject."
 | newCollection |
@@ -175,7 +175,7 @@ newCollection add: anObject.
 ^ newCollection
 ]
 
-Metaclass PCCollection >> with: firstObject with: secondObject
+PCCollection class >> with: firstObject with: secondObject
 [
 	"Answer an instance of me containing the two arguments as elements."
 | newCollection |
@@ -185,7 +185,7 @@ newCollection add: secondObject.
 ^ newCollection
 ]
 
-Metaclass PCCollection >> with: firstObject with: secondObject with: thirdObject
+PCCollection class >> with: firstObject with: secondObject with: thirdObject
 [
 	"Answer an instance of me containing the three arguments as elements."
 | newCollection |

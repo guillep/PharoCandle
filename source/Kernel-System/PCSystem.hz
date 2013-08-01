@@ -8,7 +8,7 @@ PCSystem
 PCSystem class
 	instanceVariables: #().
 
-Metaclass PCSystem >> allObjectsDo: aBlock
+PCSystem class >> allObjectsDo: aBlock
 [
 	"Evaluate the argument, aBlock, for each object in the system excluding SmallIntegers."
 | object |
@@ -19,7 +19,7 @@ object := self someObject.
 		object := object nextObject ]
 ]
 
-Metaclass PCSystem >> append: aString toFile: fileName
+PCSystem class >> append: aString toFile: fileName
 [
 	"Append the given string to the file with the given name."
 | f |
@@ -31,21 +31,21 @@ f cr.
 f close
 ]
 
-Metaclass PCSystem >> exitToDebugger
+PCSystem class >> exitToDebugger
 [
 	"Tell the VM that we've encountered an unhandled error or halt."
 	<primitive: 114>
 
 ]
 
-Metaclass PCSystem >> garbageCollect
+PCSystem class >> garbageCollect
 [
 	"Primitive. Reclaims all garbage and answers the number of bytes of available space."
 	<primitive: 130>
 self primitiveFailed
 ]
 
-Metaclass PCSystem >> getVMParameters
+PCSystem class >> getVMParameters
 [
 	"Answer an Array containing the current values of the VM's internal parameter and statistics registers. The same primitive can be called with one integer argument to read a specific parameter and with two parameters to set a writable parameter, although these variations may not be implemented. Optional."
 	"VM parameters are numbered as follows:
@@ -67,14 +67,14 @@ Metaclass PCSystem >> getVMParameters
 self primitiveFailed
 ]
 
-Metaclass PCSystem >> getchar
+PCSystem class >> getchar
 [
 	"Answer the ASCII value of the next character from the keyboard buffer. Answer nil if no key has been typed."
 | ch |
 (ch := self primKeyboardNext) ifNil: [ ^ nil ] ifNotNil: [ ^ ch bitAnd: 16rFF ]
 ]
 
-Metaclass PCSystem >> graphicsTest
+PCSystem class >> graphicsTest
 [
 	"This method is called when the image is started. Add a call to your own code here."
 	"MSystem graphicsTest"
@@ -98,19 +98,19 @@ f
 	h: 30
 ]
 
-Metaclass PCSystem >> incrementalGarbageCollect
+PCSystem class >> incrementalGarbageCollect
 [
 	"Primitive. Reclaims recently created garbage fairly quickly and answers the number of bytes of available space."
 	<primitive: 131>
 
 ]
 
-Metaclass PCSystem >> log: aString
+PCSystem class >> log: aString
 [
 self append: aString toFile: 'log.txt'
 ]
 
-Metaclass PCSystem >> milliseconds
+PCSystem class >> milliseconds
 [
 	"Answer the current value of the millisecond clock. Optional primitive."
 	"Note: The millisecond clock may wrap around frequently, depending on the underlaying hardware. If no hardware clock is available, it may always return 0."
@@ -118,38 +118,38 @@ Metaclass PCSystem >> milliseconds
 ^ 0
 ]
 
-Metaclass PCSystem >> primKeyboardNext
+PCSystem class >> primKeyboardNext
 [
 	"Answer the next keycode from the keyboard buffer. A keycode is 12 bits: four modifier flags in the 4 most significant bits and the 8 bit ISO character in the least significant bits. Answer nil if no key has been typed."
 	<primitive: 108>
 ^ nil
 ]
 
-Metaclass PCSystem >> primitiveGetSpecialObjectsArray
+PCSystem class >> primitiveGetSpecialObjectsArray
 [
 	"Answer the virtual machine's special objects array."
 	<primitive: 129>
 self primitiveFailed
 ]
 
-Metaclass PCSystem >> quit
+PCSystem class >> quit
 [
 	"Exit from Squeak."
 	<primitive: 113>
 
 ]
 
-Metaclass PCSystem >> specialObjectsArray
+PCSystem class >> specialObjectsArray
 [
 ^ SpecialObjectsArray
 ]
 
-Metaclass PCSystem >> specialObjectsArray: anArray
+PCSystem class >> specialObjectsArray: anArray
 [
 SpecialObjectsArray := anArray
 ]
 
-Metaclass PCSystem >> start
+PCSystem class >> start
 [
 self log: 'Welcome to Pharo Candle edition!'.
 self log: self tinyBenchmarks.
@@ -159,7 +159,7 @@ self beep.	"self graphicsTest."
 PCObject superclass ifNil: [ self quit ]
 ]
 
-Metaclass PCSystem >> tinyBenchmarks
+PCSystem class >> tinyBenchmarks
 [
 	"Report the results of running the two tiny Squeak benchmarks."
 | n t1 t2 r |

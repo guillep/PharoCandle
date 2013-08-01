@@ -5,13 +5,13 @@ PCProcessList
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Processes'.
 
-Class PCProcessList >> add: aLink
+PCProcessList >> add: aLink
 [
 	"Add aLink to the end of the receiver's list. Answer aLink."
 ^ self addLast: aLink
 ]
 
-Class PCProcessList >> addLast: aLink
+PCProcessList >> addLast: aLink
 [
 	"Add aLink to the end of the receiver's list. Answer aLink."
 self isEmpty
@@ -21,7 +21,7 @@ lastLink := aLink.
 ^ aLink
 ]
 
-Class PCProcessList >> do: aBlock
+PCProcessList >> do: aBlock
 [
 	"Evaluate the given block for each of my elements."
 | aLink |
@@ -32,19 +32,19 @@ aLink := firstLink.
 		aLink := aLink nextLink ]
 ]
 
-Class PCProcessList >> first
+PCProcessList >> first
 [
 	"Answer the first element. Raise an error if I am empty."
 self emptyCheck.
 ^ firstLink
 ]
 
-Class PCProcessList >> isEmpty
+PCProcessList >> isEmpty
 [
 ^ firstLink == nil
 ]
 
-Class PCProcessList >> remove: aLink ifAbsent: aBlock
+PCProcessList >> remove: aLink ifAbsent: aBlock
 [
 	"Remove aLink from the receiver. If it is not there, answer the result of evaluating aBlock."
 | tempLink |
@@ -66,7 +66,7 @@ aLink nextLink: nil.
 ^ aLink
 ]
 
-Class PCProcessList >> removeFirst
+PCProcessList >> removeFirst
 [
 	"Remove and answer the first element. Raise an error if I am empty."
 | oldLink |
@@ -81,7 +81,7 @@ oldLink nextLink: nil.
 ^ oldLink
 ]
 
-Class PCProcessList >> size
+PCProcessList >> size
 [
 	"Answer the number of elements I contain."
 | tally |

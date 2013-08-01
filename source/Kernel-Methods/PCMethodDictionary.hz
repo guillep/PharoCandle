@@ -5,12 +5,12 @@ PCMethodDictionary
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Methods'.
 
-Class PCMethodDictionary >> add: anAssociation
+PCMethodDictionary >> add: anAssociation
 [
 	^ self at: anAssociation key put: anAssociation value
 ]
 
-Class PCMethodDictionary >> associationsDo: aBlock
+PCMethodDictionary >> associationsDo: aBlock
 [
 	| key |
 	tally = 0
@@ -18,7 +18,7 @@ Class PCMethodDictionary >> associationsDo: aBlock
 	1 to: self basicSize do: [ :i | (key := self basicAt: i) ifNotNil: [ aBlock value: key -> (array at: i) ] ]
 ]
 
-Class PCMethodDictionary >> at: key ifAbsent: aBlock
+PCMethodDictionary >> at: key ifAbsent: aBlock
 [
 	| index |
 	index := self findElementOrNil: key.
@@ -27,7 +27,7 @@ Class PCMethodDictionary >> at: key ifAbsent: aBlock
 	^ array at: index
 ]
 
-Class PCMethodDictionary >> at: key put: value
+PCMethodDictionary >> at: key put: value
 [
 	"Set the value at key to be value."
 	| index |
@@ -41,20 +41,20 @@ Class PCMethodDictionary >> at: key put: value
 	^ value
 ]
 
-Class PCMethodDictionary >> copy
+PCMethodDictionary >> copy
 [
 	"Copy my values array."
 	^ self basicCopy withArray: array basicCopy
 ]
 
-Class PCMethodDictionary >> do: aBlock
+PCMethodDictionary >> do: aBlock
 [
 	tally = 0
 		ifTrue: [ ^ self ].
 	1 to: self basicSize do: [ :i | (self basicAt: i) ifNotNil: [ aBlock value: (array at: i) ] ]
 ]
 
-Class PCMethodDictionary >> grow
+PCMethodDictionary >> grow
 [
 	| newSelf key |
 	newSelf := self species new: self basicSize.	"This will double the size"
@@ -65,18 +65,18 @@ Class PCMethodDictionary >> grow
 	self become: newSelf
 ]
 
-Class PCMethodDictionary >> includesKey: aSymbol
+PCMethodDictionary >> includesKey: aSymbol
 [
 	"This override assumes that pointsTo is a fast primitive."
 	^ super pointsTo: aSymbol
 ]
 
-Class PCMethodDictionary >> keyAt: index
+PCMethodDictionary >> keyAt: index
 [
 	^ self basicAt: index
 ]
 
-Class PCMethodDictionary >> keyAtIdentityValue: value ifAbsent: exceptionBlock
+PCMethodDictionary >> keyAtIdentityValue: value ifAbsent: exceptionBlock
 [
 	"Answer the key whose value equals the argument, value. If there is none, answer the result of evaluating exceptionBlock."
 	| k |
@@ -86,7 +86,7 @@ Class PCMethodDictionary >> keyAtIdentityValue: value ifAbsent: exceptionBlock
 	^ exceptionBlock value
 ]
 
-Class PCMethodDictionary >> keysDo: aBlock
+PCMethodDictionary >> keysDo: aBlock
 [
 	| key |
 	tally = 0
@@ -94,13 +94,13 @@ Class PCMethodDictionary >> keysDo: aBlock
 	1 to: self basicSize do: [ :i | (key := self basicAt: i) ifNotNil: [ aBlock value: key ] ]
 ]
 
-Class PCMethodDictionary >> removeKey: key ifAbsent: errorBlock
+PCMethodDictionary >> removeKey: key ifAbsent: errorBlock
 [
 	"Pharo Candle does not support method removal."
 	self shouldNotImplement
 ]
 
-Class PCMethodDictionary >> scanFor: anObject
+PCMethodDictionary >> scanFor: anObject
 [
 	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or zero if no slot is found. This method will be overridden in various subclasses that have different interpretations for matching elements."
 	| element start finish |
@@ -115,7 +115,7 @@ Class PCMethodDictionary >> scanFor: anObject
 	^ 0	"No match AND no empty slot"
 ]
 
-Class PCMethodDictionary >> swap: oneIndex with: otherIndex
+PCMethodDictionary >> swap: oneIndex with: otherIndex
 [
 	| element |
 	element := self basicAt: oneIndex.
@@ -127,7 +127,7 @@ Class PCMethodDictionary >> swap: oneIndex with: otherIndex
 PCMethodDictionary class
 	instanceVariables: #().
 
-Metaclass PCMethodDictionary >> new: nElements
+PCMethodDictionary class >> new: nElements
 [
 	"Create a Dictionary large enough to hold nElements without growing."
 	"NOTE: The basic size MUST be a power of 2. It is VITAL (see grow) that size gets doubled if nElements is a power of 2."

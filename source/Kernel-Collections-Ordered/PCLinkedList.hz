@@ -5,13 +5,13 @@ PCLinkedList
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Collections-Ordered'.
 
-Class PCLinkedList >> add: aLinkOrObject
+PCLinkedList >> add: aLinkOrObject
 [
 	"Add aLink to the end of the receiver's list. Answer aLink."
 ^ self addLast: aLinkOrObject
 ]
 
-Class PCLinkedList >> add: link after: otherLinkOrObject
+PCLinkedList >> add: link after: otherLinkOrObject
 [
 	"Add otherLink  after link in the list. Answer aLink."
 | otherLink savedLink |
@@ -19,7 +19,7 @@ otherLink := self linkAt: (self indexOf: otherLinkOrObject).
 ^ self add: link afterLink: otherLink
 ]
 
-Class PCLinkedList >> add: aLinkOrObject afterLink: otherLink
+PCLinkedList >> add: aLinkOrObject afterLink: otherLink
 [
 	"Add otherLink  after link in the list. Answer aLink."
 | savedLink aLink |
@@ -32,7 +32,7 @@ aLink nextLink: savedLink.
 ^ aLink
 ]
 
-Class PCLinkedList >> add: link before: otherLinkOrObject
+PCLinkedList >> add: link before: otherLinkOrObject
 [
 	"Add otherLink  after link in the list. Answer aLink."
 | otherLink savedLink |
@@ -40,7 +40,7 @@ otherLink := self linkAt: (self indexOf: otherLinkOrObject).
 ^ self add: link beforeLink: otherLink
 ]
 
-Class PCLinkedList >> add: aLinkOrObject beforeLink: otherLink
+PCLinkedList >> add: aLinkOrObject beforeLink: otherLink
 [
 | currentLink |
 firstLink == otherLink
@@ -59,7 +59,7 @@ currentLink := firstLink.
 ^ self errorNotFound: otherLink
 ]
 
-Class PCLinkedList >> addFirst: aLinkOrObject
+PCLinkedList >> addFirst: aLinkOrObject
 [
 	"Add aLink to the beginning of the receiver's list. Answer aLink."
 | aLink |
@@ -71,7 +71,7 @@ firstLink := aLink.
 ^ aLink
 ]
 
-Class PCLinkedList >> addLast: aLinkOrObject
+PCLinkedList >> addLast: aLinkOrObject
 [
 	"Add aLink to the end of the receiver's list. Answer aLink."
 | aLink |
@@ -83,17 +83,17 @@ lastLink := aLink.
 ^ aLink
 ]
 
-Class PCLinkedList >> at: index
+PCLinkedList >> at: index
 [
 ^ (self linkAt: index) value
 ]
 
-Class PCLinkedList >> at: index put: anObject
+PCLinkedList >> at: index put: anObject
 [
 ^ self at: index putLink: (self linkOf: anObject ifAbsent: [ anObject asLink ])
 ]
 
-Class PCLinkedList >> at: index putLink: aLink
+PCLinkedList >> at: index putLink: aLink
 [
 | previousLink nextLink |
 "Please don't put a link which is already in the list, or you will create an infinite loop"
@@ -116,7 +116,7 @@ nextLink
 ^ aLink
 ]
 
-Class PCLinkedList >> collect: aBlock
+PCLinkedList >> collect: aBlock
 [
 	"Evaluate aBlock with each of the receiver's elements as the argument.  
 	Collect the resulting values into a collection like the receiver. Answer  
@@ -131,14 +131,14 @@ aLink := firstLink.
 ^ newCollection
 ]
 
-Class PCLinkedList >> copyWith: newElement
+PCLinkedList >> copyWith: newElement
 [
 ^ self copy
 	add: newElement;
 	yourself
 ]
 
-Class PCLinkedList >> copyWithout: oldElement
+PCLinkedList >> copyWithout: oldElement
 [
 | newInst |
 newInst := self class new.
@@ -149,7 +149,7 @@ self
 ^ newInst
 ]
 
-Class PCLinkedList >> do: aBlock
+PCLinkedList >> do: aBlock
 [
 | aLink |
 aLink := firstLink.
@@ -159,14 +159,14 @@ aLink := firstLink.
 		aLink := aLink nextLink ]
 ]
 
-Class PCLinkedList >> first
+PCLinkedList >> first
 [
 	"Answer the first link. Create an error notification if the receiver is 
 	empty."
 ^ self firstLink value
 ]
 
-Class PCLinkedList >> firstLink
+PCLinkedList >> firstLink
 [
 	"Answer the first link. Create an error notification if the receiver is 
 	empty."
@@ -174,7 +174,7 @@ self emptyCheck.
 ^ firstLink
 ]
 
-Class PCLinkedList >> indexOf: anElement startingAt: start ifAbsent: exceptionBlock
+PCLinkedList >> indexOf: anElement startingAt: start ifAbsent: exceptionBlock
 [
 	"Answer the index of the first occurence of anElement after start
 	within the receiver. If the receiver does not contain anElement, 
@@ -191,19 +191,19 @@ index := start.
 ^ exceptionBlock value
 ]
 
-Class PCLinkedList >> isEmpty
+PCLinkedList >> isEmpty
 [
 ^ firstLink isNil
 ]
 
-Class PCLinkedList >> last
+PCLinkedList >> last
 [
 	"Answer the last link. Create an error notification if the receiver is 
 	empty."
 ^ self lastLink value
 ]
 
-Class PCLinkedList >> lastLink
+PCLinkedList >> lastLink
 [
 	"Answer the last link. Create an error notification if the receiver is 
 	empty."
@@ -211,12 +211,12 @@ self emptyCheck.
 ^ lastLink
 ]
 
-Class PCLinkedList >> linkAt: index
+PCLinkedList >> linkAt: index
 [
 ^ self linkAt: index ifAbsent: [ self errorSubscriptBounds: index ]
 ]
 
-Class PCLinkedList >> linkAt: index ifAbsent: errorBlock
+PCLinkedList >> linkAt: index ifAbsent: errorBlock
 [
 | i |
 i := 0.
@@ -227,12 +227,12 @@ self
 ^ errorBlock value
 ]
 
-Class PCLinkedList >> linkOf: anObject
+PCLinkedList >> linkOf: anObject
 [
 ^ self linkOf: anObject ifAbsent: [ self error: 'No such element' ]
 ]
 
-Class PCLinkedList >> linkOf: anObject ifAbsent: errorBlock
+PCLinkedList >> linkOf: anObject ifAbsent: errorBlock
 [
 self
 	linksDo: [ :el | 
@@ -241,7 +241,7 @@ self
 ^ errorBlock value
 ]
 
-Class PCLinkedList >> linksDo: aBlock
+PCLinkedList >> linksDo: aBlock
 [
 | aLink |
 aLink := firstLink.
@@ -251,7 +251,7 @@ aLink := firstLink.
 		aLink := aLink nextLink ]
 ]
 
-Class PCLinkedList >> postCopy
+PCLinkedList >> postCopy
 [
 | aLink |
 super postCopy.
@@ -262,7 +262,7 @@ firstLink isNil
 		lastLink := aLink ]
 ]
 
-Class PCLinkedList >> remove: aLinkOrObject ifAbsent: aBlock
+PCLinkedList >> remove: aLinkOrObject ifAbsent: aBlock
 [
 	"Remove aLink from the receiver. If it is not there, answer the result of evaluating aBlock."
 | link |
@@ -271,13 +271,13 @@ self removeLink: link ifAbsent: [ ^ aBlock value ].
 ^ aLinkOrObject
 ]
 
-Class PCLinkedList >> removeAll
+PCLinkedList >> removeAll
 [
 	"Implementation note: this has to be fast"
 firstLink := lastLink := nil
 ]
 
-Class PCLinkedList >> removeAllSuchThat: aBlock
+PCLinkedList >> removeAllSuchThat: aBlock
 [
 	"Evaluate aBlock for each element and remove all that elements from
 	the receiver for that aBlock evaluates to true.  For LinkedLists, it's safe to use do:."
@@ -287,7 +287,7 @@ self
 			ifTrue: [ self remove: each ] ]
 ]
 
-Class PCLinkedList >> removeFirst
+PCLinkedList >> removeFirst
 [
 	"Remove the first element and answer it. If the receiver is empty, create 
 	an error notification."
@@ -303,7 +303,7 @@ oldLink nextLink: nil.
 ^ oldLink value
 ]
 
-Class PCLinkedList >> removeLast
+PCLinkedList >> removeLast
 [
 	"Remove the receiver's last element and answer it. If the receiver is 
 	empty, create an error notification."
@@ -323,12 +323,12 @@ oldLink nextLink: nil.
 ^ oldLink value
 ]
 
-Class PCLinkedList >> removeLink: aLink
+PCLinkedList >> removeLink: aLink
 [
 ^ self removeLink: aLink ifAbsent: [ self error: 'no such method!' ]
 ]
 
-Class PCLinkedList >> removeLink: aLink ifAbsent: aBlock
+PCLinkedList >> removeLink: aLink ifAbsent: aBlock
 [
 	"Remove aLink from the receiver. If it is not there, answer the result of
 	evaluating aBlock."
@@ -350,12 +350,12 @@ aLink == firstLink
 ^ aLink
 ]
 
-Class PCLinkedList >> species
+PCLinkedList >> species
 [
 ^ PCArray
 ]
 
-Class PCLinkedList >> swap: ix1 with: ix2
+PCLinkedList >> swap: ix1 with: ix2
 [
 	"Reimplemented, super would create an infinite loop"
 | minIx maxIx link1Prev link2Prev link1 link2 link1Next link2Next newLink2Next |
@@ -387,7 +387,7 @@ link1 nextLink: link2Next.
 link2 nextLink: newLink2Next
 ]
 
-Class PCLinkedList >> validIndex: index
+PCLinkedList >> validIndex: index
 [
 ^ index > 0 and: [ index <= self size ]
 ]
@@ -395,13 +395,13 @@ Class PCLinkedList >> validIndex: index
 PCLinkedList class
 	instanceVariables: #().
 
-Metaclass PCLinkedList >> new: anInt
+PCLinkedList class >> new: anInt
 [
 	"LinkedList don't need capacity"
 ^ self new
 ]
 
-Metaclass PCLinkedList >> newFrom: aCollection
+PCLinkedList class >> newFrom: aCollection
 [
 	"Answer an instance with same elements as aCollection."
 ^ self new

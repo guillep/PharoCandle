@@ -5,7 +5,7 @@ PCOrderedCollection
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Collections-Ordered'.
 
-Class PCOrderedCollection >> add: newObject
+PCOrderedCollection >> add: newObject
 [
 	"Append newObject to me. Equivalent to addLast:. Answer newObject."
 lastIndex = array size
@@ -15,7 +15,7 @@ array at: lastIndex put: newObject.
 ^ newObject
 ]
 
-Class PCOrderedCollection >> addFirst: newObject
+PCOrderedCollection >> addFirst: newObject
 [
 	"Add newObject to the beginning of the receiver. Answer newObject."
 firstIndex = 1
@@ -25,7 +25,7 @@ array at: firstIndex put: newObject.
 ^ newObject
 ]
 
-Class PCOrderedCollection >> at: anInteger
+PCOrderedCollection >> at: anInteger
 [
 	"Answer my element at index anInteger. at: is used by a knowledgeable
 	client to access an existing element"
@@ -34,7 +34,7 @@ Class PCOrderedCollection >> at: anInteger
 	ifFalse: [ ^ array at: anInteger + firstIndex - 1 ]
 ]
 
-Class PCOrderedCollection >> at: anInteger put: anObject
+PCOrderedCollection >> at: anInteger put: anObject
 [
 	"Put anObject at element index anInteger. at:put: cannot be used to
 	append, front or back, to an ordered collection; it is used by a
@@ -46,7 +46,7 @@ index := anInteger asInteger.
 	ifFalse: [ ^ array at: index + firstIndex - 1 put: anObject ]
 ]
 
-Class PCOrderedCollection >> collect: aBlock
+PCOrderedCollection >> collect: aBlock
 [
 	"Evaluate aBlock with each of my elements as the argument. Collect the 
 	resulting values into a collection that is like me. Answer the new 
@@ -57,7 +57,7 @@ self do: [ :each | newCollection add: (aBlock value: each) ].
 ^ newCollection
 ]
 
-Class PCOrderedCollection >> copyFrom: startIndex to: endIndex
+PCOrderedCollection >> copyFrom: startIndex to: endIndex
 [
 	"Answer a copy of the receiver that contains elements from position
 	startIndex to endIndex."
@@ -69,7 +69,7 @@ startIndex to: endIndex do: [ :index | targetCollection add: (self at: index) ].
 ^ targetCollection
 ]
 
-Class PCOrderedCollection >> copyReplaceFrom: start to: stop with: replacementCollection
+PCOrderedCollection >> copyReplaceFrom: start to: stop with: replacementCollection
 [
 	"Answer a copy of the receiver with replacementCollection's elements in
 	place of the receiver's start'th to stop'th elements. This does not expect
@@ -99,7 +99,7 @@ stopIndex + 1 to: self size do: [ :index | newOrderedCollection add: (self at: i
 ^ newOrderedCollection
 ]
 
-Class PCOrderedCollection >> do: aBlock
+PCOrderedCollection >> do: aBlock
 [
 	"Override the superclass for performance reasons."
 | index |
@@ -110,12 +110,12 @@ index := firstIndex.
 		index := index + 1 ]
 ]
 
-Class PCOrderedCollection >> errorNoSuchElement
+PCOrderedCollection >> errorNoSuchElement
 [
 self error: 'attempt to index non-existent element in an ordered collection'
 ]
 
-Class PCOrderedCollection >> first
+PCOrderedCollection >> first
 [
 	"Answer the first element. If the receiver is empty, create an errror
 	message. This is a little faster than the implementation in the superclass."
@@ -123,7 +123,7 @@ self emptyCheck.
 ^ array at: firstIndex
 ]
 
-Class PCOrderedCollection >> grow
+PCOrderedCollection >> grow
 [
 	"Become larger. Typically, a subclass must override this method if it adds instance variables."
 | newArray |
@@ -136,7 +136,7 @@ newArray
 array := newArray
 ]
 
-Class PCOrderedCollection >> insert: anObject before: spot
+PCOrderedCollection >> insert: anObject before: spot
 [
 | index delta spotIndex |
 spotIndex := spot.
@@ -154,7 +154,7 @@ array at: index put: anObject.
 ^ anObject
 ]
 
-Class PCOrderedCollection >> last
+PCOrderedCollection >> last
 [
 	"Answer the last element. If the receiver is empty, create an errror
 	message. This is a little faster than the implementation in the superclass."
@@ -162,7 +162,7 @@ self emptyCheck.
 ^ array at: lastIndex
 ]
 
-Class PCOrderedCollection >> makeRoomAtFirst
+PCOrderedCollection >> makeRoomAtFirst
 [
 | delta index |
 delta := array size - self size.
@@ -182,7 +182,7 @@ firstIndex := delta + 1.
 lastIndex := array size
 ]
 
-Class PCOrderedCollection >> makeRoomAtLast
+PCOrderedCollection >> makeRoomAtLast
 [
 | newLast delta |
 newLast := self size.
@@ -197,7 +197,7 @@ firstIndex := 1.
 lastIndex := newLast
 ]
 
-Class PCOrderedCollection >> remove: oldObject ifAbsent: absentBlock
+PCOrderedCollection >> remove: oldObject ifAbsent: absentBlock
 [
 | index |
 index := firstIndex.
@@ -211,7 +211,7 @@ index := firstIndex.
 ^ absentBlock value
 ]
 
-Class PCOrderedCollection >> removeFirst
+PCOrderedCollection >> removeFirst
 [
 	"Remove the first element of the receiver and answer it. If the receiver is 
 	empty, create an error notification."
@@ -223,7 +223,7 @@ firstIndex := firstIndex + 1.
 ^ firstObject
 ]
 
-Class PCOrderedCollection >> removeIndex: removedIndex
+PCOrderedCollection >> removeIndex: removedIndex
 [
 | index |
 index := removedIndex.
@@ -235,7 +235,7 @@ array at: lastIndex put: nil.
 lastIndex := lastIndex - 1
 ]
 
-Class PCOrderedCollection >> removeLast
+PCOrderedCollection >> removeLast
 [
 	"Remove the last element of the receiver and answer it. If the receiver is 
 	empty, create an error notification."
@@ -247,7 +247,7 @@ lastIndex := lastIndex - 1.
 ^ lastObject
 ]
 
-Class PCOrderedCollection >> select: aBlock
+PCOrderedCollection >> select: aBlock
 [
 	"Evaluate aBlock with each of my elements as the argument. Collect into a new collection like the receiver, only those elements for which aBlock evaluates to true. Override the superclass in order to use add:, not at:put:."
 | newCollection |
@@ -259,14 +259,14 @@ self
 ^ newCollection
 ]
 
-Class PCOrderedCollection >> setCollection: anArray
+PCOrderedCollection >> setCollection: anArray
 [
 array := anArray.
 firstIndex := array size // 3 max: 1.
 lastIndex := firstIndex - 1
 ]
 
-Class PCOrderedCollection >> size
+PCOrderedCollection >> size
 [
 ^ lastIndex - firstIndex + 1
 ]
@@ -274,12 +274,12 @@ Class PCOrderedCollection >> size
 PCOrderedCollection class
 	instanceVariables: #().
 
-Metaclass PCOrderedCollection >> new
+PCOrderedCollection class >> new
 [
 ^ self new: 8
 ]
 
-Metaclass PCOrderedCollection >> new: anInteger
+PCOrderedCollection class >> new: anInteger
 [
 	"If a subclass adds fields, then that subclass must reimplement new:."
 ^ self basicNew setCollection: (PCArray new: anInteger)

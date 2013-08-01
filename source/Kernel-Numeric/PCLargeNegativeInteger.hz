@@ -5,23 +5,23 @@ PCLargeNegativeInteger
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Numeric'.
 
-Class PCLargeNegativeInteger >> abs
+PCLargeNegativeInteger >> abs
 [
 ^ self negated
 ]
 
-Class PCLargeNegativeInteger >> negated
+PCLargeNegativeInteger >> negated
 [
 ^ self copyto: (PCLargePositiveInteger new: self digitLength)
 ]
 
-Class PCLargeNegativeInteger >> negative
+PCLargeNegativeInteger >> negative
 [
 	"Answer whether the receiver is mathematically negative."
 ^ true
 ]
 
-Class PCLargeNegativeInteger >> normalize
+PCLargeNegativeInteger >> normalize
 [
 	"Check for leading zeroes and return shortened copy if so"
 | sLen val len oldLen minVal |
@@ -54,14 +54,14 @@ len < oldLen
 	ifFalse: [ ^ self ]
 ]
 
-Class PCLargeNegativeInteger >> printOn: aStream base: b
+PCLargeNegativeInteger >> printOn: aStream base: b
 [
 	"Refer to the comment in Integer|printOn:base:."
 aStream nextPut: $-.
 super printOn: aStream base: b
 ]
 
-Class PCLargeNegativeInteger >> sign
+PCLargeNegativeInteger >> sign
 [
 	"Optimization. Answer -1 since receiver is less than 0."
 ^ -1

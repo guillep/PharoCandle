@@ -5,7 +5,7 @@ PCDictionary
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Collections-Unordered'.
 
-Class PCDictionary >> add: anAssociation
+PCDictionary >> add: anAssociation
 [
 | index element |
 index := self findElementOrNil: anAssociation key.
@@ -16,12 +16,12 @@ element == nil
 ^ anAssociation
 ]
 
-Class PCDictionary >> associationAt: key
+PCDictionary >> associationAt: key
 [
 ^ self associationAt: key ifAbsent: [ self errorKeyNotFound ]
 ]
 
-Class PCDictionary >> associationAt: key ifAbsent: aBlock
+PCDictionary >> associationAt: key ifAbsent: aBlock
 [
 	"Answer the association with the given key.
 	If key is not found, return the result of evaluating aBlock."
@@ -33,20 +33,20 @@ nil == assoc
 ^ assoc
 ]
 
-Class PCDictionary >> associationsDo: aBlock
+PCDictionary >> associationsDo: aBlock
 [
 	"Evaluate aBlock for each of the receiver's elements (key/value 
 	associations)."
 super do: aBlock
 ]
 
-Class PCDictionary >> at: key
+PCDictionary >> at: key
 [
 	"Answer the value associated with the key."
 ^ self at: key ifAbsent: [ self errorKeyNotFound ]
 ]
 
-Class PCDictionary >> at: key ifAbsent: aBlock
+PCDictionary >> at: key ifAbsent: aBlock
 [
 | index assoc |
 index := self findElementOrNil: key.
@@ -56,7 +56,7 @@ nil == assoc
 ^ assoc value
 ]
 
-Class PCDictionary >> at: key put: anObject
+PCDictionary >> at: key put: anObject
 [
 	"Set the value at key to be anObject.  If key is not found, create a new
 	entry for key and set is value to anObject. Answer anObject."
@@ -69,7 +69,7 @@ element == nil
 ^ anObject
 ]
 
-Class PCDictionary >> collect: aBlock
+PCDictionary >> collect: aBlock
 [
 	"Evaluate aBlock with each of my values as the argument. Collect the resulting values into a collection that is like me. Answer with the new collection."
 | newCollection |
@@ -78,7 +78,7 @@ self do: [ :each | newCollection add: (aBlock value: each) ].
 ^ newCollection
 ]
 
-Class PCDictionary >> copy
+PCDictionary >> copy
 [
 	"Must copy all my associations or later stores into either dictionary will effect both the original and the copy."
 ^ self basicCopy
@@ -86,22 +86,22 @@ Class PCDictionary >> copy
 		(array collect: [ :assoc | assoc ifNil: [ nil ] ifNotNil: [ PCAssociation key: assoc key value: assoc value ] ])
 ]
 
-Class PCDictionary >> do: aBlock
+PCDictionary >> do: aBlock
 [
 super do: [ :assoc | aBlock value: assoc value ]
 ]
 
-Class PCDictionary >> errorKeyNotFound
+PCDictionary >> errorKeyNotFound
 [
 self error: 'key not found'
 ]
 
-Class PCDictionary >> errorValueNotFound
+PCDictionary >> errorValueNotFound
 [
 self error: 'value not found'
 ]
 
-Class PCDictionary >> includes: anObject
+PCDictionary >> includes: anObject
 [
 self
 	do: [ :each | 
@@ -110,7 +110,7 @@ self
 ^ false
 ]
 
-Class PCDictionary >> includesKey: key
+PCDictionary >> includesKey: key
 [
 	"Answer whether the receiver has a key equal to the argument, key."
 | index |
@@ -120,7 +120,7 @@ index := self findElementOrNil: key.
 	ifFalse: [ ^ true ]
 ]
 
-Class PCDictionary >> keyAt: index
+PCDictionary >> keyAt: index
 [
 	"May be overridden by subclasses so that fixCollisions will work"
 | assn |
@@ -130,14 +130,14 @@ assn == nil
 	ifFalse: [ ^ assn key ]
 ]
 
-Class PCDictionary >> keyAtValue: value
+PCDictionary >> keyAtValue: value
 [
 	"Answer the key that is the external name for the argument, value. If 
 	there is none, answer nil."
 ^ self keyAtValue: value ifAbsent: [ self errorValueNotFound ]
 ]
 
-Class PCDictionary >> keyAtValue: value ifAbsent: exceptionBlock
+PCDictionary >> keyAtValue: value ifAbsent: exceptionBlock
 [
 	"Answer the key that is the external name for the argument, value. If 
 	there is none, answer the result of evaluating exceptionBlock.
@@ -149,7 +149,7 @@ self
 ^ exceptionBlock value
 ]
 
-Class PCDictionary >> keys
+PCDictionary >> keys
 [
 	"Answer a Set containing the receiver's keys."
 | aSet |
@@ -158,20 +158,20 @@ self keysDo: [ :key | aSet add: key ].
 ^ aSet
 ]
 
-Class PCDictionary >> keysDo: aBlock
+PCDictionary >> keysDo: aBlock
 [
 	"Evaluate aBlock for each of the receiver's keys."
 self associationsDo: [ :association | aBlock value: association key ]
 ]
 
-Class PCDictionary >> noCheckAdd: anObject
+PCDictionary >> noCheckAdd: anObject
 [
 	"Must be defined separately for Dictionary because (self findElementOrNil:) expects a key, not an association.  9/7/96 tk"
 array at: (self findElementOrNil: anObject key) put: anObject.
 tally := tally + 1
 ]
 
-Class PCDictionary >> printOn: aStream
+PCDictionary >> printOn: aStream
 [
 aStream nextPutAll: self class name , ' ('.
 self
@@ -181,24 +181,24 @@ self
 aStream nextPut: $)
 ]
 
-Class PCDictionary >> remove: anObject
+PCDictionary >> remove: anObject
 [
 self shouldNotImplement
 ]
 
-Class PCDictionary >> remove: anObject ifAbsent: exceptionBlock
+PCDictionary >> remove: anObject ifAbsent: exceptionBlock
 [
 self shouldNotImplement
 ]
 
-Class PCDictionary >> removeKey: key
+PCDictionary >> removeKey: key
 [
 	"Remove key from the receiver.
 	If key is not in the receiver, notify an error."
 ^ self removeKey: key ifAbsent: [ self errorKeyNotFound ]
 ]
 
-Class PCDictionary >> removeKey: key ifAbsent: aBlock
+PCDictionary >> removeKey: key ifAbsent: aBlock
 [
 	"Remove key (and its associated value) from the receiver. If key is not in 
 	the receiver, answer the result of evaluating aBlock. Otherwise, answer 
@@ -214,7 +214,7 @@ self fixCollisionsFrom: index.
 ^ assoc value
 ]
 
-Class PCDictionary >> scanFor: anObject
+PCDictionary >> scanFor: anObject
 [
 	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or zero if no slot is found. This method will be overridden in various subclasses that have different interpretations for matching elements."
 | element start finish |
@@ -229,7 +229,7 @@ start to: finish do: [ :index |
 ^ 0	"No match AND no empty slot"
 ]
 
-Class PCDictionary >> select: aBlock
+PCDictionary >> select: aBlock
 [
 	"Evaluate aBlock with each of my values as the argument. Collect into a
 	new dictionary, only those associations for which aBlock evaluates to
