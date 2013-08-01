@@ -13,7 +13,7 @@ PCClass >> classVariables
 
 PCClass >> initFrom: aPharoClass methodDict: newMethodDict
 [
-	"Fill in my instance variables from the given Squeak using the given MethodDictionary."
+	"Fill in my instance variables from the given Class using the given MethodDictionary."
 	superclass := PCObject.	"corrected later"
 	methodDict := newMethodDict.
 	format := aPharoClass format.
