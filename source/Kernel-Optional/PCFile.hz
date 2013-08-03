@@ -1,5 +1,5 @@
 PCFile
-	superclass: #ClassPCObject;
+	superclass: #PCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#name #fileID );
 	classVariables: #();

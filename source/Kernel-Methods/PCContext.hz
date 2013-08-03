@@ -1,5 +1,5 @@
 PCContext
-	superclass: #ClassPCObject;
+	superclass: #PCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#sender #pc #stackp );
 	classVariables: #();

@@ -1,5 +1,5 @@
 PCForm
-	superclass: #ClassPCObject;
+	superclass: #PCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#bits #width #height #depth #bitBlt );
 	classVariables: #();

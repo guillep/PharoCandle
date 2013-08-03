@@ -1,5 +1,5 @@
 PCArrayedCollection
-	superclass: #ClassPCSequenceableCollection;
+	superclass: #PCSequenceableCollection;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #();
 	classVariables: #();

@@ -1,5 +1,5 @@
 PCString
-	superclass: #ClassPCArrayedCollection;
+	superclass: #PCArrayedCollection;
 	instanceSpecification: #(#variable #byte );
 	instanceVariables: #();
 	classVariables: #(#CaseSensitiveOrder #CaseInsensitiveOrder #LowercasingTable #AsciiOrder );

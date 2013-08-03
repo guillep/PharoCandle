@@ -1,5 +1,5 @@
 PCSymbol
-	superclass: #ClassPCString;
+	superclass: #PCString;
 	instanceSpecification: #(#variable #byte );
 	instanceVariables: #();
 	classVariables: #();

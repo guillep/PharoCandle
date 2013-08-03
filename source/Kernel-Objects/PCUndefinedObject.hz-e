@@ -1,0 +1,51 @@
+PCUndefinedObject
+	superclass: #ClassPCObject;
+	instanceSpecification: #(#pointers #words );
+	instanceVariables: #();
+	classVariables: #();
+	package: #'PharoCandle-Kernel-Objects'.
+
+PCUndefinedObject >> basicCopy
+[
+	"There is the only one instance of me, so answer myself."
+	^ self 
+]
+
+PCUndefinedObject >> ifNil: aBlock
+[
+	"A convenient test, in conjunction with Object ifNil:"
+	^ aBlock value
+]
+
+PCUndefinedObject >> ifNil: nilBlock ifNotNil: ifNotNilBlock
+[
+	"Evaluate the block for nil because I'm == nil"
+	^ nilBlock value
+]
+
+PCUndefinedObject >> ifNotNil: aBlock
+[
+	"A convenient test, in conjunction with Object ifNotNil:"
+	^ self
+]
+
+PCUndefinedObject >> isNil
+[
+	"Answer true if the receiver is nil."
+	^ true
+]
+
+PCUndefinedObject >> printOn: aStream
+[
+	aStream nextPutAll: 'nil'
+]
+
+PCUndefinedObject class
+	instanceVariables: #().
+
+PCUndefinedObject class >> new
+[
+	"There is a single unique instance of me."
+	self cannotInstantiate
+]
+

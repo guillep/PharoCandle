@@ -1,0 +1,62 @@
+PCFalse
+	superclass: #ClassPCTrue;
+	instanceSpecification: #(#pointers #words );
+	instanceVariables: #();
+	classVariables: #();
+	package: #'PharoCandle-Kernel-Objects'.
+
+PCFalse >> & aBoolean
+[
+	"Answer true if both the receiver AND the argument are true. Unlike and:, the argument is always evaluted."
+	^ false
+]
+
+PCFalse >> and: alternativeBlock
+[
+	"Answer true if both the receiver AND the result of evaluating the given block are true. Only evaluate the given block if the receiver is true."
+	^ false
+]
+
+PCFalse >> ifFalse: falseBlock
+[
+	"If the receiver is false, answer the result of evaluating the given block. Otherwise, answer nil. Raise an error notification if the receiver is not a boolean. Execution does not actually reach here because the expression is compiled in-line."
+	^ falseBlock value
+]
+
+PCFalse >> ifTrue: trueBlock
+[
+	"If the receiver is true, answer the result of evaluating the given block. Otherwise, answer nil. Raise an error notification if the true is not a boolean. Execution does not actually reach here because the expression is compiled in-line."
+	^ nil
+]
+
+PCFalse >> ifTrue: trueBlock ifFalse: falseBlock
+[
+	"If the receiver is true, answer the result of evaluating trueBlock. Otherwise, answer the result of evaluating falseBlock. Raise an error notification if the receiver is not a boolean. Execution does not actually reach here because this message is compiled in-line."
+	^ falseBlock value
+]
+
+PCFalse >> not
+[
+	"Answer the negation of the receiver."
+	^ true
+]
+
+PCFalse >> or: alternativeBlock
+[
+	"Answer true if either the receiver OR the argument are true. Only evaluate the given block if the receiver is false."
+	^ alternativeBlock value
+]
+
+PCFalse >> printOn: aStream
+[
+	aStream nextPutAll: 'false'
+]
+
+PCFalse >> | aBoolean
+[
+	"Answer true if either the receiver OR the argument are true. Unlike or:, the argument is always evaluted."
+	^ aBoolean
+]
+
+PCFalse class
+	instanceVariables: #().

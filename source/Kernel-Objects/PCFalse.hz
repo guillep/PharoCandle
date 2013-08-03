@@ -1,5 +1,5 @@
 PCFalse
-	superclass: #ClassPCTrue;
+	superclass: #PCTrue;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #();
 	classVariables: #();

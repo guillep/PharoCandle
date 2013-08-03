@@ -1,5 +1,5 @@
 PCWriteStream
-	superclass: #ClassPCReadStream;
+	superclass: #PCReadStream;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#writeLimit );
 	classVariables: #();

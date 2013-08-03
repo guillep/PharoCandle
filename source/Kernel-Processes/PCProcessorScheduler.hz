@@ -1,5 +1,5 @@
 PCProcessorScheduler
-	superclass: #ClassPCObject;
+	superclass: #PCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#suspendedProcessLists #activeProcess );
 	classVariables: #();

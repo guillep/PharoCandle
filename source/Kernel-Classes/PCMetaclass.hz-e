@@ -1,0 +1,42 @@
+PCMetaclass
+	superclass: #ClassPCBehavior;
+	instanceSpecification: #(#pointers #words );
+	instanceVariables: #(#soleInstance );
+	classVariables: #();
+	package: #'PharoCandle-Kernel-Classes'.
+
+PCMetaclass >> initMethodDict: newMethodDict
+[
+	"Initialize myself with the given method dictionary. Create but do not initialize my soleInstance."
+	superclass := PCClass.
+	methodDict := newMethodDict.
+	format := PCClass format.	"all metaclasses have the same format as PClass"
+	soleInstance := self basicNew
+]
+
+PCMetaclass >> isMeta
+[
+^ true
+]
+
+PCMetaclass >> name
+[
+	"Answer my name, either 'Metaclass' or the name of my class followed by ' class'."
+	soleInstance ifNil: [ ^ 'Metaclass' ] ifNotNil: [ ^ soleInstance name , ' class' ]
+]
+
+PCMetaclass >> new
+[
+	"Each metaclass should have exactly one instance."
+	self cannotInstantiate
+]
+
+PCMetaclass >> theNonMetaClass
+[
+	"Answer my only instance."
+	^ soleInstance
+]
+
+PCMetaclass class
+	instanceVariables: #().
+

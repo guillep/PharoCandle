@@ -1,0 +1,217 @@
+PCCharacter
+	superclass: #ClassPCMagnitude;
+	instanceSpecification: #(#pointers #words );
+	instanceVariables: #(#value );
+	classVariables: #(#CharacterTable );
+	package: #'PharoCandle-Kernel-Numeric'.
+
+
+
+PCCharacter >> setValue: newValue
+[
+	value ifNotNil:[ ^ self error:'Characters are immutable' ].
+	value := newValue.
+]
+PCCharacter >> < aCharacter
+[
+	"Answer true if my value is less than the given character's value."
+	^ self asciiValue < aCharacter asciiValue
+]
+
+PCCharacter >> = aCharacter
+[
+	"Primitive. Answer true if the receiver and the argument are the same object (have the same object pointer) and false otherwise. Optional. See Object documentation whatIsAPrimitive."
+	<primitive: 110>
+	^ self == aCharacter
+]
+
+PCCharacter >> > aCharacter
+[
+	"Answer true if my value is greater than the given character's value."
+	^ self asciiValue > aCharacter asciiValue
+]
+
+PCCharacter >> asCharacter
+[
+	"Answer the receiver itself."
+	^ self
+]
+
+PCCharacter >> asInteger
+[
+	"Answer my ASCII value."
+	^ value
+]
+
+PCCharacter >> asLowercase
+[
+	"If I am uppercase, answer the matching lowercase Character. Otherwise, answer myself."
+	(65 <= value and: [ value <= 90 ])
+		ifTrue: [ ^ (value + 32) asCharacter ]
+		ifFalse: [ ^ self ]	"self isUppercase"
+]
+
+PCCharacter >> asString
+[
+	^ PCString with: self
+]
+
+PCCharacter >> asUppercase
+[
+	"If the receiver is lowercase, answer its matching uppercase Character."
+	(97 <= value and: [ value <= 122 ])
+		ifTrue: [ ^ (value - 32) asCharacter ]
+		ifFalse: [ ^ self ]	"self isLowercase"
+]
+
+PCCharacter >> asciiValue
+[
+	"Answer the value of the receiver that represents its ascii encoding."
+	^ value
+]
+
+PCCharacter >> basicCopy
+[
+	"Answer myself because Characters are unique."
+	^ self
+]
+
+PCCharacter >> digitValue
+[
+	"Answer 0-9 if the receiver is $0-$9, 10-35 if it is $A-$Z, and -1 otherwise. This is used to parse literal numbers of radix 2-36."
+	value <= $9 asciiValue
+		ifTrue: [ ^ value - $0 asciiValue ].
+	value >= $A asciiValue
+		ifTrue: [ 
+			value <= $Z asciiValue
+				ifTrue: [ ^ value - $A asciiValue + 10 ] ].
+	^ -1
+]
+
+PCCharacter >> hash
+[
+	"My hash is my value."
+	^ value
+]
+
+PCCharacter >> isDigit
+[
+	"Answer whether the receiver is a digit."
+	^ value >= 48 and: [ value <= 57 ]
+]
+
+PCCharacter >> isLetter
+[
+	"Answer whether the receiver is a letter."
+	^ (65 <= value and: [ value <= 90 ]) or: [ 97 <= value and: [ value <= 122 ] ]
+]
+
+PCCharacter >> isSpecial
+[
+	"Answer whether the receiver is one of the special characters"
+	^ '+/\*~<>=@%|&?!' includes: self
+]
+
+PCCharacter >> isUppercase
+[
+	"Answer whether the receiver is an uppercase letter."
+	^ 65 <= value and: [ value <= 90 ]
+]
+
+PCCharacter >> isVowel
+[
+	"Answer true if the receiver is one of the vowels AEIOU (either upper- or lowercase)."
+	^ 'AEIOU' includes: self asUppercase
+]
+
+PCCharacter >> printOn: aStream
+[
+	aStream nextPut: $$.
+	aStream nextPut: self
+]
+
+PCCharacter >> to: other
+[
+	"Answer with a collection of all characters in the given ASCII range. For example, $a to: $z"
+	^ (self asciiValue to: other asciiValue) collect: [ :i | i asCharacter ]
+]
+
+PCCharacter >> tokenish
+[
+	"Answer true if the receiver is a valid token-character--that is, a letter, digit, or colon."
+	^ self isLetter or: [ self isDigit or: [ self = $: ] ]
+]
+
+PCCharacter class
+	instanceVariables: #().
+
+PCCharacter class >> initialize
+[
+	"Create the table of DigitsValues."
+	"self initialize"
+	
+	CharacterTable ifNil: [
+		"Initialize only once to ensure that byte characters are unique"
+		CharacterTable := PCArray new: 256.
+		1 to: 256 do: [:i | CharacterTable at: i put: (self basicNew setValue: i - 1)]].
+]
+
+PCCharacter class >> asciiValue: anInteger
+[
+	"Answer the Character whose ASCII value is anInteger."
+	^ CharacterTable at: anInteger + 1
+]
+
+PCCharacter class >> cr
+[
+	"Answer the Character representing a carriage return."
+	^ 13 asCharacter
+]
+
+PCCharacter class >> digitValue: x
+[
+	"Answer the Character whose digit value is x. For example, answer $9 for x=9, $0 for x=0, $A for x=10, $Z for x=35."
+	| i |
+	i := x asInteger.
+	^ CharacterTable
+		at:
+			(i < 10
+				ifTrue: [ 48 + i ]
+				ifFalse: [ 55 + i ]) + 1
+]
+
+PCCharacter class >> lf
+[
+	"Answer the Character representing a linefeed."
+	^ 10 asCharacter
+]
+
+PCCharacter class >> new
+[
+	"There are 256 unique Characters; creating new ones is not allowed."
+	self cannotInstantiate
+]
+
+PCCharacter class >> setCharacterTable: aCharacterTable
+[
+	CharacterTable := aCharacterTable
+]
+
+PCCharacter class >> space
+[
+	"Answer the Character representing a space."
+	^ 32 asCharacter
+]
+
+PCCharacter class >> tab
+[
+	"Answer the Character representing a tab."
+	^ 9 asCharacter
+]
+
+PCCharacter class >> value: anInteger
+[
+	"Answer the MCharacter whose ascii value is anInteger."
+	^ CharacterTable at: anInteger + 1
+]
+

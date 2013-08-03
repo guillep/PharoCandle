@@ -1,5 +1,5 @@
 PCProcess
-	superclass: #ClassPCObject;
+	superclass: #PCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#nextLink #suspendedContext #priority #myList #threadId #errorHandler );
 	classVariables: #();

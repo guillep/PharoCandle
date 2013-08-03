@@ -1,5 +1,5 @@
 PCCompiledMethod
-	superclass: #ClassPCByteArray;
+	superclass: #PCByteArray;
 	instanceSpecification: #(#compiledMethod);
 	instanceVariables: #();
 	classVariables: #();

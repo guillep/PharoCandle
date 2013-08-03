@@ -1,5 +1,5 @@
 PCMessage
-	superclass: #ClassPCObject;
+	superclass: #PCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#selector #arguments #lookupClass );
 	classVariables: #();

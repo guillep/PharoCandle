@@ -1,5 +1,5 @@
 PCDictionary
-	superclass: #ClassPCSet;
+	superclass: #PCSet;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #();
 	classVariables: #();

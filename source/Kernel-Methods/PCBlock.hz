@@ -1,5 +1,5 @@
 PCBlock
-	superclass: #ClassPCObject;
+	superclass: #PCObject;
 	instanceSpecification: #(#variable #pointers #words );
 	instanceVariables: #(#outerContext #startpc #nargs );
 	classVariables: #();

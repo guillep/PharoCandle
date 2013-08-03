@@ -1,5 +1,5 @@
 PCAssociation
-	superclass: #ClassPCMagnitude;
+	superclass: #PCMagnitude;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#key #value );
 	classVariables: #();

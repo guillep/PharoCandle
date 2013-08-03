@@ -1,5 +1,5 @@
 PCSemaphore
-	superclass: #ClassPCLinkedList;
+	superclass: #PCLinkedList;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#excessSignals );
 	classVariables: #();

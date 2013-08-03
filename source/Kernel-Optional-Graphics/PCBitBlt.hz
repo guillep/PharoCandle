@@ -1,5 +1,5 @@
 PCBitBlt
-	superclass: #ClassPCObject;
+	superclass: #PCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#destForm #sourceForm #fillWords #rule #destX #destY #width #height #sourceX #sourceY #clipX #clipY #clipWidth #clipHeight #colorMap );
 	classVariables: #();

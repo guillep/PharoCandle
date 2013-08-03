@@ -1,5 +1,5 @@
 PCSet
-	superclass: #ClassPCCollection;
+	superclass: #PCCollection;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#tally #array );
 	classVariables: #();

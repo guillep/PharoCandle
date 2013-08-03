@@ -1,5 +1,5 @@
 PCCollection
-	superclass: #ClassPCObject;
+	superclass: #PCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #();
 	classVariables: #();

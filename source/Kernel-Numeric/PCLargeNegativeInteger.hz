@@ -1,5 +1,5 @@
 PCLargeNegativeInteger
-	superclass: #ClassPCLargePositiveInteger;
+	superclass: #PCLargePositiveInteger;
 	instanceSpecification: #(#variable #byte );
 	instanceVariables: #();
 	classVariables: #();

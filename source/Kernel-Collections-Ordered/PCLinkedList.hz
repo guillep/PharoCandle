@@ -1,5 +1,5 @@
 PCLinkedList
-	superclass: #ClassPCSequenceableCollection;
+	superclass: #PCSequenceableCollection;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#firstLink #lastLink );
 	classVariables: #();

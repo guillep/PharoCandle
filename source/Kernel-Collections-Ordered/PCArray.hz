@@ -1,5 +1,5 @@
 PCArray
-	superclass: #ClassPCArrayedCollection;
+	superclass: #PCArrayedCollection;
 	instanceSpecification: #(#variable #pointers #words );
 	instanceVariables: #();
 	classVariables: #();

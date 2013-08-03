@@ -1,5 +1,5 @@
 PCMethodContext
-	superclass: #ClassPCContext;
+	superclass: #PCContext;
 	instanceSpecification: #(#variable #pointers #words );
 	instanceVariables: #(#method #closureOrNil #receiver );
 	classVariables: #();

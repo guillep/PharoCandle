@@ -1,5 +1,5 @@
 PCInterval
-	superclass: #ClassPCSequenceableCollection;
+	superclass: #PCSequenceableCollection;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#start #stop #step );
 	classVariables: #();

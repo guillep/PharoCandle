@@ -1,5 +1,5 @@
 PCInteger
-	superclass: #ClassPCNumber;
+	superclass: #PCNumber;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #();
 	classVariables: #();

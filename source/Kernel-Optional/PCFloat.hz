@@ -1,5 +1,5 @@
 PCFloat
-	superclass: #ClassPCNumber;
+	superclass: #PCNumber;
 	instanceSpecification: #(#variable #words );
 	instanceVariables: #();
 	classVariables: #(#Epsilon #RadiansPerDegree #Twopi #Infinity #Ln10 #MaxValLn #Halfpi #NegativeInfinity #Ln2 #NegativeZero #NaN #MaxVal #MinValLogBase2 #Pi #E #Sqrt2 );

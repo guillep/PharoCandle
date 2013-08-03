@@ -1,5 +1,5 @@
 PCBehavior
-	superclass: #ClassPCObject;
+	superclass: #PCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#superclass #methodDict #format );
 	classVariables: #();

@@ -1,5 +1,5 @@
 PCValueLink
-	superclass: #ClassPCObject;
+	superclass: #PCObject;
 	instanceSpecification: #(#pointers #words );
 	instanceVariables: #(#nextLink #value );
 	classVariables: #();
