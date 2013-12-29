@@ -21,14 +21,15 @@ cd $RESULTS_FOLDER
 
 #Load image for this project
 
-wget -O - get.pharo.org/20+vm | bash
-./pharo Pharo.image save PharoCandleBootstrap --delete-old
+wget -O - guillep.github.io/files/get/OzVm1.0 | bash
+wget -O - get.pharo.org/20 | bash
+./oz Pharo.image save PharoCandleBootstrap --delete-old
 
 
 
 #Load stable version of the monticello configuration, according to this git sources
 REPO=http://smalltalkhub.com/mc/Guille/Seed/main
-./pharo PharoCandleBootstrap.image config $REPO ConfigurationOfHazelnut --install=$VERSION
+./oz PharoCandleBootstrap.image config $REPO ConfigurationOfHazelnut --install=$VERSION
 
 echo "Configuration Loaded. Opening script..."
 
@@ -53,7 +54,7 @@ objectSpace serializeInFileNamed: 'PharoCandle.image'.
 Smalltalk snapshot: false andQuit: true.
 " > ./script.st
 
-./pharo PharoCandleBootstrap.image script.st
+./oz PharoCandleBootstrap.image script.st
 rm script.st
 rm PharoDebug.log
 echo "Script created and loaded. Finished! :D"
