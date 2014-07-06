@@ -52,6 +52,9 @@ builder objectSpace: objectSpace.
 builder kernelSpec: seed.
 builder	buildKernel.
 
+\"Serialize me into an image file\"
+objectSpace serializeInFileNamed: 'PharoCandle.image'.
+
 \"Browse me\"
 objectSpace browse.'.
 Smalltalk snapshot: true andQuit: true." > ./script.st
