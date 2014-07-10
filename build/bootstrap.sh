@@ -22,7 +22,7 @@ cd $RESULTS_FOLDER
 #Load image for this project
 
 wget -O - guillep.github.io/files/get/OzVmLatest | bash
-wget -O - get.pharo.org/20 | bash
+wget -O - get.pharo.org/30 | bash
 ./oz Pharo.image save PharoCandleBootstrap --delete-old
 
 
