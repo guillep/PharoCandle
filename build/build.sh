@@ -42,7 +42,7 @@ seed := PharoCandleSeed new
     buildSeed.
 
 \"Create an object space that will use an AST evaluator to run some code\"
-objectSpace := AtObjectSpace new.
+objectSpace := OzObjectSpace onOzVM.
 objectSpace worldConfiguration: OzPharoCandle world.
 objectSpace interpreter: (AtASTEvaluator new codeProvider: seed; yourself).
 
@@ -53,7 +53,7 @@ builder kernelSpec: seed.
 builder	buildKernel.
 
 \"Serialize me into an image file\"
-objectSpace serializeInFileNamed: 'PharoCandle.image'.
+objectSpace serializeInFileNamed: ''PharoCandle.image''.
 
 \"Browse me\"
 objectSpace browse.'.
