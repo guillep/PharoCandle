@@ -1,0 +1,158 @@
+PCClassBuilder
+	superclass: #PCObject;
+	instanceSpecification: #(#pointers #words );
+	instanceVariables: #( #superclass #name #instVarNames #classVariablesNames #compactClassIndex #formats );
+	classVariables: #();
+	package: #'PharoCandle-Kernel-Classes'.
+
+PCClassBuilder >> initialize
+[
+	super initialize.
+	compactClassIndex := 0.
+	instVarNames := ''.
+	classVariablesNames := ''.
+	superclass := PCObject.
+	self bePointers.
+]
+
+PCClassBuilder >> build
+[
+	| metaclass theClass |
+	metaclass := superclass class basicNew initialize.
+	metaclass superclass: superclass class.
+	metaclass setFormat: superclass class format.
+	
+	theClass := metaclass basicNew initialize.
+	
+	theClass superclass: superclass.
+	theClass setFormat: self newClassFormat.
+
+	theClass instVarNames: instVarNames substrings asArray.
+	theClass name: name.
+	
+	theClass classVariables: PCDictionary new.
+	
+	self classVariableNames do: [ :varName | theClass classVariables at: varName put: nil ].
+	
+	^ theClass.
+]
+
+PCClassBuilder >> newClassFormat
+[
+	"<2 bits of size><5 bits of compact class index><4 bits of inst spec><6 bits of size><1 bit with a 0>"
+	
+	| size1 instSpec size2 compactClassIndex |
+	size1 := (self allInstanceVariables size + 1 // 64) bitAnd: 16r3.
+	instSpec := self isCompiledMethod
+					ifTrue: [ 12 ]
+					ifFalse: [self isWeak
+						ifTrue:[ 4 ]
+						ifFalse:[self isPointers
+									ifTrue: [ self isVariable
+												ifTrue: [ self allInstanceVariables size > 0 ifTrue: [ 3 ] ifFalse: [ 2 ] ]
+												ifFalse: [ self allInstanceVariables size > 0 ifTrue: [ 1 ] ifFalse: [ 0 ] ]
+											]
+									ifFalse: [ self isWords ifTrue: [ 6 ] ifFalse: [ 8 ] ]
+								]
+					].
+	size2 := (self allInstanceVariables size + 1 \\ 64) bitAnd: 16r3F.
+	
+	compactClassIndex := self compactClassIndex.
+	
+	^(size1 bitShift: 16) + (compactClassIndex bitShift: 11) + (instSpec bitShift: 7) + (size2 bitShift: 1)
+]
+
+PCClassBuilder >> compactClassIndex: anIndex
+[
+	compactClassIndex := anIndex
+]
+
+PCClassBuilder >> compactClassIndex
+[
+	^ compactClassIndex
+]
+
+PCClassBuilder >> isCompiledMethod
+[
+	^ formats includes: #compiledMethod
+]
+
+PCClassBuilder >> beCompiledMethod
+[
+	^ formats := #( compiledMethod variable bytes )
+]
+
+PCClassBuilder >> isWeak
+[
+	^ formats includes: #weak
+]
+
+PCClassBuilder >> beWeak
+[
+	^ formats := #( weak variable pointers )
+]
+
+PCClassBuilder >> isPointers
+[
+	^ formats includes: #pointers
+]
+
+PCClassBuilder >> bePointers
+[
+	^ formats := #( pointers )
+]
+
+PCClassBuilder >> isVariable
+[
+	^ formats includes: #variable
+]
+
+PCClassBuilder >> beVariable
+[
+	^ formats := #( variable pointers )
+]
+
+PCClassBuilder >> isWords
+[
+	^ formats includes: #words
+]
+
+PCClassBuilder >> beWords
+[
+	^ formats := #( variable words )
+]
+
+PCClassBuilder >> beBytes
+[
+	^ formats := #( variable bytes )
+]
+
+PCClassBuilder >> allInstanceVariables
+[
+	^ superclass allInstVarNames, instVarNames substrings
+]
+
+PCClassBuilder >> classVariableNames
+[
+	^ classVariablesNames substrings
+]
+
+PCClassBuilder >> superclass: aClass
+[
+	superclass := aClass
+]
+
+PCClassBuilder >> name: aName
+[
+	name := aName
+]
+
+PCClassBuilder >> instVarNames: aString
+[
+	instVarNames := aString
+]
+
+PCClassBuilder >> classVariableNames: aString
+[
+	classVariablesNames := aString
+]
