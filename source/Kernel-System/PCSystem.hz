@@ -151,11 +151,12 @@ SpecialObjectsArray := anArray
 
 PCSystem class >> start
 [
-self log: 'Welcome to Pharo Candle edition!'.
+self log: 'Welcome to Pharo Candle edition!' substrings asString.
 self log: self tinyBenchmarks.
 self log: PCForm new primScreenSize printString.
-self beep.
-self beep.	"self graphicsTest."
+
+self log: (PCClassBuilder new name: #Test; build) new asString.
+
 PCObject superclass ifNil: [ self quit ]
 ]
 
