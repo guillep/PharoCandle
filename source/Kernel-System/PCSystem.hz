@@ -155,9 +155,28 @@ self log: 'Welcome to Pharo Candle edition!' substrings asString.
 self log: self tinyBenchmarks.
 self log: PCForm new primScreenSize printString.
 
-self log: (PCClassBuilder new name: #Test; build) new asString.
+self testNormalObject.
+self testByteObject.
 
 PCObject superclass ifNil: [ self quit ]
+]
+
+PCSystem class >> testNormalObject
+[
+| test |
+test := (PCObject subclass: #Test instanceVariableNames: 'test1 test2' classVariableNames: '') new.
+test instVarAt: 1 put: 1.
+test instVarAt: 2 put: (test instVarAt: 1) + 2.
+
+self log: (test instVarAt: 2) asString.
+]
+
+PCSystem class >> testByteObject
+[
+| test |
+test := (PCObject variableByteSubclass: #Test instanceVariableNames: '' classVariableNames: '') new: 5.
+self log: 'size of byte object created: ' , test basicSize asString.
+test at: 1 put: 17.
 ]
 
 PCSystem class >> tinyBenchmarks

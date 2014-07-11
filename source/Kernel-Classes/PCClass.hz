@@ -70,6 +70,43 @@ PCClass >> classSide
 	^ self class
 ]
 
+PCClass >> newClassBuilderForSubclass: subclassName instanceVariableNames: instVarNames classVariableNames: classVarNames
+[
+	^ PCClassBuilder new
+		superclass: self;
+		name: subclassName;
+		instVarNames: instVarNames;
+		classVariableNames: classVarNames;
+		yourself
+]
+
+PCClass >> subclass: subclassName instanceVariableNames: instVarNames classVariableNames: classVarNames
+[
+	^ (self newClassBuilderForSubclass: subclassName instanceVariableNames: instVarNames classVariableNames: classVarNames)
+		build
+]
+
+PCClass >> variableByteSubclass: subclassName instanceVariableNames: instVarNames classVariableNames: classVarNames
+[
+	^ (self newClassBuilderForSubclass: subclassName instanceVariableNames: instVarNames classVariableNames: classVarNames)
+		beVariable;
+		build
+]
+
+PCClass >> variableWordSubclass: subclassName instanceVariableNames: instVarNames classVariableNames: classVarNames
+[
+	^ (self newClassBuilderForSubclass: subclassName instanceVariableNames: instVarNames classVariableNames: classVarNames)
+		beWords;
+		build
+]
+
+PCClass >> weakSubclass: subclassName instanceVariableNames: instVarNames classVariableNames: classVarNames
+[
+	^ (self newClassBuilderForSubclass: subclassName instanceVariableNames: instVarNames classVariableNames: classVarNames)
+		beWeak;
+		build
+]
+
 PCClass class
 	instanceVariables: #().
 

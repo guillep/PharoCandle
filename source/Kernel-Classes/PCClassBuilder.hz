@@ -1,14 +1,13 @@
 PCClassBuilder
 	superclass: #PCObject;
 	instanceSpecification: #(#pointers #words );
-	instanceVariables: #( #superclass #name #instVarNames #classVariablesNames #compactClassIndex #formats );
+	instanceVariables: #( #superclass #name #instVarNames #classVariablesNames #formats );
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Classes'.
 
 PCClassBuilder >> initialize
 [
 	super initialize.
-	compactClassIndex := 0.
 	instVarNames := ''.
 	classVariablesNames := ''.
 	superclass := PCObject.
@@ -62,14 +61,9 @@ PCClassBuilder >> newClassFormat
 	^(size1 bitShift: 16) + (compactClassIndex bitShift: 11) + (instSpec bitShift: 7) + (size2 bitShift: 1)
 ]
 
-PCClassBuilder >> compactClassIndex: anIndex
-[
-	compactClassIndex := anIndex
-]
-
 PCClassBuilder >> compactClassIndex
 [
-	^ compactClassIndex
+	^ self compactClassIndexFor: name
 ]
 
 PCClassBuilder >> isCompiledMethod
@@ -124,6 +118,7 @@ PCClassBuilder >> beWords
 
 PCClassBuilder >> beBytes
 [
+	self isCompiledMethodClassIndex ifTrue: [ ^ self beCompiledMethod ].
 	^ formats := #( variable bytes )
 ]
 
@@ -155,4 +150,44 @@ PCClassBuilder >> instVarNames: aString
 PCClassBuilder >> classVariableNames: aString
 [
 	classVariablesNames := aString
+]
+
+PCClassBuilder >> isCompiledMethodClassIndex
+[
+	^ (self compactClassIndexFor: name) == (self compactClassIndexFor: #PCCompiledMethod)
+]
+
+PCClassBuilder >> compactClassIndexFor: aClassName
+[
+	^ #(#PCCompiledMethod
+		nil
+		#PCArray
+		#PCLargeNegativeInteger
+		#PCLargePositiveInteger
+		#PCFloat
+		nil
+		#PCAssociation
+		#PCPoint
+		#PCRectangle
+		#PCString
+		#PCBlock
+		nil
+		#PCContext
+		nil
+		nil "#PCBitmap"
+		nil
+		nil
+		nil
+		nil
+		nil
+		nil
+		nil
+		nil
+		nil
+		nil
+		nil
+		nil
+		nil
+		nil
+		nil) indexOf: aClassName ifAbsent: [ 0 ]
 ]
