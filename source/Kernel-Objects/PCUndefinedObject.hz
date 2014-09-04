@@ -40,6 +40,16 @@ PCUndefinedObject >> printOn: aStream
 	aStream nextPutAll: 'nil'
 ]
 
+PCUndefinedObject >> subclass: subclassName instanceVariableNames: instVarNames classVariableNames: classVarNames
+[
+	^ PCClassBuilder new
+		superclass: self;
+		name: subclassName;
+		instVarNames: instVarNames;
+		classVariableNames: classVarNames;
+		build
+]
+
 PCUndefinedObject class
 	instanceVariables: #().
 
@@ -48,4 +58,3 @@ PCUndefinedObject class >> new
 	"There is a single unique instance of me."
 	self cannotInstantiate
 ]
-
