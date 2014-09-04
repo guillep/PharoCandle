@@ -44,6 +44,8 @@ seed := PharoCandleSeed new
 
 \"Create an object space that will use an AST evaluator to run some code\"
 objectSpace := OzObjectSpace onOzVM.
+objectSpace startEmptyImage.
+objectSpace withExternalSymbolTable. \"we need this to bootstrap\"
 objectSpace worldConfiguration: OzPharoCandle world.
 objectSpace interpreter: (AtASTEvaluator new codeProvider: seed; yourself).
 
