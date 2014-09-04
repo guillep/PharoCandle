@@ -16,23 +16,26 @@ PCClassBuilder >> initialize
 
 PCClassBuilder >> build
 [
-	| metaclass theClass |
-	metaclass := superclass class basicNew initialize.
-	metaclass superclass: superclass class.
-	metaclass setFormat: superclass class format.
+	| metaclass theClass supermetaclass |
+	supermetaclass := superclass ifNil: [ PCClass ] ifNotNil: [ superclass class ].
+	
+	metaclass := PCMetaclass new.
+	metaclass superclass: supermetaclass.
+	metaclass setFormat: supermetaclass format.
 	
 	theClass := metaclass basicNew initialize.
 	
 	theClass superclass: superclass.
 	theClass setFormat: self newClassFormat.
 
-	theClass instVarNames: instVarNames substrings asArray.
+	theClass instVarNames: instVarNames asArray.
 	theClass name: name.
 	
 	theClass classVariables: PCDictionary new.
 	
 	self classVariableNames do: [ :varName | theClass classVariables at: varName put: nil ].
 	
+	metaclass soleInstance: theClass.
 	^ theClass.
 ]
 
@@ -41,20 +44,20 @@ PCClassBuilder >> newClassFormat
 	"<2 bits of size><5 bits of compact class index><4 bits of inst spec><6 bits of size><1 bit with a 0>"
 	
 	| size1 instSpec size2 compactClassIndex |
-	size1 := (self allInstanceVariables size + 1 // 64) bitAnd: 16r3.
+	size1 := (self instSize + 1 // 64) bitAnd: 16r3.
 	instSpec := self isCompiledMethod
 					ifTrue: [ 12 ]
 					ifFalse: [self isWeak
 						ifTrue:[ 4 ]
 						ifFalse:[self isPointers
 									ifTrue: [ self isVariable
-												ifTrue: [ self allInstanceVariables size > 0 ifTrue: [ 3 ] ifFalse: [ 2 ] ]
-												ifFalse: [ self allInstanceVariables size > 0 ifTrue: [ 1 ] ifFalse: [ 0 ] ]
+												ifTrue: [ self instSize > 0 ifTrue: [ 3 ] ifFalse: [ 2 ] ]
+												ifFalse: [ self instSize > 0 ifTrue: [ 1 ] ifFalse: [ 0 ] ]
 											]
 									ifFalse: [ self isWords ifTrue: [ 6 ] ifFalse: [ 8 ] ]
 								]
 					].
-	size2 := (self allInstanceVariables size + 1 \\ 64) bitAnd: 16r3F.
+	size2 := (self instSize + 1 \\ 64) bitAnd: 16r3F.
 	
 	compactClassIndex := self compactClassIndex.
 	
@@ -122,14 +125,14 @@ PCClassBuilder >> beBytes
 	^ formats := #( variable bytes )
 ]
 
-PCClassBuilder >> allInstanceVariables
+PCClassBuilder >> instSize
 [
-	^ superclass allInstVarNames, instVarNames substrings
+	^ (superclass ifNil: [0] ifNotNil: [ superclass instSize ]) + instVarNames size
 ]
 
 PCClassBuilder >> classVariableNames
 [
-	^ classVariablesNames substrings
+	^ classVariablesNames
 ]
 
 PCClassBuilder >> superclass: aClass
@@ -142,14 +145,14 @@ PCClassBuilder >> name: aName
 	name := aName
 ]
 
-PCClassBuilder >> instVarNames: aString
+PCClassBuilder >> instVarNames: anArray
 [
-	instVarNames := aString
+	instVarNames := anArray
 ]
 
-PCClassBuilder >> classVariableNames: aString
+PCClassBuilder >> classVariableNames: anArray
 [
-	classVariablesNames := aString
+	classVariablesNames := anArray
 ]
 
 PCClassBuilder >> isCompiledMethodClassIndex
@@ -172,7 +175,7 @@ PCClassBuilder >> compactClassIndexFor: aClassName
 		#PCString
 		#PCBlock
 		nil
-		#PCContext
+		#PCMethodContext
 		nil
 		nil "#PCBitmap"
 		nil

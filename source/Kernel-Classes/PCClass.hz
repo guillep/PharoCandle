@@ -86,10 +86,17 @@ PCClass >> subclass: subclassName instanceVariableNames: instVarNames classVaria
 		build
 ]
 
-PCClass >> variableByteSubclass: subclassName instanceVariableNames: instVarNames classVariableNames: classVarNames
+PCClass >> variableSubclass: subclassName instanceVariableNames: instVarNames classVariableNames: classVarNames
 [
 	^ (self newClassBuilderForSubclass: subclassName instanceVariableNames: instVarNames classVariableNames: classVarNames)
 		beVariable;
+		build
+]
+
+PCClass >> variableByteSubclass: subclassName instanceVariableNames: instVarNames classVariableNames: classVarNames
+[
+	^ (self newClassBuilderForSubclass: subclassName instanceVariableNames: instVarNames classVariableNames: classVarNames)
+		beBytes;
 		build
 ]
 
