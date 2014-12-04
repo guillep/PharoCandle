@@ -8,7 +8,15 @@ PCArray
 PCArray >> asArray
 [
 	"Answer with the receiver itself."
-^ self
+	^ self
+]
+
+PCArray >> asDictionary
+[
+	| dictionary |
+	dictionary := PCDictionary new.
+	self do: [:each | dictionary add: each ].
+	^ dictionary
 ]
 
 PCArray >> elementsExchangeIdentityWith: otherArray

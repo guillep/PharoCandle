@@ -35,31 +35,8 @@ REPO=http://smalltalkhub.com/mc/Guille/Seed/main
 echo "Configuration Loaded. Opening script..."
 
 echo -e "
-Workspace openContents: '\"I am a builder for a Pharo Candle system. I bootstrap the system using an object space. You configure myself by providing mi a kernelSpec, and sending me the message #buildKernel.\"
-
-\"Load a seed from the folder of the downloaded sources\"
-seed := PharoCandleSeed new
-    fromDirectoryNamed: ''../source'';
-    buildSeed.
-
-\"Create an object space that will use an AST evaluator to run some code\"
-objectSpace := OzObjectSpace onOzVM.
-objectSpace startEmptyImage.
-objectSpace withExternalSymbolTable. \"we need this to bootstrap\"
-objectSpace worldConfiguration: OzPharoCandle world.
-objectSpace interpreter: (AtASTEvaluator new codeProvider: seed; yourself).
-
-\"Create a builder, and tell it to bootstrap. Voilá, the objectSpace will be full\"
-builder := PharoCandleBuilder new.
-builder objectSpace: objectSpace.
-builder kernelSpec: seed.
-builder	buildKernel.
-
-\"Serialize me into an image file\"
-objectSpace serializeInFileNamed: ''PharoCandle.image''.
-
-\"Browse me\"
-objectSpace browse.'.
+Workspace openContents: 'objectSpace := PharoCandleBuilder2 bootstrap: ''../source''.
+objectSpace serializeInFileNamed: ''PharoCandle.image''.'.
 Smalltalk snapshot: true andQuit: true." > ./script.st
 
 ./oz PharoCandleBootstrap.image script.st

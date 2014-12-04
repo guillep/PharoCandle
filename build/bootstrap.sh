@@ -35,24 +35,7 @@ REPO=http://smalltalkhub.com/mc/Guille/Seed/main
 echo "Configuration Loaded. Opening script..."
 
 echo -e "
-\"Load a seed from the folder of the downloaded sources\"
-seed := PharoCandleSeed new
-    fromDirectoryNamed: '../source';
-    buildSeed.
-
-\"Create an object space that will use an AST evaluator to run some code\"
-objectSpace := OzObjectSpace onOzVM.
-objectSpace startEmptyImage.
-objectSpace withExternalSymbolTable. \"we need this to bootstrap\"
-objectSpace worldConfiguration: OzPharoCandle world.
-objectSpace interpreter: (AtASTEvaluator new codeProvider: seed; yourself).
-
-\"Create a builder, and tell it to bootstrap. Voilá, the objectSpace will be full\"
-builder := PharoCandleBuilder new.
-builder objectSpace: objectSpace.
-builder kernelSpec: seed.
-builder	buildKernel.
-
+objectSpace := PharoCandleBuilder2 bootstrap: '../source'.
 objectSpace serializeInFileNamed: 'PharoCandle.image'.
 Smalltalk snapshot: false andQuit: true.
 " > ./script.st

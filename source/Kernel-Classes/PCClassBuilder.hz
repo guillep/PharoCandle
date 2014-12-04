@@ -23,7 +23,7 @@ PCClassBuilder >> build
 	metaclass superclass: supermetaclass.
 	metaclass setFormat: supermetaclass format.
 	
-	theClass := metaclass basicNew initialize.
+	theClass := metaclass basicNew" initialize".
 	
 	theClass superclass: superclass.
 	theClass setFormat: self newClassFormat.
