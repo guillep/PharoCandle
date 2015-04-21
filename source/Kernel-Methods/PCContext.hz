@@ -1,13 +1,14 @@
 PCContext
 	superclass: #PCObject;
-	instanceSpecification: #(#pointers #words );
-	instanceVariables: #(#sender #pc #stackp );
+	instanceSpecification: #(#variable #pointers #words);
+	instanceVariables: #(#sender #pc #stackp #method #closureOrNil #receiver);
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Methods'.
 
 PCContext >> blockCopy: numArgs
 [
-	"Primitive. Distinguish a block of code from its enclosing method by creating a new BlockContext for that block. The compiler inserts into all methods that contain blocks the bytecodes to send the message blockCopy:. Do not use blockCopy: in code that you write! Only the compiler can decide to send the message blockCopy:. Fail if numArgs is not a SmallInteger. Optional. No Lookup. See Object documentation whatIsAPrimitive."
+	"Primitive. Distinguish a block of code from its enclosing method by creating a new BlockContext for that block. The compiler inserts into all methods that contain blocks the bytecodes to send the message blockCopy:. Do not use blockCopy: in code that you write! Only the compiler can decide to send the message blockCopy:. Fail if numArgs is not a SmallInteger. Optional. No Lookup. See Object documentation whatIsAPrimitive.
+"
 	<primitive: 80>
 ^ (PCBlock newForMethod: self home method) home: self home startpc: pc + 2 nargs: numArgs
 ]
@@ -17,10 +18,199 @@ PCContext >> isContextPart
 ^ true
 ]
 
+PCContext >> receiver
+[
+^ receiver
+]
+
+PCContext >> tempAt: index [
+	"Answer the value of the temporary variable whose index is the 	 argument, index.  Primitive. Assumes receiver is indexable. Answer the	 value of an indexable element in the receiver. Fail if the argument index	 is not an Integer or is out of bounds. Essential. See Object documentation	 whatIsAPrimitive.  Override the default at: primitive to give latitude to the	 VM in context management."	<primitive: 210>	^self at: index
+]
+
+PCContext >> tempAt: index put: value [
+	"Store the argument, value, as the temporary variable whose index is the 	 argument, index.  Primitive. Assumes receiver is indexable. Answer the	 value of an indexable element in the receiver. Fail if the argument index	 is not an Integer or is out of bounds. Essential. See Object documentation	 whatIsAPrimitive.  Override the default at:put: primitive to give latitude to	 the VM in context management."	<primitive: 211>	^self at: index put: value
+]
+
+PCContext >> terminateTo: previousContext
+[	"Terminate all the Contexts between me and previousContext, if previousContext is on my Context stack. Make previousContext my sender."	| currentContext sendingContext |	<primitive: 196>	(self hasSender: previousContext) ifTrue: [		currentContext := sender.		[currentContext == previousContext] whileFalse: [			sendingContext := currentContext sender.			currentContext terminate.			currentContext := sendingContext ]].	sender := previousContext
+]
+
+PCContext >> hasSender: context [	"Answer whether the receiver is strictly above context on the stack."	| senderContext |	self == context 		ifTrue: [^false].	senderContext := sender.	[senderContext == nil]		whileFalse: [			senderContext == context				ifTrue: [^true].			senderContext := senderContext sender].	^false
+]
+
+
+PCContext >> findContextSuchThat: testBlock
+[	"Search self and my sender chain for first one that satisfies testBlock.  Return nil if none satisfy"	| context |	context := self.	[ context isNil ] whileFalse: [		(testBlock value: context) 			ifTrue: [ ^ context ].		context := context sender ].	^ nil
+]
+
+PCContext >> terminate
+[	"Make myself unresumable."	sender := nil.	pc := nil.]
+
+PCContext >> canHandleSignal: exception 
+[	"Sent to handler (on:do:) contexts only.  If my exception class (first arg) handles exception then return true, otherwise forward this message to the next handler context.  If none left, return false (see nil>>canHandleSignal:)"	^ ((self exceptionClass handles: exception) and: [ self exceptionHandlerIsActive ])		or: [ self nextHandlerContext canHandleSignal: exception ].]
+
+PCContext >> handleSignal: exception
+[	"Sent to handler (on:do:) contexts only.  If my exception class (first arg) handles exception then execute my handle block (second arg), otherwise forward this message to the next handler context.  If none left, execute exception's defaultAction (see nil>>handleSignal:)."	| value |	((self exceptionClass handles: exception)	and: [self exceptionHandlerIsActive]) 		ifFalse: [ ^ self nextHandlerContext handleSignal: exception ].	exception privHandlerContext: self.	"disable self while executing handle block"	self exceptionHandlerIsActive: false. 	value := [ self exceptionHandlerBlock cull: exception ]		ensure: [ self exceptionHandlerIsActive: true ].	"return from self if not otherwise directed in handle block"	self return: value.  
+]
+
+PCContext>>return: value
+[	"Unwind thisContext to self and return value to self's sender.  Execute any unwind blocks while unwinding.  ASSUMES self is a sender of thisContext"	sender ifNil: [self cannotReturn: value to: sender].	sender resume: value
+]
+
+PCContext >> resume: value
+[	"Unwind thisContext to self and resume with value as result of last send.  Execute unwind blocks when unwinding.  ASSUMES self is a sender of thisContext"		self resume: value through: (thisContext findNextUnwindContextUpTo: self)
+]
+
+PCContext >> resume: value through: firstUnwindContext
+[	"Unwind thisContext to self and resume with value as result of last send.	 Execute any unwind blocks while unwinding.	 ASSUMES self is a sender of thisContext."	| context unwindBlock |	self isDead 		ifTrue: [ self cannotReturn: value to: self ].	context := firstUnwindContext.	[ context isNil ] whileFalse: [			context unwindComplete ifNil:[			context unwindComplete: true.			unwindBlock := context unwindBlock.			thisContext terminateTo: context.			unwindBlock value].		context := context findNextUnwindContextUpTo: self].	thisContext terminateTo: self.	^value]
+
+PCContext >> findNextUnwindContextUpTo: aContext
+[	"Return the next unwind marked above the receiver, returning nil if there is none.  Search proceeds up to but not including aContext."	| context |	<primitive: 195>	context := self.	[		(context := context sender) == nil		or: [ context == aContext ]	] whileFalse: [		context isUnwindContext			ifTrue: [ ^context ]].	^nil
+]
+
+PCContext>>unwindBlock[	"unwindContext only. access temporaries from BlockClosure>>#ensure: and BlockClosure>>#ifCurtailed:"	^self tempAt: 1
+]
+
+PCContext>>unwindComplete
+[	"unwindContext only. access temporaries from BlockClosure>>#ensure: and BlockClosure>>#ifCurtailed:"	^self tempAt: 2
+]
+
+PCContext>>unwindComplete: aBoolean
+[	"unwindContext only. access temporaries from BlockClosure>>#ensure: and BlockClosure>>#ifCurtailed:"	self tempAt: 2 put: aBoolean
+]
+
+PCContext >> isUnwindContext
+[	"is this context for  method that is marked?"	^method primitive = 198
+]
+
+PCContext >> cannotReturn: result to: homeContext
+[	"The receiver tried to return result to homeContext that no longer exists."	^ PCBlockCannotReturn new		result: result;		deadHome: homeContext;		signal
+]	
+
+PCContext >> nextHandlerContext[	^ self sender findNextHandlerContextStarting
+]
+
+PCContext >> aboutToReturn: result through: firstUnwindContext
+[	self methodReturnContext return: result through: firstUnwindContext
+]
+
+PCContext >> methodReturnContext
+[	"Answer the context from which an ^-return should return from."	closureOrNil == nil ifTrue: [ ^ self ].	^closureOrNil outerContext methodReturnContext
+]
+
+PCContext >> findNextHandlerContextStarting
+[	"Return the next handler marked context, returning nil if there is none.  Search starts with self and proceeds up to nil."	| context |	<primitive: 197>	context := self.	[		context isHandlerContext 			ifTrue: [ ^ context ].		(context := context sender) == nil	] whileFalse.	^ nil
+]
+
+PCContext >> exceptionClass
+[	"handlercontext only. access temporaries from BlockClosure>>#on:do:"	^self tempAt: 1]
+
+
+PCContext >> exceptionHandlerBlock
+[	"handlercontext only. access temporaries from BlockClosure>>#on:do:"	^self tempAt: 2]
+
+PCContext >> exceptionHandlerIsActive
+[	"handlercontext only. access temporaries from BlockClosure>>#on:do:"	^self tempAt: 3
+]
+
+PCContext >> exceptionHandlerIsActive: aBoolean
+[	"handlercontext only. access temporaries from BlockClosure>>#on:do:"	self tempAt: 3 put: aBoolean
+]
+
+
+PCContext >> isHandlerContext
+[	"is this context for  method that is marked?"	^ method primitive = 199
+]
+
+PCContext >> isDead[
+	"Has self finished"	^ pc isNil
+]
+
 PCContext >> sender
 [
 	"Answer the context that sent the message that created the receiver."
 ^ sender
+]
+
+PCContext >> asContext
+[
+^ self
+]
+
+PCContext >> home
+[
+	"Answer the context in which the receiver was defined."
+closureOrNil == nil
+	ifTrue: [ ^ self ].
+^ closureOrNil outerContext home
+]
+
+PCContext >> method
+[
+^ method
+]
+
+PCContext >> privRefresh
+[
+	"Reinitialize the receiver so that it is in the state it was at its creation."
+closureOrNil
+	ifNotNil: [ 
+		pc := closureOrNil startpc.
+		self stackp: closureOrNil numArgs + closureOrNil numCopiedValues.
+		1 to: closureOrNil numCopiedValues do: [ :i | self tempAt: closureOrNil numArgs + i put: (closureOrNil at: i) ] ]
+	ifNil: [ 
+		pc := method initialPC.
+		self stackp: method numTemps.
+		method numArgs + 1 to: method numTemps do: [ :i | self tempAt: i put: nil ] ]
+]
+
+PCContext >> removeSelf
+[
+	"Nil the receiver pointer and answer its former value."
+| result |
+result := receiver.
+receiver := nil.
+^ result
+]
+
+PCContext >> setSender: s receiver: r method: m closure: c startpc: startpc
+[
+	"Create the receiver's initial state."
+sender := s.
+receiver := r.
+method := m.
+closureOrNil := c.
+pc := startpc.
+stackp := 0
+]
+
+PCContext >> stackp: newStackp
+[
+	"Storing into the stack pointer is a potentially dangerous thing.
+	This primitive stores nil into any cells that become accessible as a result,
+	and it performs the entire operation atomically."
+	"Once this primitive is implemented, failure code should cause an error"
+	<primitive: 76>
+self error: 'stackp store failure'
+]
+
+PCContext >> tempAt: index put: value
+[
+	"Store the argument, value, as the temporary variable whose index is the 
+	 argument, index.  Primitive. Assumes receiver is indexable. Answer the
+	 value of an indexable element in the receiver. Fail if the argument index
+	 is not an Integer or is out of bounds. Essential. See Object documentation
+	 whatIsAPrimitive.  Override the default at:put: primitive to give latitude to
+	 the VM in context management."
+	<primitive: 211>
+
+]
+
+PCContext >> printString
+[	
+	| selector |
+	selector := method ifNil: [ #deadContext ] ifNotNil: [ method selector ]. 
+	^ receiver printString ,'>>', selector printString
 ]
 
 PCContext class

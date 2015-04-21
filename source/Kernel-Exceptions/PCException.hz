@@ -1,0 +1,272 @@
+PCException
+	superclass: #PCObject;
+	instanceVariables: #(#messageText #signaler #signalContext #handlerContext #outerContext );
+	package: #'Kernel-Exceptions'.
+
+PCException >> description
+[
+	"Return a textual description of the exception."
+
+	| mt description |
+	description := self class name.
+	(mt := self messageText) ifNotNil: [
+		mt isEmpty ifFalse: [ description := description , ': ' , mt ] ].
+	^ description
+]
+
+PCException >> freeze
+[
+	"freeze the context stack to keep the exception usable outside the catch blocks"
+
+	self freezeUpTo: thisContext
+]
+
+
+PCException >> resignalAs: replacementException
+[
+	"Signal an alternative exception in place of the receiver."
+
+	^ replacementException signalIn: signalContext
+]
+
+PCException >> isNested
+[
+	"Determine whether the current exception handler is within the scope of another handler for the same exception."
+
+	^ handlerContext nextHandlerContext canHandleSignal: self
+]
+
+PCException >> signaler: anObject
+[
+	"Set the object that is the subject involving me.
+	This is set automatically to my #receiver during #signal
+	but could be overwritten when I am signaled"
+
+	signaler := anObject
+]
+
+PCException >> signal
+[
+	"Ask ContextHandlers in the sender chain to handle this signal.  The default is to execute and return my defaultAction."
+
+	signalContext := thisContext.
+	signaler ifNil: [ signaler := self receiver ].
+	^ signalContext nextHandlerContext handleSignal: self
+]
+
+PCException >> printOn: stream
+[
+	stream nextPutAll: self description
+]
+
+PCException >> signal: signalerText
+[
+	"Signal the occurrence of an exceptional condition with a specified textual description."
+
+	self messageText: signalerText.
+	^ self signal
+]
+
+PCException >> return: returnValue
+[
+	"Return the argument as the value of the block protected by the active exception handler."
+
+	handlerContext return: returnValue
+]
+
+PCException >> resume: resumptionValue
+[
+	"Return resumptionValue as the value of the signal message."
+
+	self isResumable
+		ifFalse: [ PCError signal: 'Illegal resume' ].
+	self resumeUnchecked: resumptionValue
+]
+
+PCException >> return
+[
+	"Return nil as the value of the block protected by the active exception handler."
+
+	self return: self defaultReturnValue
+]
+
+PCException >> defaultResumeValue
+[
+	"Answer the value that by default should be returned if the exception is resumed"
+
+	^ nil
+]
+
+
+PCException >> isResumable
+[
+	"Determine whether an exception is resumable."
+
+	^ true
+]
+
+PCException >> resumeUnchecked: resumptionValue
+[
+	"Return resumptionValue as the value of #signal, unless this was called after an #outer message, then return resumptionValue as the value of #outer."
+
+	| ctxt |
+	outerContext
+		ifNil: [ signalContext return: resumptionValue ]
+		ifNotNil: [ ctxt := outerContext.
+			outerContext := ctxt tempAt: 1.	"prevOuterContext in #outer"
+			ctxt return: resumptionValue ]
+]
+
+PCException >> resume
+[
+	"Return from the message that signaled the receiver."
+
+	self resume: self defaultResumeValue
+]
+
+PCException >> log: aString
+[
+	| f |
+	f := PCFile new.
+	f openReadWrite: f localFolderPath , 'exceptionLog.txt'.
+	f position: f size.
+	f nextPutAll: aString.
+	f cr.
+	f close.
+]
+
+PCException >> signalerContext
+[
+	"Find the first sender of signal(:), the first context which is neither for an instance method nor for a class side method of Exception (or subclass).
+	This will make sure that the same context is found for both, `Error signal` and `Error new signal`"
+
+	^ signalContext
+		findContextSuchThat: [ :context | self log: context printString. (context receiver == self or: [ context receiver == self class ]) not ]
+]
+
+PCException >> messageText: signalerText
+[
+	"Set an exception's message text."
+
+	messageText := signalerText
+]
+
+PCException >> defaultReturnValue
+[
+	"Answer the value that by default should be returned if the exception is returned"
+
+	^ nil
+]
+
+PCException >> signaler
+[
+	"Return the object that is the subject involving me.
+	This is set automatically to my #receiver during #signal
+	but could be overwritten when I am signaled"
+
+	^ signaler
+]
+
+
+PCException >> receiver
+[
+	^ self signalerContext receiver
+]
+
+PCException >> freezeUpTo: aContext
+[
+	"freeze the signal context up to the given context so the exception is usable outside the catch block"
+
+	signalContext := signalContext copyTo: aContext
+]
+
+PCException >> pass
+[
+	"Yield control to the enclosing exception action for the receiver."
+
+	handlerContext nextHandlerContext handleSignal: self
+]
+
+PCException >> defaultAction
+[
+	"The default action taken if the exception is signaled."
+
+	self subclassResponsibility
+]
+
+PCException >> retryUsing: alternativeBlock
+[
+	"Abort an exception handler and evaluate a new block in place of the handler's protected block."
+
+	handlerContext restartWithNewReceiver: alternativeBlock
+]
+
+PCException >> retry
+[
+	"Abort an exception handler and re-evaluate its protected block."
+
+	handlerContext restart
+]
+
+PCException >> privHandlerContext: aContext
+[
+	handlerContext := aContext
+]
+
+PCException >> messageText
+[
+	"Return an exception's message text."
+
+	^ messageText ifNil: [ '' ]
+]
+
+PCException >> signalIn: context
+[
+	"Ask ContextHandlers in the sender chain starting at the given context to handle this signal. 
+	The default is to execute and return my defaultAction."
+
+	signalContext := context.
+	signaler ifNil: [ signaler := self receiver ].
+	^ signalContext nextHandlerContext handleSignal: self
+]
+
+PCException >> outer
+[
+	"Evaluate the enclosing exception action and return to here instead of signal if it resumes (see #resumeUnchecked:)."
+
+	| prevOuterContext |
+	self isResumable
+		ifTrue: [ prevOuterContext := outerContext.
+			outerContext := thisContext contextTag ].
+	self pass
+]
+
+PCException class >> signal
+[
+	"Signal the occurrence of an exceptional condition."
+
+	^ self new signal
+]
+
+PCException class >> signal: message
+[
+	"Signal the occurrence of an exceptional condition with a specified textual description."
+
+	^ self new signal: message
+]
+
+PCException class >> handles: exception
+[
+	"Determine whether an exception handler will accept a signaled exception."
+
+	^ exception isKindOf: self
+]
+
+
+PCException class >> signalIn: context
+[
+	"Signal the occurrence of an exceptional condition in the given context."
+
+	^ self new signalIn: context
+]
+

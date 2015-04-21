@@ -1,7 +1,7 @@
 PCClass
 	superclass: #PCBehavior;
 	instanceSpecification: #(#pointers #words );
-	instanceVariables: #(#name #instVarNames #classVariables );
+	instanceVariables: #(#instVarNames #classVariables #unused #name);
 	classVariables: #();
 	package: #'PharoCandle-Kernel-Classes'.
 

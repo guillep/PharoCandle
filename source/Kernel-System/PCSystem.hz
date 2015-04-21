@@ -153,11 +153,9 @@ PCSystem class >> start
 [
 self log: 'Welcome to Pharo Candle edition!' substrings asString.
 self log: self tinyBenchmarks.
-self log: PCForm new primScreenSize printString.
-
+[ PCError signal ] on: PCError do: [ :ex | self log: 'an Error has been handled correclty' ].
 self testNormalObject.
 self testByteObject.
-
 PCObject superclass ifNil: [ self quit ]
 ]
 

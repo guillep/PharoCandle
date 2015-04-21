@@ -1,0 +1,36 @@
+PCBlockCannotReturn
+	superclass: #Error;
+	instanceVariables: #(#result #deadHome );
+	package: #'Kernel-Exceptions'.
+
+PCBlockCannotReturn >> deadHome: context
+[
+	deadHome := context
+]
+
+PCBlockCannotReturn >> deadHome
+[
+	^ deadHome
+]
+
+PCBlockCannotReturn >> isResumable
+[
+	^ true
+]
+
+PCBlockCannotReturn >> defaultAction
+[
+	self messageText: 'Block cannot return'.
+	^ super defaultAction
+]
+
+PCBlockCannotReturn >> result
+[
+	^ result
+]
+
+PCBlockCannotReturn >> result: r
+[
+	result := r
+]
+
