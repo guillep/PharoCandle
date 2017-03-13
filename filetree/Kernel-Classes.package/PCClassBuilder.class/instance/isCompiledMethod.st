@@ -1,0 +1,3 @@
+
+isCompiledMethod
+	^ formats includes: #compiledMethod

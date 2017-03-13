@@ -1,0 +1,3 @@
+
+soleInstance: aClass
+	soleInstance := aClass

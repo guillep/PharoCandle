@@ -1,0 +1,3 @@
+
+isNumber
+	^ true

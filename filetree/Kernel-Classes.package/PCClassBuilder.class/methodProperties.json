@@ -1,0 +1,28 @@
+{
+	"instance" : {
+		"compactClassIndexFor:" : "<historical>",
+		"compactClassIndex" : "<historical>",
+		"initialize" : "<historical>",
+		"superclass:" : "<historical>",
+		"beBytes" : "<historical>",
+		"bePointers" : "<historical>",
+		"isCompiledMethod" : "<historical>",
+		"isWeak" : "<historical>",
+		"isCompiledMethodClassIndex" : "<historical>",
+		"classVariableNames:" : "<historical>",
+		"classVariableNames" : "<historical>",
+		"beVariable" : "<historical>",
+		"build" : "<historical>",
+		"newClassFormat" : "<historical>",
+		"isPointers" : "<historical>",
+		"instVarNames:" : "<historical>",
+		"beCompiledMethod" : "<historical>",
+		"beWeak" : "<historical>",
+		"name:" : "<historical>",
+		"isWords" : "<historical>",
+		"isVariable" : "<historical>",
+		"instSize" : "<historical>",
+		"beWords" : "<historical>"
+	},
+	"class" : { }
+}

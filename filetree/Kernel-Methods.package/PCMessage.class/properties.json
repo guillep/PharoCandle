@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "PCObject",
+	"category" : "Kernel-Methods",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"selector",
+		"arguments",
+		"lookupClass"
+	],
+	"name" : "PCMessage",
+	"type" : "normal"
+}

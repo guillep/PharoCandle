@@ -1,0 +1,33 @@
+{
+	"instance" : {
+		"substrings" : "<historical>",
+		">" : "<historical>",
+		"asByteArray" : "<historical>",
+		"findDelimiters:" : "<historical>",
+		"replaceFrom:" : "<historical>",
+		"findTokens:" : "<historical>",
+		"<" : "<historical>",
+		"<=" : "<historical>",
+		"size" : "<historical>",
+		"asString" : "<historical>",
+		"compare:" : "<historical>",
+		"translate:" : "<historical>",
+		"numArgs" : "<historical>",
+		">=" : "<historical>",
+		"asLowercase" : "<historical>",
+		"at:" : "<historical>",
+		"indexOfAscii:" : "<historical>",
+		"hash" : "<historical>",
+		"findString:" : "<historical>",
+		"=" : "<historical>",
+		"asSymbol" : "<historical>",
+		"findSubstring:" : "<historical>",
+		"printOn:" : "<historical>",
+		"skipDelimiters:" : "<historical>",
+		"indexOf:" : "<historical>"
+	},
+	"class" : {
+		"initialize" : "<historical>",
+		"cr" : "<historical>"
+	}
+}

@@ -1,0 +1,3 @@
+
+isPointers
+	^ formats includes: #pointers

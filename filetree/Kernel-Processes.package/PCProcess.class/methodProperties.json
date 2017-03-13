@@ -1,0 +1,19 @@
+{
+	"instance" : {
+		"suspendedContext" : "<historical>",
+		"initSuspendedContext:" : "<historical>",
+		"terminate" : "<historical>",
+		"nextLink:" : "<historical>",
+		"errorHandler" : "<historical>",
+		"nextLink" : "<historical>",
+		"suspend" : "<historical>",
+		"priority" : "<historical>",
+		"printOn:" : "<historical>",
+		"priority:" : "<historical>",
+		"resume" : "<historical>",
+		"errorHandler:" : "<historical>"
+	},
+	"class" : {
+		"for:" : "<historical>"
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"instance" : {
+		"do:" : "<historical>",
+		"add:" : "<historical>",
+		"first" : "<historical>",
+		"=" : "<historical>",
+		"at:" : "<historical>",
+		"includes:" : "<historical>",
+		"remove:" : "<historical>",
+		"printOn:" : "<historical>",
+		"increment" : "<historical>",
+		"last" : "<historical>",
+		"setFrom:" : "<historical>",
+		"size" : "<historical>",
+		"hash" : "<historical>",
+		"species" : "<historical>",
+		"collect:" : "<historical>"
+	},
+	"class" : {
+		"from:" : "<historical>"
+	}
+}

@@ -1,0 +1,3 @@
+
+errorHandler: aBlock
+	errorHandler := aBlock

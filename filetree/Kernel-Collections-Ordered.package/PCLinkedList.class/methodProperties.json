@@ -1,0 +1,35 @@
+{
+	"instance" : {
+		"addFirst:" : "<historical>",
+		"remove:" : "<historical>",
+		"removeAll" : "<historical>",
+		"removeFirst" : "<historical>",
+		"linkOf:" : "<historical>",
+		"collect:" : "<historical>",
+		"validIndex:" : "<historical>",
+		"addLast:" : "<historical>",
+		"copyWith:" : "<historical>",
+		"copyWithout:" : "<historical>",
+		"postCopy" : "<historical>",
+		"lastLink" : "<historical>",
+		"add:" : "<historical>",
+		"linksDo:" : "<historical>",
+		"do:" : "<historical>",
+		"removeAllSuchThat:" : "<historical>",
+		"removeLast" : "<historical>",
+		"at:" : "<historical>",
+		"removeLink:" : "<historical>",
+		"species" : "<historical>",
+		"swap:" : "<historical>",
+		"last" : "<historical>",
+		"firstLink" : "<historical>",
+		"linkAt:" : "<historical>",
+		"first" : "<historical>",
+		"isEmpty" : "<historical>",
+		"indexOf:" : "<historical>"
+	},
+	"class" : {
+		"new:" : "<historical>",
+		"newFrom:" : "<historical>"
+	}
+}

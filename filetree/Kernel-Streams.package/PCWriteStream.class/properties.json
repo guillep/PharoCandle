@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PCReadStream",
+	"category" : "Kernel-Streams",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"writeLimit"
+	],
+	"name" : "PCWriteStream",
+	"type" : "normal"
+}

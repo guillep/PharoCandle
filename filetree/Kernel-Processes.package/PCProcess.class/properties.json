@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "",
+	"super" : "PCObject",
+	"category" : "Kernel-Processes",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"nextLink",
+		"suspendedContext",
+		"priority",
+		"myList",
+		"threadId",
+		"errorHandler"
+	],
+	"name" : "PCProcess",
+	"type" : "normal"
+}

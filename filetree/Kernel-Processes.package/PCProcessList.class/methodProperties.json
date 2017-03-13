@@ -1,0 +1,13 @@
+{
+	"instance" : {
+		"remove:" : "<historical>",
+		"size" : "<historical>",
+		"do:" : "<historical>",
+		"add:" : "<historical>",
+		"first" : "<historical>",
+		"removeFirst" : "<historical>",
+		"isEmpty" : "<historical>",
+		"addLast:" : "<historical>"
+	},
+	"class" : { }
+}

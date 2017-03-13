@@ -1,0 +1,13 @@
+{
+	"instance" : {
+		"home" : "<historical>",
+		"setSender:" : "<historical>",
+		"method" : "<historical>",
+		"privRefresh" : "<historical>",
+		"tempAt:" : "<historical>",
+		"stackp:" : "<historical>",
+		"removeSelf" : "<historical>",
+		"asContext" : "<historical>"
+	},
+	"class" : { }
+}

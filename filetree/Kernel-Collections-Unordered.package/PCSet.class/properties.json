@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PCCollection",
+	"category" : "Kernel-Collections-Unordered",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"tally",
+		"array"
+	],
+	"name" : "PCSet",
+	"type" : "normal"
+}

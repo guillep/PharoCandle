@@ -1,0 +1,20 @@
+{
+	"instance" : {
+		"do:" : "<historical>",
+		"associationsDo:" : "<historical>",
+		"copy" : "<historical>",
+		"add:" : "<historical>",
+		"includesKey:" : "<historical>",
+		"removeKey:" : "<historical>",
+		"at:" : "<historical>",
+		"keyAtIdentityValue:" : "<historical>",
+		"grow" : "<historical>",
+		"scanFor:" : "<historical>",
+		"keysDo:" : "<historical>",
+		"swap:" : "<historical>",
+		"keyAt:" : "<historical>"
+	},
+	"class" : {
+		"new:" : "<historical>"
+	}
+}

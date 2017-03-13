@@ -1,0 +1,20 @@
+{
+	"instance" : {
+		"setColorR:" : "<historical>",
+		"bits" : "<historical>",
+		"beDisplayDepth:" : "<historical>",
+		"copyX:" : "<historical>",
+		"width" : "<historical>",
+		"setWidth:" : "<historical>",
+		"depth" : "<historical>",
+		"drawForm:" : "<historical>",
+		"height" : "<historical>",
+		"primScreenSize" : "<historical>",
+		"fillRectX:" : "<historical>"
+	},
+	"class" : {
+		"over" : "<historical>",
+		"paint" : "<historical>",
+		"width:" : "<historical>"
+	}
+}

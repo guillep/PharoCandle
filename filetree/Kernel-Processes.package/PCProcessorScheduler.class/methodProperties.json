@@ -1,0 +1,14 @@
+{
+	"instance" : {
+		"initProcessLists" : "<historical>",
+		"idleProcess" : "<historical>",
+		"activeProcess" : "<historical>",
+		"installIdleProcess" : "<historical>",
+		"highestPriority" : "<historical>",
+		"installStartProcess" : "<historical>",
+		"remove:" : "<historical>"
+	},
+	"class" : {
+		"new" : "<historical>"
+	}
+}

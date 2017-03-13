@@ -1,0 +1,11 @@
+{
+	"instance" : {
+		"printOn:" : "<historical>",
+		"hash" : "<historical>",
+		"asArray" : "<historical>",
+		"asDictionary" : "<historical>",
+		"elementsExchangeIdentityWith:" : "<historical>",
+		"replaceFrom:" : "<historical>"
+	},
+	"class" : { }
+}

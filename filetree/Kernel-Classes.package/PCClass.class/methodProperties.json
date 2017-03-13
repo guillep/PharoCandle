@@ -1,0 +1,21 @@
+{
+	"instance" : {
+		"theNonMetaClass" : "<historical>",
+		"initFrom:" : "<historical>",
+		"name" : "<historical>",
+		"variableWordSubclass:" : "<historical>",
+		"classVariables:" : "<historical>",
+		"variableByteSubclass:" : "<historical>",
+		"subclass:" : "<historical>",
+		"name:" : "<historical>",
+		"weakSubclass:" : "<historical>",
+		"classSide" : "<historical>",
+		"instVarNames" : "<historical>",
+		"isMeta" : "<historical>",
+		"variableSubclass:" : "<historical>",
+		"classVariables" : "<historical>",
+		"instVarNames:" : "<historical>",
+		"newClassBuilderForSubclass:" : "<historical>"
+	},
+	"class" : { }
+}

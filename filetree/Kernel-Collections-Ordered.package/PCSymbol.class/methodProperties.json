@@ -1,0 +1,18 @@
+{
+	"instance" : {
+		"replaceFrom:" : "<historical>",
+		"initFrom:" : "<historical>",
+		"species" : "<historical>",
+		"=" : "<historical>",
+		"at:" : "<historical>",
+		"printOn:" : "<historical>",
+		"asSymbol" : "<historical>",
+		"hash" : "<historical>",
+		"errorNoModification" : "<historical>",
+		"basicCopy" : "<historical>",
+		"asString" : "<historical>"
+	},
+	"class" : {
+		"new:" : "<historical>"
+	}
+}

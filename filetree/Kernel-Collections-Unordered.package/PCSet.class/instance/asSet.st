@@ -1,0 +1,3 @@
+
+asSet
+	^ self

@@ -1,0 +1,3 @@
+
+classSide
+	^ self class

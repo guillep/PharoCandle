@@ -1,0 +1,11 @@
+{
+	"instance" : {
+		"critical:" : "<historical>",
+		"wait" : "<historical>",
+		"initialize" : "<historical>",
+		"=" : "<historical>",
+		"hash" : "<historical>",
+		"signal" : "<historical>"
+	},
+	"class" : { }
+}

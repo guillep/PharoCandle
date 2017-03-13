@@ -1,0 +1,26 @@
+{
+	"instance" : {
+		"removeKey:" : "<historical>",
+		"associationsDo:" : "<historical>",
+		"remove:" : "<historical>",
+		"associationAt:" : "<historical>",
+		"collect:" : "<historical>",
+		"select:" : "<historical>",
+		"includesKey:" : "<historical>",
+		"add:" : "<historical>",
+		"errorValueNotFound" : "<historical>",
+		"do:" : "<historical>",
+		"keysDo:" : "<historical>",
+		"keyAt:" : "<historical>",
+		"scanFor:" : "<historical>",
+		"at:" : "<historical>",
+		"errorKeyNotFound" : "<historical>",
+		"includes:" : "<historical>",
+		"keyAtValue:" : "<historical>",
+		"noCheckAdd:" : "<historical>",
+		"printOn:" : "<historical>",
+		"keys" : "<historical>",
+		"copy" : "<historical>"
+	},
+	"class" : { }
+}

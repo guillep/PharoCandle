@@ -1,0 +1,3 @@
+
+substrings
+	^ self findTokens: ' '

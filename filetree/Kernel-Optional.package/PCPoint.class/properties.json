@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PCObject",
+	"category" : "Kernel-Optional",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"x",
+		"y"
+	],
+	"name" : "PCPoint",
+	"type" : "normal"
+}

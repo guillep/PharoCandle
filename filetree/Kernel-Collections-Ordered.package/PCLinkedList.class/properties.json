@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PCSequenceableCollection",
+	"category" : "Kernel-Collections-Ordered",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"firstLink",
+		"lastLink"
+	],
+	"name" : "PCLinkedList",
+	"type" : "normal"
+}

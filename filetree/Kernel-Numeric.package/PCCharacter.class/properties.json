@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "PCMagnitude",
+	"category" : "Kernel-Numeric",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"CharacterTable"
+	],
+	"instvars" : [
+		"value"
+	],
+	"name" : "PCCharacter",
+	"type" : "normal"
+}

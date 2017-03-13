@@ -1,0 +1,29 @@
+{
+	"instance" : {
+		"remove:" : "<historical>",
+		"asArray" : "<historical>",
+		"collect:" : "<historical>",
+		"init:" : "<historical>",
+		"size" : "<historical>",
+		"add:" : "<historical>",
+		"do:" : "<historical>",
+		"keyAt:" : "<historical>",
+		"scanFor:" : "<historical>",
+		"asSet" : "<historical>",
+		"includes:" : "<historical>",
+		"grow" : "<historical>",
+		"fixCollisionsFrom:" : "<historical>",
+		"findElementOrNil:" : "<historical>",
+		"=" : "<historical>",
+		"noCheckAdd:" : "<historical>",
+		"atNewIndex:" : "<historical>",
+		"fullCheck" : "<historical>",
+		"swap:" : "<historical>",
+		"copy" : "<historical>",
+		"withArray:" : "<historical>"
+	},
+	"class" : {
+		"new" : "<historical>",
+		"new:" : "<historical>"
+	}
+}

@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PCSequenceableCollection",
+	"category" : "Kernel-Processes",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"firstLink",
+		"lastLink"
+	],
+	"name" : "PCProcessList",
+	"type" : "normal"
+}

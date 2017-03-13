@@ -1,0 +1,3 @@
+
+isWords
+	^ formats includes: #words

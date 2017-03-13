@@ -1,0 +1,3 @@
+
+asLink
+	^ self

@@ -1,0 +1,3 @@
+
+setCharacterTable: aCharacterTable
+	CharacterTable := aCharacterTable

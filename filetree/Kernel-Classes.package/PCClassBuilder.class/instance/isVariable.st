@@ -1,0 +1,3 @@
+
+isVariable
+	^ formats includes: #variable

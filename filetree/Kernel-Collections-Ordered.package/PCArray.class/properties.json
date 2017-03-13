@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PCArrayedCollection",
+	"category" : "Kernel-Collections-Ordered",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PCArray",
+	"type" : "normal"
+}

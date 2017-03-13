@@ -1,0 +1,3 @@
+
+asString
+	^ PCString with: self

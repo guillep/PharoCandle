@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PCObject",
+	"category" : "Kernel-Processes",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"suspendedProcessLists",
+		"activeProcess"
+	],
+	"name" : "PCProcessorScheduler",
+	"type" : "normal"
+}

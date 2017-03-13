@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PCString",
+	"category" : "Kernel-Collections-Ordered",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PCSymbol",
+	"type" : "bytes"
+}

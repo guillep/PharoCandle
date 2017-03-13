@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "",
+	"super" : "PCObject",
+	"category" : "Kernel-Optional-Graphics",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"bits",
+		"width",
+		"height",
+		"depth",
+		"bitBlt"
+	],
+	"name" : "PCForm",
+	"type" : "normal"
+}

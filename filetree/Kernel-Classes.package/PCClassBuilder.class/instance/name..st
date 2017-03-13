@@ -1,0 +1,3 @@
+
+name: aName
+	name := aName

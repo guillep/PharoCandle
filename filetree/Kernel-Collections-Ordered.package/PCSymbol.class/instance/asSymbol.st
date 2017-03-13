@@ -1,0 +1,3 @@
+
+asSymbol
+	^ self

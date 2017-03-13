@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PCBehavior",
+	"category" : "Kernel-Classes",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"soleInstance"
+	],
+	"name" : "PCMetaclass",
+	"type" : "normal"
+}

@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : null,
+	"category" : "Kernel-Objects",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PCObject",
+	"type" : "normal"
+}

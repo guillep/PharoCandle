@@ -1,0 +1,28 @@
+{
+	"commentStamp" : "",
+	"super" : "PCNumber",
+	"category" : "Kernel-Optional",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"Epsilon",
+		"RadiansPerDegree",
+		"Twopi",
+		"Infinity",
+		"Ln10",
+		"MaxValLn",
+		"Halfpi",
+		"NegativeInfinity",
+		"Ln2",
+		"NegativeZero",
+		"NaN",
+		"MaxVal",
+		"MinValLogBase2",
+		"Pi",
+		"E",
+		"Sqrt2"
+	],
+	"instvars" : [ ],
+	"name" : "PCFloat",
+	"type" : "words"
+}

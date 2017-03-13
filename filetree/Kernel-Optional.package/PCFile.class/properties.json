@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PCObject",
+	"category" : "Kernel-Optional",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"name",
+		"fileID"
+	],
+	"name" : "PCFile",
+	"type" : "normal"
+}

@@ -1,0 +1,3 @@
+
+instVarNames: anArray
+	instVarNames := anArray

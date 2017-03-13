@@ -1,0 +1,14 @@
+{
+	"instance" : {
+		"max:" : "<historical>",
+		"min:" : "<historical>",
+		"between:" : "<historical>",
+		"=" : "<historical>",
+		"<=" : "<historical>",
+		"hash" : "<historical>",
+		">" : "<historical>",
+		"<" : "<historical>",
+		">=" : "<historical>"
+	},
+	"class" : { }
+}

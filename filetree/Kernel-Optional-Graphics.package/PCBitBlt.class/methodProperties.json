@@ -1,0 +1,18 @@
+{
+	"instance" : {
+		"copyBits" : "<historical>",
+		"clipX:" : "<historical>",
+		"rule:" : "<historical>",
+		"fillWords" : "<historical>",
+		"destX:" : "<historical>",
+		"initialize" : "<historical>",
+		"copyBitsTranslucent:" : "<historical>",
+		"destForm:" : "<historical>",
+		"width:" : "<historical>",
+		"sourceX:" : "<historical>",
+		"fillR:" : "<historical>",
+		"sourceForm:" : "<historical>",
+		"fillWords:" : "<historical>"
+	},
+	"class" : { }
+}

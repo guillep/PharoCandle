@@ -1,0 +1,13 @@
+{
+	"instance" : {
+		"printOn:" : "<historical>",
+		"ifNotNil:" : "<historical>",
+		"ifNil:" : "<historical>",
+		"subclass:" : "<historical>",
+		"isNil" : "<historical>",
+		"basicCopy" : "<historical>"
+	},
+	"class" : {
+		"new" : "<historical>"
+	}
+}

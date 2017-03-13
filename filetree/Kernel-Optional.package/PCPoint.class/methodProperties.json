@@ -1,0 +1,35 @@
+{
+	"instance" : {
+		"-" : "<historical>",
+		"max:" : "<historical>",
+		"theta" : "<historical>",
+		"+" : "<historical>",
+		"negated" : "<historical>",
+		"dotProduct:" : "<historical>",
+		"x" : "<historical>",
+		"dist:" : "<historical>",
+		"abs" : "<historical>",
+		"rounded" : "<historical>",
+		"setR:" : "<historical>",
+		"adaptToFloat:" : "<historical>",
+		"crossProduct:" : "<historical>",
+		"y" : "<historical>",
+		"adaptToInteger:" : "<historical>",
+		"hash" : "<historical>",
+		"*" : "<historical>",
+		"//" : "<historical>",
+		"min:" : "<historical>",
+		"asPoint" : "<historical>",
+		"=" : "<historical>",
+		"r" : "<historical>",
+		"/" : "<historical>",
+		"setX:" : "<historical>",
+		"printOn:" : "<historical>",
+		"degrees" : "<historical>",
+		"truncated" : "<historical>"
+	},
+	"class" : {
+		"r:" : "<historical>",
+		"x:" : "<historical>"
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PCLargePositiveInteger",
+	"category" : "Kernel-Numeric",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PCLargeNegativeInteger",
+	"type" : "bytes"
+}

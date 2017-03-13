@@ -1,0 +1,3 @@
+
+isContextPart
+	^ false

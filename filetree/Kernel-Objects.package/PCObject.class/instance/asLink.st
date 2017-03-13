@@ -1,0 +1,3 @@
+
+asLink
+	^ PCValueLink value: self

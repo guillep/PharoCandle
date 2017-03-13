@@ -1,0 +1,14 @@
+{
+	"instance" : {
+		"mergeFirst:" : "<historical>",
+		"sort:" : "<historical>",
+		"mergeSortFrom:" : "<historical>",
+		"sort" : "<historical>",
+		"add:" : "<historical>",
+		"size" : "<historical>"
+	},
+	"class" : {
+		"new" : "<historical>",
+		"with:" : "<historical>"
+	}
+}

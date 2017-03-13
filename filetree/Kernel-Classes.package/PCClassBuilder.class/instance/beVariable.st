@@ -1,0 +1,3 @@
+
+beVariable
+	^ formats := #(variable pointers)

@@ -1,0 +1,3 @@
+
+specialObjectsArray
+	^ SpecialObjectsArray

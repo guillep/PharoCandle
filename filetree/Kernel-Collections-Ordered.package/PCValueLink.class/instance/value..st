@@ -1,0 +1,3 @@
+
+value: aValue
+	value := aValue

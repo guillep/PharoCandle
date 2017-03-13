@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "PCObject",
+	"category" : "Kernel-Methods",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"outerContext",
+		"startpc",
+		"nargs"
+	],
+	"name" : "PCBlock",
+	"type" : "normal"
+}

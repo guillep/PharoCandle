@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PCMagnitude",
+	"category" : "Kernel-Numeric",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PCNumber",
+	"type" : "normal"
+}

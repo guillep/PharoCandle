@@ -1,0 +1,3 @@
+
+compactClassIndex
+	^ self compactClassIndexFor: name

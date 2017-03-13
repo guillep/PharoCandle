@@ -1,0 +1,24 @@
+{
+	"instance" : {
+		"do:" : "<historical>",
+		"asByteArray" : "<historical>",
+		"detect:" : "<historical>",
+		"asArray" : "<historical>",
+		"add:" : "<historical>",
+		"isEmpty" : "<historical>",
+		"select:" : "<historical>",
+		"remove:" : "<historical>",
+		"asSet" : "<historical>",
+		"includes:" : "<historical>",
+		"printOn:" : "<historical>",
+		"size" : "<historical>",
+		"sum" : "<historical>",
+		"errorNotFound" : "<historical>",
+		"errorEmptyCollection" : "<historical>",
+		"collect:" : "<historical>",
+		"emptyCheck" : "<historical>"
+	},
+	"class" : {
+		"with:" : "<historical>"
+	}
+}

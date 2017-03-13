@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PCInteger",
+	"category" : "Kernel-Numeric",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PCSmallInteger",
+	"type" : "normal"
+}

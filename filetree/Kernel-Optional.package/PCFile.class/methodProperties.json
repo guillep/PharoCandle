@@ -1,0 +1,25 @@
+{
+	"instance" : {
+		"close" : "<historical>",
+		"openReadOnly:" : "<historical>",
+		"nextPutAll:" : "<historical>",
+		"primSetPosition:" : "<historical>",
+		"cr" : "<historical>",
+		"name" : "<historical>",
+		"primGetPosition:" : "<historical>",
+		"primOpen:" : "<historical>",
+		"next:" : "<historical>",
+		"primWrite:" : "<historical>",
+		"primRead:" : "<historical>",
+		"position" : "<historical>",
+		"size" : "<historical>",
+		"readInto:" : "<historical>",
+		"position:" : "<historical>",
+		"primSize:" : "<historical>",
+		"openReadWrite:" : "<historical>",
+		"primClose:" : "<historical>",
+		"localFolderPath" : "<historical>",
+		"primImageName" : "<historical>"
+	},
+	"class" : { }
+}

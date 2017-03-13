@@ -1,0 +1,3 @@
+
+classVariableNames: anArray
+	classVariablesNames := anArray

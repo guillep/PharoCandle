@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PCArrayedCollection",
+	"category" : "Kernel-Optional-Graphics",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PCWordArray",
+	"type" : "words"
+}

@@ -1,0 +1,37 @@
+{
+	"instance" : {
+		"-" : "<historical>",
+		"basicCopy" : "<historical>",
+		"digitAt:" : "<historical>",
+		"isSmallInteger" : "<historical>",
+		"+" : "<historical>",
+		">" : "<historical>",
+		"digitLength" : "<historical>",
+		"<" : "<historical>",
+		"bitShift:" : "<historical>",
+		"bitXor:" : "<historical>",
+		"<=" : "<historical>",
+		"hashMultiply" : "<historical>",
+		"~=" : "<historical>",
+		"highBit" : "<historical>",
+		"quo:" : "<historical>",
+		"identityHash" : "<historical>",
+		"basicIdentityHash" : "<historical>",
+		">=" : "<historical>",
+		"\\\\" : "<historical>",
+		"bitAnd:" : "<historical>",
+		"asFloat" : "<historical>",
+		"//" : "<historical>",
+		"*" : "<historical>",
+		"=" : "<historical>",
+		"hash" : "<historical>",
+		"bitOr:" : "<historical>",
+		"/" : "<historical>",
+		"printOn:" : "<historical>"
+	},
+	"class" : {
+		"minVal" : "<historical>",
+		"maxVal" : "<historical>",
+		"new" : "<historical>"
+	}
+}

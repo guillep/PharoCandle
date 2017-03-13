@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PCObject",
+	"category" : "Kernel-System",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"SpecialObjectsArray"
+	],
+	"instvars" : [ ],
+	"name" : "PCSystem",
+	"type" : "normal"
+}

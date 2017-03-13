@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "PCObject",
+	"category" : "Kernel-Methods",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"sender",
+		"pc",
+		"stackp"
+	],
+	"name" : "PCContext",
+	"type" : "normal"
+}

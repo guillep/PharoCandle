@@ -1,0 +1,3 @@
+
+beWords
+	^ formats := #(variable words)

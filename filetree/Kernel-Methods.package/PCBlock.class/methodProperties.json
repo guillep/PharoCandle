@@ -1,0 +1,17 @@
+{
+	"instance" : {
+		"outerContext" : "<historical>",
+		"numCopiedValues" : "<historical>",
+		"numArgs" : "<historical>",
+		"value" : "<historical>",
+		"value:" : "<historical>",
+		"asContext" : "<historical>",
+		"ifError:" : "<historical>",
+		"asContextWithSender:" : "<historical>",
+		"method" : "<historical>",
+		"msecs" : "<historical>",
+		"home" : "<historical>",
+		"valueWithArguments:" : "<historical>"
+	},
+	"class" : { }
+}

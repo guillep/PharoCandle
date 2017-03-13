@@ -1,0 +1,3 @@
+
+isWeak
+	^ formats includes: #weak

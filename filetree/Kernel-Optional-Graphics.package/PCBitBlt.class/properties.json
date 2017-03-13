@@ -1,0 +1,27 @@
+{
+	"commentStamp" : "",
+	"super" : "PCObject",
+	"category" : "Kernel-Optional-Graphics",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"destForm",
+		"sourceForm",
+		"fillWords",
+		"rule",
+		"destX",
+		"destY",
+		"width",
+		"height",
+		"sourceX",
+		"sourceY",
+		"clipX",
+		"clipY",
+		"clipWidth",
+		"clipHeight",
+		"colorMap"
+	],
+	"name" : "PCBitBlt",
+	"type" : "normal"
+}

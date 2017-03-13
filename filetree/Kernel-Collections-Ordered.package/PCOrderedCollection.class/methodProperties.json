@@ -1,0 +1,29 @@
+{
+	"instance" : {
+		"addFirst:" : "<historical>",
+		"insert:" : "<historical>",
+		"remove:" : "<historical>",
+		"removeIndex:" : "<historical>",
+		"removeFirst" : "<historical>",
+		"errorNoSuchElement" : "<historical>",
+		"collect:" : "<historical>",
+		"select:" : "<historical>",
+		"makeRoomAtLast" : "<historical>",
+		"copyReplaceFrom:" : "<historical>",
+		"add:" : "<historical>",
+		"size" : "<historical>",
+		"do:" : "<historical>",
+		"removeLast" : "<historical>",
+		"copyFrom:" : "<historical>",
+		"at:" : "<historical>",
+		"grow" : "<historical>",
+		"setCollection:" : "<historical>",
+		"last" : "<historical>",
+		"first" : "<historical>",
+		"makeRoomAtFirst" : "<historical>"
+	},
+	"class" : {
+		"new" : "<historical>",
+		"new:" : "<historical>"
+	}
+}

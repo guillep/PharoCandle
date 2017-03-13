@@ -1,0 +1,13 @@
+{
+	"instance" : {
+		"on:" : "<historical>",
+		"nextPut:" : "<historical>",
+		"nextPutAll:" : "<historical>",
+		"size" : "<historical>",
+		"position:" : "<historical>",
+		"space" : "<historical>",
+		"pastEndPut:" : "<historical>",
+		"contents" : "<historical>"
+	},
+	"class" : { }
+}

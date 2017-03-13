@@ -1,0 +1,37 @@
+{
+	"instance" : {
+		"to:" : "<historical>",
+		"basicCopy" : "<historical>",
+		"isSpecial" : "<historical>",
+		">" : "<historical>",
+		"isDigit" : "<historical>",
+		"asciiValue" : "<historical>",
+		"isLetter" : "<historical>",
+		"<" : "<historical>",
+		"isUppercase" : "<historical>",
+		"asInteger" : "<historical>",
+		"digitValue" : "<historical>",
+		"asUppercase" : "<historical>",
+		"asString" : "<historical>",
+		"isVowel" : "<historical>",
+		"asLowercase" : "<historical>",
+		"hash" : "<historical>",
+		"=" : "<historical>",
+		"setValue:" : "<historical>",
+		"printOn:" : "<historical>",
+		"tokenish" : "<historical>",
+		"asCharacter" : "<historical>"
+	},
+	"class" : {
+		"asciiValue:" : "<historical>",
+		"space" : "<historical>",
+		"setCharacterTable:" : "<historical>",
+		"lf" : "<historical>",
+		"digitValue:" : "<historical>",
+		"value:" : "<historical>",
+		"initialize" : "<historical>",
+		"new" : "<historical>",
+		"tab" : "<historical>",
+		"cr" : "<historical>"
+	}
+}

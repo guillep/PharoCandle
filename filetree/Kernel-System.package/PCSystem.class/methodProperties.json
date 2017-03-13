@@ -1,0 +1,24 @@
+{
+	"instance" : { },
+	"class" : {
+		"primitiveGetSpecialObjectsArray" : "<historical>",
+		"tinyBenchmarks" : "<historical>",
+		"testNormalObject" : "<historical>",
+		"incrementalGarbageCollect" : "<historical>",
+		"specialObjectsArray:" : "<historical>",
+		"primKeyboardNext" : "<historical>",
+		"specialObjectsArray" : "<historical>",
+		"garbageCollect" : "<historical>",
+		"getVMParameters" : "<historical>",
+		"quit" : "<historical>",
+		"log:" : "<historical>",
+		"exitToDebugger" : "<historical>",
+		"allObjectsDo:" : "<historical>",
+		"testByteObject" : "<historical>",
+		"getchar" : "<historical>",
+		"milliseconds" : "<historical>",
+		"append:" : "<historical>",
+		"graphicsTest" : "<historical>",
+		"start" : "<historical>"
+	}
+}

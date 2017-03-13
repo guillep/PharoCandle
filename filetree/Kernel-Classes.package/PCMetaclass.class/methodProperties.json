@@ -1,0 +1,11 @@
+{
+	"instance" : {
+		"theNonMetaClass" : "<historical>",
+		"isMeta" : "<historical>",
+		"new" : "<historical>",
+		"initMethodDict:" : "<historical>",
+		"name" : "<historical>",
+		"soleInstance:" : "<historical>"
+	},
+	"class" : { }
+}

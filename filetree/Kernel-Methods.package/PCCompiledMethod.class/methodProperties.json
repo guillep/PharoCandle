@@ -1,0 +1,12 @@
+{
+	"instance" : {
+		"initialPC" : "<historical>",
+		"isCompiledMethod" : "<historical>",
+		"numTemps" : "<historical>",
+		"objectAt:" : "<historical>",
+		"numLiterals" : "<historical>",
+		"frameSize" : "<historical>",
+		"header" : "<historical>"
+	},
+	"class" : { }
+}

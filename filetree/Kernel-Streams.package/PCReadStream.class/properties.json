@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "PCObject",
+	"category" : "Kernel-Streams",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"collection",
+		"position",
+		"readLimit"
+	],
+	"name" : "PCReadStream",
+	"type" : "normal"
+}

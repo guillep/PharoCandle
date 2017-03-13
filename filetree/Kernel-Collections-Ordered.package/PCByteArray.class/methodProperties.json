@@ -1,0 +1,8 @@
+{
+	"instance" : {
+		"replaceFrom:" : "<historical>",
+		"asString" : "<historical>",
+		"asByteArray" : "<historical>"
+	},
+	"class" : { }
+}

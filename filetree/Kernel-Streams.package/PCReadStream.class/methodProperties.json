@@ -1,0 +1,18 @@
+{
+	"instance" : {
+		"next" : "<historical>",
+		"peekFor:" : "<historical>",
+		"peek" : "<historical>",
+		"on:" : "<historical>",
+		"atEnd" : "<historical>",
+		"skip:" : "<historical>",
+		"position:" : "<historical>",
+		"size" : "<historical>",
+		"position" : "<historical>",
+		"contents" : "<historical>",
+		"next:" : "<historical>"
+	},
+	"class" : {
+		"on:" : "<historical>"
+	}
+}

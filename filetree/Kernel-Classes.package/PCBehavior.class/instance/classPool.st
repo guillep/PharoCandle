@@ -1,0 +1,3 @@
+
+classPool
+	^ nil
