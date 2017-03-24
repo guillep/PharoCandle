@@ -1,15 +1,16 @@
 {
-	"commentStamp" : "",
-	"super" : "PCContext",
 	"category" : "Kernel-Methods",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
 	"instvars" : [
 		"method",
 		"closureOrNil",
-		"receiver"
-	],
+		"receiver" ],
 	"name" : "PCMethodContext",
-	"type" : "normal"
-}
+	"pools" : [
+		 ],
+	"super" : "PCContext",
+	"type" : "normal" }

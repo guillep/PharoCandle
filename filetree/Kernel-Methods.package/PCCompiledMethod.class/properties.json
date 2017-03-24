@@ -1,11 +1,14 @@
 {
-	"commentStamp" : "",
-	"super" : "PCByteArray",
 	"category" : "Kernel-Methods",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
-	"instvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
 	"name" : "PCCompiledMethod",
-	"type" : "bytes"
-}
+	"pools" : [
+		 ],
+	"super" : "PCByteArray",
+	"type" : "bytes" }

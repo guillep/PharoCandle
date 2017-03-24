@@ -1,4 +1,4 @@
-
+as yet unclassified
 sign
 	"Answer 1 if the receiver is greater than 0, -1 if less than 0, else 0.
 	Handle IEEE-754 negative-zero by reporting a sign of -1"

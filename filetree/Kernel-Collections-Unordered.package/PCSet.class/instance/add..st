@@ -1,4 +1,4 @@
-
+as yet unclassified
 add: newObject
 	"Add an element. User error instead of halt. go 10/1/97 09:33"
 

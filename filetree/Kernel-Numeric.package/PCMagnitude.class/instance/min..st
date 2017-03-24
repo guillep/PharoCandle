@@ -1,4 +1,4 @@
-
+as yet unclassified
 min: aMagnitude
 	"Answer the receiver or the argument, whichever has the lesser 
 	magnitude."

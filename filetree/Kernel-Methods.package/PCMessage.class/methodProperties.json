@@ -1,10 +1,9 @@
 {
+	"class" : {
+		 },
 	"instance" : {
-		"printOn:" : "<historical>",
-		"sentTo:" : "<historical>",
-		"selector" : "<historical>",
+		"arguments" : "<historical>",
 		"lookupClass" : "<historical>",
-		"arguments" : "<historical>"
-	},
-	"class" : { }
-}
+		"printOn:" : "<historical>",
+		"selector" : "<historical>",
+		"sentTo:" : "<historical>" } }

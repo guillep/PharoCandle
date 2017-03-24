@@ -1,4 +1,4 @@
-
+as yet unclassified
 collect: aBlock
 	| nextValue result |
 	result := self species new: self size.

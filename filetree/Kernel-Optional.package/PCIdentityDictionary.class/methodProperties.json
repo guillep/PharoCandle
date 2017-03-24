@@ -1,7 +1,6 @@
 {
+	"class" : {
+		 },
 	"instance" : {
 		"keys" : "<historical>",
-		"scanFor:" : "<historical>"
-	},
-	"class" : { }
-}
+		"scanFor:" : "<historical>" } }

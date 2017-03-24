@@ -1,4 +1,4 @@
-
+as yet unclassified
 setCollection: anArray
 	array := anArray.
 	firstIndex := array size // 3 max: 1.

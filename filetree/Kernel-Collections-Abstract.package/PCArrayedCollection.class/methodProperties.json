@@ -1,14 +1,14 @@
 {
-	"instance" : {
-		"mergeFirst:" : "<historical>",
-		"sort:" : "<historical>",
-		"mergeSortFrom:" : "<historical>",
-		"sort" : "<historical>",
-		"add:" : "<historical>",
-		"size" : "<historical>"
-	},
 	"class" : {
 		"new" : "<historical>",
-		"with:" : "<historical>"
-	}
-}
+		"with:" : "<historical>",
+		"with:with:" : "<historical>",
+		"with:with:with:" : "<historical>" },
+	"instance" : {
+		"add:" : "<historical>",
+		"mergeFirst:middle:last:into:by:" : "<historical>",
+		"mergeSortFrom:to:by:" : "<historical>",
+		"mergeSortFrom:to:src:dst:by:" : "<historical>",
+		"size" : "<historical>",
+		"sort" : "<historical>",
+		"sort:" : "<historical>" } }

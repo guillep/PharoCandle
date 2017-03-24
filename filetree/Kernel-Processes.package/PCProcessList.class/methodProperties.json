@@ -1,13 +1,12 @@
 {
+	"class" : {
+		 },
 	"instance" : {
-		"remove:" : "<historical>",
-		"size" : "<historical>",
-		"do:" : "<historical>",
 		"add:" : "<historical>",
+		"addLast:" : "<historical>",
+		"do:" : "<historical>",
 		"first" : "<historical>",
-		"removeFirst" : "<historical>",
 		"isEmpty" : "<historical>",
-		"addLast:" : "<historical>"
-	},
-	"class" : { }
-}
+		"remove:ifAbsent:" : "<historical>",
+		"removeFirst" : "<historical>",
+		"size" : "<historical>" } }

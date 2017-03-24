@@ -1,4 +1,4 @@
-
+as yet unclassified
 pointsTo: anObject
 	"Answer true if the receiver contains a reference to the given object."
 

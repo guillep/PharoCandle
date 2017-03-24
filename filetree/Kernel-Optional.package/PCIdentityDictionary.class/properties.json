@@ -1,11 +1,14 @@
 {
-	"commentStamp" : "",
-	"super" : "PCDictionary",
 	"category" : "Kernel-Optional",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
-	"instvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
 	"name" : "PCIdentityDictionary",
-	"type" : "normal"
-}
+	"pools" : [
+		 ],
+	"super" : "PCDictionary",
+	"type" : "normal" }

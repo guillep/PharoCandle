@@ -1,14 +1,13 @@
 {
+	"class" : {
+		 },
 	"instance" : {
-		"max:" : "<historical>",
-		"min:" : "<historical>",
-		"between:" : "<historical>",
-		"=" : "<historical>",
-		"<=" : "<historical>",
-		"hash" : "<historical>",
-		">" : "<historical>",
 		"<" : "<historical>",
-		">=" : "<historical>"
-	},
-	"class" : { }
-}
+		"<=" : "<historical>",
+		"=" : "<historical>",
+		">" : "<historical>",
+		">=" : "<historical>",
+		"between:and:" : "<historical>",
+		"hash" : "<historical>",
+		"max:" : "<historical>",
+		"min:" : "<historical>" } }

@@ -1,4 +1,4 @@
-
+as yet unclassified
 timesTwoPower: anInteger
 	"Primitive. Answer with the receiver multiplied by 2.0 raised
 	to the power of the argument.

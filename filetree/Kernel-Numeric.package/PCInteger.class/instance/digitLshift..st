@@ -1,4 +1,4 @@
-
+as yet unclassified
 digitLshift: shiftCount
 	| carry rShift mask len result digit byteShift bitShift highBit |
 	(highBit := self highBit) = 0
@@ -8,12 +8,12 @@ digitLshift: shiftCount
 	byteShift := shiftCount // 8.
 	bitShift := shiftCount \\ 8.
 	bitShift = 0
-		ifTrue: [ "Fast version for byte-aligned shifts"
-			^ result
+		ifTrue: [ ^ result
 				replaceFrom: byteShift + 1
 				to: len
 				with: self
 				startingAt: 1 ].
+	"Fast version for byte-aligned shifts"
 	carry := 0.
 	rShift := bitShift - 8.
 	mask := 255 bitShift: 0 - bitShift.

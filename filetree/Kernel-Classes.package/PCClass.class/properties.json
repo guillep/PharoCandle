@@ -1,15 +1,16 @@
 {
-	"commentStamp" : "",
-	"super" : "PCBehavior",
 	"category" : "Kernel-Classes",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
 	"instvars" : [
 		"name",
 		"instVarNames",
-		"classVariables"
-	],
+		"classVariables" ],
 	"name" : "PCClass",
-	"type" : "normal"
-}
+	"pools" : [
+		 ],
+	"super" : "PCBehavior",
+	"type" : "normal" }

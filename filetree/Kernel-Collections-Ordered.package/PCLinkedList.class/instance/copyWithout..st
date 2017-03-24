@@ -1,4 +1,4 @@
-
+as yet unclassified
 copyWithout: oldElement
 	| newInst |
 	newInst := self class new.

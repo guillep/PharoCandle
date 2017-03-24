@@ -1,4 +1,4 @@
-
+as yet unclassified
 add: anAssociation
 	| index element |
 	index := self findElementOrNil: anAssociation key.

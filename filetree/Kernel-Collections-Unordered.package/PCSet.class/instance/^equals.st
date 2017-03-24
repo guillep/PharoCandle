@@ -1,4 +1,4 @@
-
+as yet unclassified
 = aSet
 	(aSet isKindOf: PCSet)
 		ifFalse: [ ^ false ].

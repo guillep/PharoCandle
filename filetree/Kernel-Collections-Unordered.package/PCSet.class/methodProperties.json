@@ -1,29 +1,26 @@
 {
-	"instance" : {
-		"remove:" : "<historical>",
-		"asArray" : "<historical>",
-		"collect:" : "<historical>",
-		"init:" : "<historical>",
-		"size" : "<historical>",
-		"add:" : "<historical>",
-		"do:" : "<historical>",
-		"keyAt:" : "<historical>",
-		"scanFor:" : "<historical>",
-		"asSet" : "<historical>",
-		"includes:" : "<historical>",
-		"grow" : "<historical>",
-		"fixCollisionsFrom:" : "<historical>",
-		"findElementOrNil:" : "<historical>",
-		"=" : "<historical>",
-		"noCheckAdd:" : "<historical>",
-		"atNewIndex:" : "<historical>",
-		"fullCheck" : "<historical>",
-		"swap:" : "<historical>",
-		"copy" : "<historical>",
-		"withArray:" : "<historical>"
-	},
 	"class" : {
 		"new" : "<historical>",
-		"new:" : "<historical>"
-	}
-}
+		"new:" : "<historical>" },
+	"instance" : {
+		"=" : "<historical>",
+		"add:" : "<historical>",
+		"asArray" : "<historical>",
+		"asSet" : "<historical>",
+		"atNewIndex:put:" : "<historical>",
+		"collect:" : "<historical>",
+		"copy" : "<historical>",
+		"do:" : "<historical>",
+		"findElementOrNil:" : "<historical>",
+		"fixCollisionsFrom:" : "<historical>",
+		"fullCheck" : "<historical>",
+		"grow" : "<historical>",
+		"includes:" : "<historical>",
+		"init:" : "<historical>",
+		"keyAt:" : "<historical>",
+		"noCheckAdd:" : "<historical>",
+		"remove:ifAbsent:" : "<historical>",
+		"scanFor:" : "<historical>",
+		"size" : "<historical>",
+		"swap:with:" : "<historical>",
+		"withArray:" : "<historical>" } }

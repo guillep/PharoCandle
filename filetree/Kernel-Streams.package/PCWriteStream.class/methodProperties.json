@@ -1,13 +1,12 @@
 {
+	"class" : {
+		 },
 	"instance" : {
-		"on:" : "<historical>",
+		"contents" : "<historical>",
 		"nextPut:" : "<historical>",
 		"nextPutAll:" : "<historical>",
-		"size" : "<historical>",
-		"position:" : "<historical>",
-		"space" : "<historical>",
+		"on:" : "<historical>",
 		"pastEndPut:" : "<historical>",
-		"contents" : "<historical>"
-	},
-	"class" : { }
-}
+		"position:" : "<historical>",
+		"size" : "<historical>",
+		"space" : "<historical>" } }

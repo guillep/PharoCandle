@@ -1,4 +1,4 @@
-
+as yet unclassified
 peek
 	"Answer the next object without advancing my position. Answer nil if there are no more elements."
 

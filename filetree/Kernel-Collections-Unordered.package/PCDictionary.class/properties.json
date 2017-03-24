@@ -1,11 +1,14 @@
 {
-	"commentStamp" : "",
-	"super" : "PCSet",
 	"category" : "Kernel-Collections-Unordered",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
-	"instvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
 	"name" : "PCDictionary",
-	"type" : "normal"
-}
+	"pools" : [
+		 ],
+	"super" : "PCSet",
+	"type" : "normal" }

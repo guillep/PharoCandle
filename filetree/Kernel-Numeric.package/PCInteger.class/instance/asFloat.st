@@ -1,4 +1,4 @@
-
+as yet unclassified
 asFloat
 	"Answer a Float that represents the value of the receiver.
 	Optimized to process only the significant digits of a LargeInteger."

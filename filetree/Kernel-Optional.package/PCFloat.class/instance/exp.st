@@ -1,4 +1,4 @@
-
+as yet unclassified
 exp
 	"Answer E raised to the receiver power.
 	 Optional. See Object documentation whatIsAPrimitive."

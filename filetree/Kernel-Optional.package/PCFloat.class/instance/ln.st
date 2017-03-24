@@ -1,4 +1,4 @@
-
+as yet unclassified
 ln
 	"Answer the natural logarithm of the receiver.
 	 Optional. See Object documentation whatIsAPrimitive."
@@ -16,8 +16,7 @@ ln
 	x := x negated.	"x <= 0"
 	eps := Epsilon * (n abs + 1.0).
 	[ delta > eps ]
-		whileTrue: [ "pass one: delta is positive"
-			div := div + 1.0.
+		whileTrue: [ div := div + 1.0.
 			pow := pow * x.
 			delta := pow / div.
 			sum := sum + delta.	"pass two: delta is negative"
@@ -25,4 +24,5 @@ ln
 			pow := pow * x.
 			delta := pow / div.
 			sum := sum + delta ].
+	"pass one: delta is positive"
 	^ n + sum	"2.718284 ln 1.0"

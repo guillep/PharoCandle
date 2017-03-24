@@ -1,4 +1,4 @@
-
+as yet unclassified
 isEmpty
 	"Answer whether the receiver contains any elements."
 

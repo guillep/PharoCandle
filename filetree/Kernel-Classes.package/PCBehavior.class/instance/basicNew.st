@@ -1,4 +1,4 @@
-
+as yet unclassified
 basicNew
 	"Primitive. Answer an instance of the receiver (which is a class) with no indexable fields. Fail if the class is variable-sized. Essential. See Object documentation whatIsAPrimitive."
 

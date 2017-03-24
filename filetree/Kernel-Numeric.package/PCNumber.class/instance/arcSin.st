@@ -1,4 +1,4 @@
-
+as yet unclassified
 arcSin
 	"The receiver is the sine of an angle. Answer the angle measured in 
 	radians."

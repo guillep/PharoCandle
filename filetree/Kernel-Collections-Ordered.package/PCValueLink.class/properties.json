@@ -1,14 +1,15 @@
 {
-	"commentStamp" : "",
-	"super" : "PCObject",
 	"category" : "Kernel-Collections-Ordered",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
 	"instvars" : [
 		"nextLink",
-		"value"
-	],
+		"value" ],
 	"name" : "PCValueLink",
-	"type" : "normal"
-}
+	"pools" : [
+		 ],
+	"super" : "PCObject",
+	"type" : "normal" }

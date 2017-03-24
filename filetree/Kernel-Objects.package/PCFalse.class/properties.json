@@ -1,11 +1,14 @@
 {
-	"commentStamp" : "",
-	"super" : "PCTrue",
 	"category" : "Kernel-Objects",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
-	"instvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
 	"name" : "PCFalse",
-	"type" : "normal"
-}
+	"pools" : [
+		 ],
+	"super" : "PCTrue",
+	"type" : "normal" }

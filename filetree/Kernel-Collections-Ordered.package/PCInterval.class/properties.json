@@ -1,15 +1,16 @@
 {
-	"commentStamp" : "",
-	"super" : "PCSequenceableCollection",
 	"category" : "Kernel-Collections-Ordered",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
 	"instvars" : [
 		"start",
 		"stop",
-		"step"
-	],
+		"step" ],
 	"name" : "PCInterval",
-	"type" : "normal"
-}
+	"pools" : [
+		 ],
+	"super" : "PCSequenceableCollection",
+	"type" : "normal" }

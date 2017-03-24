@@ -1,4 +1,4 @@
-
+as yet unclassified
 bitOr: arg
 	"Primitive. Answer an Integer whose bits are the logical OR of the
 	receiver's bits and those of the argument, arg.

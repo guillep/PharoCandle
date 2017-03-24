@@ -1,15 +1,13 @@
 {
+	"class" : {
+		"key:value:" : "<historical>" },
 	"instance" : {
-		"value" : "<historical>",
-		"value:" : "<historical>",
-		"printOn:" : "<historical>",
+		"<" : "<historical>",
 		"=" : "<historical>",
 		"hash" : "<historical>",
 		"key" : "<historical>",
-		"<" : "<historical>",
-		"key:" : "<historical>"
-	},
-	"class" : {
-		"key:" : "<historical>"
-	}
-}
+		"key:" : "<historical>",
+		"key:value:" : "<historical>",
+		"printOn:" : "<historical>",
+		"value" : "<historical>",
+		"value:" : "<historical>" } }

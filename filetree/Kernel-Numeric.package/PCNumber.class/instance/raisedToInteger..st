@@ -1,4 +1,4 @@
-
+as yet unclassified
 raisedToInteger: anInteger
 	"Answer the receiver raised to the power anInteger where the argument 
 	must be a kind of Integer. This is a special case of raisedTo:."

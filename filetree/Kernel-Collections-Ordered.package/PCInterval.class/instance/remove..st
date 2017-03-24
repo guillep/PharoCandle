@@ -1,4 +1,4 @@
-
+as yet unclassified
 remove: newObject
 	"Removing from an Interval is not allowed."
 

@@ -1,4 +1,4 @@
-
+as yet unclassified
 nextPutAll: aCollection
 	"Write the elements of the given collection starting at my current position. Answer the collection."
 
@@ -10,11 +10,11 @@ nextPutAll: aCollection
 			^ aCollection ].
 	newEnd := position + aCollection size.
 	newEnd > writeLimit
-		ifTrue: [ "grow my collection if necessary"
-			collection := collection
+		ifTrue: [ collection := collection
 				,
 					(collection species
 						new: newEnd - writeLimit + (collection size max: 20)).
 			writeLimit := collection size ].
+	"grow my collection if necessary"
 	collection replaceFrom: position + 1 to: newEnd with: aCollection.
 	position := newEnd

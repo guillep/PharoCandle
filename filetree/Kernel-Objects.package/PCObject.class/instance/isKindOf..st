@@ -1,4 +1,4 @@
-
+as yet unclassified
 isKindOf: aClass
 	"Answer whether the class, aClass, is a superclass or class of the receiver."
 

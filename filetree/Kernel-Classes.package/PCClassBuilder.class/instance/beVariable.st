@@ -1,3 +1,3 @@
-
+as yet unclassified
 beVariable
-	^ formats := #(variable pointers)
+	^ formats := #(#variable #pointers)

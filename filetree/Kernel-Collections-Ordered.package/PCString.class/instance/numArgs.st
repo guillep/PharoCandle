@@ -1,4 +1,4 @@
-
+as yet unclassified
 numArgs
 	"Answer the number of arguments that the receiver would take considered as a selector or -1 if it couldn't be a selector."
 

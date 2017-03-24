@@ -1,11 +1,10 @@
 {
+	"class" : {
+		 },
 	"instance" : {
-		"printOn:" : "<historical>",
-		"hash" : "<historical>",
 		"asArray" : "<historical>",
 		"asDictionary" : "<historical>",
 		"elementsExchangeIdentityWith:" : "<historical>",
-		"replaceFrom:" : "<historical>"
-	},
-	"class" : { }
-}
+		"hash" : "<historical>",
+		"printOn:" : "<historical>",
+		"replaceFrom:to:with:startingAt:" : "<historical>" } }

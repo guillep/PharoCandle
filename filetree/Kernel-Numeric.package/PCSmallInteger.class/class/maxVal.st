@@ -1,4 +1,4 @@
-
+as yet unclassified
 maxVal
 	"Answer the maximum value for a SmallInteger."
 

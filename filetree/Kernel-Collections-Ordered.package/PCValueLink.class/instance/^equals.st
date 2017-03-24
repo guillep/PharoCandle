@@ -1,4 +1,4 @@
-
+as yet unclassified
 = anotherObject
 	^ self species == anotherObject species
 		and: [ self value = anotherObject value

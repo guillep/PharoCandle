@@ -1,4 +1,4 @@
-
+as yet unclassified
 name
 	"Answer a String that names the receiver as well possible. Overridden by my subclasses."
 

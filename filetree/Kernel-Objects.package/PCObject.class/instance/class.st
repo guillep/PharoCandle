@@ -1,4 +1,4 @@
-
+as yet unclassified
 class
 	"Primitive. Answer the object which is the receiver's class. Essential. See Object documentation whatIsAPrimitive."
 

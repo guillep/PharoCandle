@@ -1,4 +1,4 @@
-
+as yet unclassified
 exponent
 	"Primitive. Consider the receiver to be represented as a power of two
 	multiplied by a mantissa (between one and two). Answer with the

@@ -1,4 +1,4 @@
-
+as yet unclassified
 isDigit
 	"Answer whether the receiver is a digit."
 

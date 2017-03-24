@@ -1,4 +1,4 @@
-
+as yet unclassified
 benchmark
 	"Handy bytecode-heavy benchmark"
 

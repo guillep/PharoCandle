@@ -1,4 +1,4 @@
-
+as yet unclassified
 removeLast
 	"Remove the receiver's last element and answer it. If the receiver is 
 	empty, create an error notification."

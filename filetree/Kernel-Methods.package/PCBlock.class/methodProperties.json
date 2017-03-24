@@ -1,17 +1,17 @@
 {
+	"class" : {
+		 },
 	"instance" : {
-		"outerContext" : "<historical>",
-		"numCopiedValues" : "<historical>",
-		"numArgs" : "<historical>",
-		"value" : "<historical>",
-		"value:" : "<historical>",
 		"asContext" : "<historical>",
-		"ifError:" : "<historical>",
 		"asContextWithSender:" : "<historical>",
+		"home" : "<historical>",
+		"ifError:" : "<historical>",
 		"method" : "<historical>",
 		"msecs" : "<historical>",
-		"home" : "<historical>",
-		"valueWithArguments:" : "<historical>"
-	},
-	"class" : { }
-}
+		"numArgs" : "<historical>",
+		"numCopiedValues" : "<historical>",
+		"outerContext" : "<historical>",
+		"value" : "<historical>",
+		"value:" : "<historical>",
+		"value:value:" : "<historical>",
+		"valueWithArguments:" : "<historical>" } }

@@ -1,4 +1,4 @@
-
+as yet unclassified
 initFrom: aString
 	"Warning! Use only to initialize new Symbols. Symbols are assumed to be immutable there after."
 

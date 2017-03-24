@@ -1,4 +1,4 @@
-
+as yet unclassified
 abs
 	"This is faster than using Number abs."
 

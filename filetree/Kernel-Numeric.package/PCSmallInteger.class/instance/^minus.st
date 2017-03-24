@@ -1,4 +1,4 @@
-
+as yet unclassified
 - aNumber
 	"Primitive. Subtract the argument from the receiver and answer with the
 	result if it is a SmallInteger. Fail if the argument or the result is not a

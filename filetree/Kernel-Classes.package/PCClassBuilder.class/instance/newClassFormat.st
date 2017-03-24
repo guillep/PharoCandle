@@ -1,4 +1,4 @@
-
+as yet unclassified
 newClassFormat
 	"<2 bits of size><5 bits of compact class index><4 bits of inst spec><6 bits of size><1 bit with a 0>"
 

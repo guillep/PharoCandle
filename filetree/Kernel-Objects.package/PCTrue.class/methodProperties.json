@@ -1,16 +1,14 @@
 {
+	"class" : {
+		"new" : "<historical>" },
 	"instance" : {
-		"ifTrue:" : "<historical>",
+		"&" : "<historical>",
 		"and:" : "<historical>",
+		"basicCopy" : "<historical>",
+		"ifFalse:" : "<historical>",
+		"ifTrue:" : "<historical>",
+		"ifTrue:ifFalse:" : "<historical>",
 		"not" : "<historical>",
 		"or:" : "<historical>",
 		"printOn:" : "<historical>",
-		"|" : "<historical>",
-		"ifFalse:" : "<historical>",
-		"&" : "<historical>",
-		"basicCopy" : "<historical>"
-	},
-	"class" : {
-		"new" : "<historical>"
-	}
-}
+		"|" : "<historical>" } }

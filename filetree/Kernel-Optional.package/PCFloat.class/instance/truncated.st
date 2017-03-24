@@ -1,4 +1,4 @@
-
+as yet unclassified
 truncated
 	"Answer with a SmallInteger equal to the value of the receiver without 
 	its fractional part. The primitive fails if the truncated value cannot be 
@@ -10,7 +10,7 @@ truncated
 	(self isInfinite or: [ self isNaN ])
 		ifTrue: [ self error: 'Cannot truncate this number' ].
 	self abs < 2.0e16
-		ifTrue: [ "Fastest way when it may not be an integer"
-			^ (self quo: 1073741823.0) * 1073741823
+		ifTrue: [ ^ (self quo: 1073741823.0) * 1073741823
 				+ (self rem: 1073741823.0) truncated ]
 		ifFalse: [ ^ self error: 'not yet implemented' ]
+	"Fastest way when it may not be an integer"

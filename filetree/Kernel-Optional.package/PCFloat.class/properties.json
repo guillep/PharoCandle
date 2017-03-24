@@ -1,9 +1,7 @@
 {
-	"commentStamp" : "",
-	"super" : "PCNumber",
 	"category" : "Kernel-Optional",
-	"classinstvars" : [ ],
-	"pools" : [ ],
+	"classinstvars" : [
+		 ],
 	"classvars" : [
 		"Epsilon",
 		"RadiansPerDegree",
@@ -20,9 +18,12 @@
 		"MinValLogBase2",
 		"Pi",
 		"E",
-		"Sqrt2"
-	],
-	"instvars" : [ ],
+		"Sqrt2" ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
 	"name" : "PCFloat",
-	"type" : "words"
-}
+	"pools" : [
+		 ],
+	"super" : "PCNumber",
+	"type" : "words" }

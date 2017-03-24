@@ -1,3 +1,3 @@
-
+as yet unclassified
 beWords
-	^ formats := #(variable words)
+	^ formats := #(#variable #words)

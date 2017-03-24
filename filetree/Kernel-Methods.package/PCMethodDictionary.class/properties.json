@@ -1,11 +1,14 @@
 {
-	"commentStamp" : "",
-	"super" : "PCDictionary",
 	"category" : "Kernel-Methods",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
-	"instvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
 	"name" : "PCMethodDictionary",
-	"type" : "normal"
-}
+	"pools" : [
+		 ],
+	"super" : "PCDictionary",
+	"type" : "normal" }

@@ -1,4 +1,4 @@
-
+as yet unclassified
 degrees
 	"Answer the angle the receiver makes with origin in degrees. Right is 0; down is 90."
 

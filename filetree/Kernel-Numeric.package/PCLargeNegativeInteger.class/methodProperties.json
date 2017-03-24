@@ -1,11 +1,10 @@
 {
+	"class" : {
+		 },
 	"instance" : {
-		"printOn:" : "<historical>",
 		"abs" : "<historical>",
 		"negated" : "<historical>",
 		"negative" : "<historical>",
 		"normalize" : "<historical>",
-		"sign" : "<historical>"
-	},
-	"class" : { }
-}
+		"printOn:base:" : "<historical>",
+		"sign" : "<historical>" } }

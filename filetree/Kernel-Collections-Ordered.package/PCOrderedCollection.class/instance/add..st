@@ -1,4 +1,4 @@
-
+as yet unclassified
 add: newObject
 	"Append newObject to me. Equivalent to addLast:. Answer newObject."
 

@@ -1,4 +1,4 @@
-
+as yet unclassified
 isInteger
 	"True for all subclasses of Integer."
 

@@ -1,4 +1,4 @@
-
+as yet unclassified
 = aNumber
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is equal to the argument. Otherwise answer false. Fail if the

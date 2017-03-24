@@ -1,4 +1,4 @@
-
+as yet unclassified
 makeRoomAtFirst
 	| delta index |
 	delta := array size - self size.

@@ -1,4 +1,4 @@
-
+as yet unclassified
 size
 	"Primitive. Answer the number of indexable fields in the receiver. This
 	value is the same as the largest legal subscript. Essential. See Object

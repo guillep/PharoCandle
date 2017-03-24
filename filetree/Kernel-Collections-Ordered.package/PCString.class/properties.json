@@ -1,16 +1,17 @@
 {
-	"commentStamp" : "",
-	"super" : "PCArrayedCollection",
 	"category" : "Kernel-Collections-Ordered",
-	"classinstvars" : [ ],
-	"pools" : [ ],
+	"classinstvars" : [
+		 ],
 	"classvars" : [
 		"CaseSensitiveOrder",
 		"CaseInsensitiveOrder",
 		"LowercasingTable",
-		"AsciiOrder"
-	],
-	"instvars" : [ ],
+		"AsciiOrder" ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
 	"name" : "PCString",
-	"type" : "bytes"
-}
+	"pools" : [
+		 ],
+	"super" : "PCArrayedCollection",
+	"type" : "bytes" }

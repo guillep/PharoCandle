@@ -1,4 +1,4 @@
-
+as yet unclassified
 getVMParameters
 	"Answer an Array containing the current values of the VM's internal parameter and statistics registers. The same primitive can be called with one integer argument to read a specific parameter and with two parameters to set a writable parameter, although these variations may not be implemented. Optional."
 

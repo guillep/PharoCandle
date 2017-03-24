@@ -1,4 +1,4 @@
-
+as yet unclassified
 instSize
 	"Answer the number of named instance variables of the receiver. Objects can have up to 255 instance variables."
 

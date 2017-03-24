@@ -1,4 +1,4 @@
-
+as yet unclassified
 hashMultiply
 	| low |
 	low := self bitAnd: 16383.

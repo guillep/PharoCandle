@@ -1,10 +1,11 @@
-
+as yet unclassified
 raisedTo: aNumber
 	"Answer the receiver raised to aNumber."
 
 	aNumber isInteger
 		ifTrue:
-			[ "Do the special case of integer power" ^ self raisedToInteger: aNumber ].
+			[ ^ self raisedToInteger: aNumber ].
+	"Do the special case of integer power"
 	aNumber = 0
 		ifTrue: [ ^ 1 ].	"Special case of exponent=0"
 	aNumber = 1

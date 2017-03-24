@@ -1,4 +1,4 @@
-
+as yet unclassified
 printStringBase: base
 	| stream |
 	stream := PCWriteStream on: (PCString new: 100).

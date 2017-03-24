@@ -1,4 +1,4 @@
-
+as yet unclassified
 , otherCollection
 	"Concatenate two Strings or Collections."
 

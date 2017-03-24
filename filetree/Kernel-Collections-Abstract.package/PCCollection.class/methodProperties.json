@@ -1,24 +1,24 @@
 {
-	"instance" : {
-		"do:" : "<historical>",
-		"asByteArray" : "<historical>",
-		"detect:" : "<historical>",
-		"asArray" : "<historical>",
-		"add:" : "<historical>",
-		"isEmpty" : "<historical>",
-		"select:" : "<historical>",
-		"remove:" : "<historical>",
-		"asSet" : "<historical>",
-		"includes:" : "<historical>",
-		"printOn:" : "<historical>",
-		"size" : "<historical>",
-		"sum" : "<historical>",
-		"errorNotFound" : "<historical>",
-		"errorEmptyCollection" : "<historical>",
-		"collect:" : "<historical>",
-		"emptyCheck" : "<historical>"
-	},
 	"class" : {
-		"with:" : "<historical>"
-	}
-}
+		"with:" : "<historical>",
+		"with:with:" : "<historical>",
+		"with:with:with:" : "<historical>" },
+	"instance" : {
+		"add:" : "<historical>",
+		"asArray" : "<historical>",
+		"asByteArray" : "<historical>",
+		"asSet" : "<historical>",
+		"collect:" : "<historical>",
+		"detect:ifNone:" : "<historical>",
+		"do:" : "<historical>",
+		"emptyCheck" : "<historical>",
+		"errorEmptyCollection" : "<historical>",
+		"errorNotFound" : "<historical>",
+		"includes:" : "<historical>",
+		"isEmpty" : "<historical>",
+		"printOn:" : "<historical>",
+		"remove:" : "<historical>",
+		"remove:ifAbsent:" : "<historical>",
+		"select:" : "<historical>",
+		"size" : "<historical>",
+		"sum" : "<historical>" } }

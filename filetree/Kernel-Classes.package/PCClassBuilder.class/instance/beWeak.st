@@ -1,3 +1,3 @@
-
+as yet unclassified
 beWeak
-	^ formats := #(weak variable pointers)
+	^ formats := #(#weak #variable #pointers)

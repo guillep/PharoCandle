@@ -1,4 +1,4 @@
-
+as yet unclassified
 digitLength
 	"Answer the number of indexable fields in the receiver. This value is the 
 	same as the largest legal subscript. Included so that a SmallInteger can 

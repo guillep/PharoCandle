@@ -1,4 +1,4 @@
-
+as yet unclassified
 highBit
 	"Answer the index of the high order bit of the receiver, or zero if the receiver is zero. This method is allowed (and needed) for LargeNegativeIntegers as well, since LargeIntegers are sign/magnitude."
 

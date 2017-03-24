@@ -1,4 +1,4 @@
-
+as yet unclassified
 basicCopy
 	"Answer a copy of the receiver that shares the receiver's instance variables. This is usually handled by the primitive, so the code below is for documentation."
 

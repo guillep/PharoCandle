@@ -1,4 +1,4 @@
-
+as yet unclassified
 asByteArray
 	"Answer a ByteArray containing my elements."
 

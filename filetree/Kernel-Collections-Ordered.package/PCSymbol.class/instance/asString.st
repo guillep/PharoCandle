@@ -1,4 +1,4 @@
-
+as yet unclassified
 asString
 	"Answer a string containing my characters."
 

@@ -1,13 +1,13 @@
 {
+	"class" : {
+		 },
 	"instance" : {
-		"ifTrue:" : "<historical>",
-		"not" : "<historical>",
-		"printOn:" : "<historical>",
-		"or:" : "<historical>",
-		"|" : "<historical>",
-		"ifFalse:" : "<historical>",
 		"&" : "<historical>",
-		"and:" : "<historical>"
-	},
-	"class" : { }
-}
+		"and:" : "<historical>",
+		"ifFalse:" : "<historical>",
+		"ifTrue:" : "<historical>",
+		"ifTrue:ifFalse:" : "<historical>",
+		"not" : "<historical>",
+		"or:" : "<historical>",
+		"printOn:" : "<historical>",
+		"|" : "<historical>" } }

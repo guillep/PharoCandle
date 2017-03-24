@@ -1,4 +1,4 @@
-
+as yet unclassified
 bitShift: anInteger
 	"Primitive. Answer an Integer whose value (in twos-complement 
 	representation) is the receiver's value (in twos-complement

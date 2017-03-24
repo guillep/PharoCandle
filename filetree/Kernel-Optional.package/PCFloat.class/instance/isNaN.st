@@ -1,4 +1,4 @@
-
+as yet unclassified
 isNaN
 	"simple, byte-order independent test for Not-a-Number"
 

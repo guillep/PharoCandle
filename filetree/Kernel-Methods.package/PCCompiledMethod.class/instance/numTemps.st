@@ -1,4 +1,4 @@
-
+as yet unclassified
 numTemps
 	"Answer the number of temporary variables used by this method."
 

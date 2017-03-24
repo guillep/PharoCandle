@@ -1,4 +1,4 @@
-
+as yet unclassified
 < aNumber
 	aNumber isInteger
 		ifTrue: [ self negative == aNumber negative

@@ -1,4 +1,4 @@
-
+as yet unclassified
 quo: aNumber
 	"Refer to the comment in Number quo: "
 

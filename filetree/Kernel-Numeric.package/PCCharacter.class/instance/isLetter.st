@@ -1,4 +1,4 @@
-
+as yet unclassified
 isLetter
 	"Answer whether the receiver is a letter."
 

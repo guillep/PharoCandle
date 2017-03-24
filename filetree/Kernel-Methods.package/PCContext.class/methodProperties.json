@@ -1,10 +1,7 @@
 {
+	"class" : {
+		"newForMethod:" : "<historical>" },
 	"instance" : {
 		"blockCopy:" : "<historical>",
-		"sender" : "<historical>",
-		"isContextPart" : "<historical>"
-	},
-	"class" : {
-		"newForMethod:" : "<historical>"
-	}
-}
+		"isContextPart" : "<historical>",
+		"sender" : "<historical>" } }

@@ -1,4 +1,4 @@
-
+as yet unclassified
 frameSize
 	"Answer the size of temporary frame needed to run the receiver."
 

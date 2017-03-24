@@ -1,4 +1,4 @@
-
+as yet unclassified
 < anInteger
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is less than the argument. Otherwise answer false. Fail if the

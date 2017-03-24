@@ -1,4 +1,4 @@
-
+as yet unclassified
 asByteArray
 	"Answer a ByteArray containing the ASCII values of my characters. Uses a fast primitive that avoids character conversion."
 

@@ -1,20 +1,18 @@
 {
-	"instance" : {
-		"do:" : "<historical>",
-		"associationsDo:" : "<historical>",
-		"copy" : "<historical>",
-		"add:" : "<historical>",
-		"includesKey:" : "<historical>",
-		"removeKey:" : "<historical>",
-		"at:" : "<historical>",
-		"keyAtIdentityValue:" : "<historical>",
-		"grow" : "<historical>",
-		"scanFor:" : "<historical>",
-		"keysDo:" : "<historical>",
-		"swap:" : "<historical>",
-		"keyAt:" : "<historical>"
-	},
 	"class" : {
-		"new:" : "<historical>"
-	}
-}
+		"new:" : "<historical>" },
+	"instance" : {
+		"add:" : "<historical>",
+		"associationsDo:" : "<historical>",
+		"at:ifAbsent:" : "<historical>",
+		"at:put:" : "<historical>",
+		"copy" : "<historical>",
+		"do:" : "<historical>",
+		"grow" : "<historical>",
+		"includesKey:" : "<historical>",
+		"keyAt:" : "<historical>",
+		"keyAtIdentityValue:ifAbsent:" : "<historical>",
+		"keysDo:" : "<historical>",
+		"removeKey:ifAbsent:" : "<historical>",
+		"scanFor:" : "<historical>",
+		"swap:with:" : "<historical>" } }

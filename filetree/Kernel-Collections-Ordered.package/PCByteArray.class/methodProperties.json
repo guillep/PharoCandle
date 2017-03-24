@@ -1,8 +1,7 @@
 {
+	"class" : {
+		 },
 	"instance" : {
-		"replaceFrom:" : "<historical>",
+		"asByteArray" : "<historical>",
 		"asString" : "<historical>",
-		"asByteArray" : "<historical>"
-	},
-	"class" : { }
-}
+		"replaceFrom:to:with:startingAt:" : "<historical>" } }

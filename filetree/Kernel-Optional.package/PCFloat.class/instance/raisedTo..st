@@ -1,4 +1,4 @@
-
+as yet unclassified
 raisedTo: aNumber
 	"Answer the receiver raised to aNumber."
 

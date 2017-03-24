@@ -1,4 +1,4 @@
-
+as yet unclassified
 sum
 	"Answer the sum of the elements of this collection. If the collection is empty, answer zero."
 

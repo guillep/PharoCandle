@@ -1,4 +1,4 @@
-
+as yet unclassified
 ifError: errorHandlerBlock
 	"Evaluate the block represented by the receiver. If an error occurs the given handler block is evaluated. The handler block can be either a zero- or two-argument block; if the latter, then the error message and receiver are supplied to it as parameters. Answer the value returned by the handler block if the receiver gets an error."
 

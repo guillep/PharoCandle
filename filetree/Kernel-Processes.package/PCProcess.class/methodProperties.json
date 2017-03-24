@@ -1,19 +1,16 @@
 {
+	"class" : {
+		"for:priority:" : "<historical>" },
 	"instance" : {
-		"suspendedContext" : "<historical>",
-		"initSuspendedContext:" : "<historical>",
-		"terminate" : "<historical>",
-		"nextLink:" : "<historical>",
 		"errorHandler" : "<historical>",
+		"errorHandler:" : "<historical>",
+		"initSuspendedContext:" : "<historical>",
 		"nextLink" : "<historical>",
-		"suspend" : "<historical>",
-		"priority" : "<historical>",
+		"nextLink:" : "<historical>",
 		"printOn:" : "<historical>",
+		"priority" : "<historical>",
 		"priority:" : "<historical>",
 		"resume" : "<historical>",
-		"errorHandler:" : "<historical>"
-	},
-	"class" : {
-		"for:" : "<historical>"
-	}
-}
+		"suspend" : "<historical>",
+		"suspendedContext" : "<historical>",
+		"terminate" : "<historical>" } }

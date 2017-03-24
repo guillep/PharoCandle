@@ -1,4 +1,4 @@
-
+as yet unclassified
 bitXor: arg
 	"Primitive. Answer an Integer whose bits are the logical XOR of the
 	receiver's bits and those of the argument, arg.

@@ -1,13 +1,11 @@
 {
-	"instance" : {
-		"printOn:" : "<historical>",
-		"ifNotNil:" : "<historical>",
-		"ifNil:" : "<historical>",
-		"subclass:" : "<historical>",
-		"isNil" : "<historical>",
-		"basicCopy" : "<historical>"
-	},
 	"class" : {
-		"new" : "<historical>"
-	}
-}
+		"new" : "<historical>" },
+	"instance" : {
+		"basicCopy" : "<historical>",
+		"ifNil:" : "<historical>",
+		"ifNil:ifNotNil:" : "<historical>",
+		"ifNotNil:" : "<historical>",
+		"isNil" : "<historical>",
+		"printOn:" : "<historical>",
+		"subclass:instanceVariableNames:classVariableNames:" : "<historical>" } }

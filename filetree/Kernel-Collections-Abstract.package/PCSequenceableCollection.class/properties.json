@@ -1,11 +1,14 @@
 {
-	"commentStamp" : "",
-	"super" : "PCCollection",
 	"category" : "Kernel-Collections-Abstract",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
-	"instvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
 	"name" : "PCSequenceableCollection",
-	"type" : "normal"
-}
+	"pools" : [
+		 ],
+	"super" : "PCCollection",
+	"type" : "normal" }

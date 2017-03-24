@@ -1,4 +1,4 @@
-
+as yet unclassified
 makeRoomAtLast
 	| newLast delta |
 	newLast := self size.

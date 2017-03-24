@@ -1,12 +1,12 @@
 {
+	"class" : {
+		 },
 	"instance" : {
+		"frameSize" : "<historical>",
+		"header" : "<historical>",
 		"initialPC" : "<historical>",
 		"isCompiledMethod" : "<historical>",
+		"numLiterals" : "<historical>",
 		"numTemps" : "<historical>",
 		"objectAt:" : "<historical>",
-		"numLiterals" : "<historical>",
-		"frameSize" : "<historical>",
-		"header" : "<historical>"
-	},
-	"class" : { }
-}
+		"objectAt:put:" : "<historical>" } }

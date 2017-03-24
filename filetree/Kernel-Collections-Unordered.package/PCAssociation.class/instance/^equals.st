@@ -1,4 +1,4 @@
-
+as yet unclassified
 = anAssociation
 	"True if the receiver and argument have equal keys."
 

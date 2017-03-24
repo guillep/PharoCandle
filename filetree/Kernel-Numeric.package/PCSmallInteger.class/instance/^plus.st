@@ -1,4 +1,4 @@
-
+as yet unclassified
 + aNumber
 	"Primitive. Add the receiver to the argument and answer with the result
 	if it is a SmallInteger. Fail if the argument or the result is not a

@@ -1,18 +1,17 @@
 {
+	"class" : {
+		 },
 	"instance" : {
+		"clipX:y:width:height:" : "<historical>",
 		"copyBits" : "<historical>",
-		"clipX:" : "<historical>",
-		"rule:" : "<historical>",
-		"fillWords" : "<historical>",
-		"destX:" : "<historical>",
-		"initialize" : "<historical>",
 		"copyBitsTranslucent:" : "<historical>",
 		"destForm:" : "<historical>",
-		"width:" : "<historical>",
-		"sourceX:" : "<historical>",
-		"fillR:" : "<historical>",
+		"destX:y:width:height:" : "<historical>",
+		"fillR:g:b:" : "<historical>",
+		"fillWords" : "<historical>",
+		"fillWords:" : "<historical>",
+		"initialize" : "<historical>",
+		"rule:" : "<historical>",
 		"sourceForm:" : "<historical>",
-		"fillWords:" : "<historical>"
-	},
-	"class" : { }
-}
+		"sourceX:y:" : "<historical>",
+		"width:height:" : "<historical>" } }

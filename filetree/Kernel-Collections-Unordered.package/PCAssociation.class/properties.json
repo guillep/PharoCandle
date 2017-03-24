@@ -1,14 +1,15 @@
 {
-	"commentStamp" : "",
-	"super" : "PCMagnitude",
 	"category" : "Kernel-Collections-Unordered",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
 	"instvars" : [
 		"key",
-		"value"
-	],
+		"value" ],
 	"name" : "PCAssociation",
-	"type" : "normal"
-}
+	"pools" : [
+		 ],
+	"super" : "PCMagnitude",
+	"type" : "normal" }

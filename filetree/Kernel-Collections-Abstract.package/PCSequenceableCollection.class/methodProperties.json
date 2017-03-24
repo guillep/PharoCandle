@@ -1,22 +1,23 @@
 {
+	"class" : {
+		 },
 	"instance" : {
-		"do:" : "<historical>",
-		"replaceFrom:" : "<historical>",
-		"asArray" : "<historical>",
 		"," : "<historical>",
-		"copyWith:" : "<historical>",
 		"=" : "<historical>",
-		"at:" : "<historical>",
+		"asArray" : "<historical>",
+		"at:ifAbsent:" : "<historical>",
+		"collect:" : "<historical>",
+		"copyFrom:to:" : "<historical>",
+		"copyReplaceFrom:to:with:" : "<historical>",
+		"copyWith:" : "<historical>",
+		"do:" : "<historical>",
 		"first" : "<historical>",
-		"remove:" : "<historical>",
+		"indexOf:ifAbsent:" : "<historical>",
+		"indexOf:startingAt:ifAbsent:" : "<historical>",
+		"last" : "<historical>",
+		"remove:ifAbsent:" : "<historical>",
+		"replaceFrom:to:with:" : "<historical>",
+		"replaceFrom:to:with:startingAt:" : "<historical>",
 		"select:" : "<historical>",
 		"size" : "<historical>",
-		"last" : "<historical>",
-		"copyReplaceFrom:" : "<historical>",
-		"copyFrom:" : "<historical>",
-		"swap:" : "<historical>",
-		"collect:" : "<historical>",
-		"indexOf:" : "<historical>"
-	},
-	"class" : { }
-}
+		"swap:with:" : "<historical>" } }

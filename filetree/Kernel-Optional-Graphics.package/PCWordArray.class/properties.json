@@ -1,11 +1,14 @@
 {
-	"commentStamp" : "",
-	"super" : "PCArrayedCollection",
 	"category" : "Kernel-Optional-Graphics",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
-	"instvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
 	"name" : "PCWordArray",
-	"type" : "words"
-}
+	"pools" : [
+		 ],
+	"super" : "PCArrayedCollection",
+	"type" : "words" }

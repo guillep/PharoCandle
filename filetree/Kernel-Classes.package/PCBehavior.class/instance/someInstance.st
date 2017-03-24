@@ -1,4 +1,4 @@
-
+as yet unclassified
 someInstance
 	"Primitive. Answer the first instance in the enumeration of all instances of the receiver. Answer nil if there are none. Essential. See Object documentation whatIsAPrimitive."
 

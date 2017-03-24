@@ -1,4 +1,4 @@
-
+as yet unclassified
 reciprocal
 	"Answer 1 divided by the receiver. Create an error notification if the 
 	receiver is 0."

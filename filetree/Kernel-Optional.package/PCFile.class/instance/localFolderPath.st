@@ -1,4 +1,4 @@
-
+as yet unclassified
 localFolderPath
 	"Answer the path for the folder containing the image file."
 

@@ -1,11 +1,14 @@
 {
-	"commentStamp" : "",
-	"super" : "PCInteger",
 	"category" : "Kernel-Numeric",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
-	"instvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
 	"name" : "PCLargePositiveInteger",
-	"type" : "bytes"
-}
+	"pools" : [
+		 ],
+	"super" : "PCInteger",
+	"type" : "bytes" }

@@ -1,4 +1,4 @@
-
+as yet unclassified
 crossProduct: aPoint
 	"Answer a number that is the cross product of the receiver and the argument, aPoint."
 

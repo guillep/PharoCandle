@@ -1,24 +1,23 @@
 {
-	"instance" : { },
 	"class" : {
-		"primitiveGetSpecialObjectsArray" : "<historical>",
-		"tinyBenchmarks" : "<historical>",
-		"testNormalObject" : "<historical>",
-		"incrementalGarbageCollect" : "<historical>",
-		"specialObjectsArray:" : "<historical>",
-		"primKeyboardNext" : "<historical>",
-		"specialObjectsArray" : "<historical>",
+		"allObjectsDo:" : "<historical>",
+		"append:toFile:" : "<historical>",
+		"exitToDebugger" : "<historical>",
 		"garbageCollect" : "<historical>",
 		"getVMParameters" : "<historical>",
-		"quit" : "<historical>",
-		"log:" : "<historical>",
-		"exitToDebugger" : "<historical>",
-		"allObjectsDo:" : "<historical>",
-		"testByteObject" : "<historical>",
 		"getchar" : "<historical>",
-		"milliseconds" : "<historical>",
-		"append:" : "<historical>",
 		"graphicsTest" : "<historical>",
-		"start" : "<historical>"
-	}
-}
+		"incrementalGarbageCollect" : "<historical>",
+		"log:" : "<historical>",
+		"milliseconds" : "<historical>",
+		"primKeyboardNext" : "<historical>",
+		"primitiveGetSpecialObjectsArray" : "<historical>",
+		"quit" : "<historical>",
+		"specialObjectsArray" : "<historical>",
+		"specialObjectsArray:" : "<historical>",
+		"start" : "<historical>",
+		"testByteObject" : "<historical>",
+		"testNormalObject" : "<historical>",
+		"tinyBenchmarks" : "<historical>" },
+	"instance" : {
+		 } }

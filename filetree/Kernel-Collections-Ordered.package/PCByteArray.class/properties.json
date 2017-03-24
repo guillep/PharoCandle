@@ -1,11 +1,14 @@
 {
-	"commentStamp" : "",
-	"super" : "PCArrayedCollection",
 	"category" : "Kernel-Collections-Ordered",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
-	"instvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
 	"name" : "PCByteArray",
-	"type" : "bytes"
-}
+	"pools" : [
+		 ],
+	"super" : "PCArrayedCollection",
+	"type" : "bytes" }

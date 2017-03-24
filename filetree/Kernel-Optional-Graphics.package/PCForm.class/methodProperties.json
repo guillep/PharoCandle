@@ -1,20 +1,17 @@
 {
-	"instance" : {
-		"setColorR:" : "<historical>",
-		"bits" : "<historical>",
-		"beDisplayDepth:" : "<historical>",
-		"copyX:" : "<historical>",
-		"width" : "<historical>",
-		"setWidth:" : "<historical>",
-		"depth" : "<historical>",
-		"drawForm:" : "<historical>",
-		"height" : "<historical>",
-		"primScreenSize" : "<historical>",
-		"fillRectX:" : "<historical>"
-	},
 	"class" : {
 		"over" : "<historical>",
 		"paint" : "<historical>",
-		"width:" : "<historical>"
-	}
-}
+		"width:height:depth:" : "<historical>" },
+	"instance" : {
+		"beDisplayDepth:" : "<historical>",
+		"bits" : "<historical>",
+		"copyX:y:width:height:" : "<historical>",
+		"depth" : "<historical>",
+		"drawForm:x:y:rule:" : "<historical>",
+		"fillRectX:y:w:h:" : "<historical>",
+		"height" : "<historical>",
+		"primScreenSize" : "<historical>",
+		"setColorR:g:b:" : "<historical>",
+		"setWidth:height:depth:" : "<historical>",
+		"width" : "<historical>" } }

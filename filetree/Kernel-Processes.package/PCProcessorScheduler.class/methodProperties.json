@@ -1,14 +1,11 @@
 {
-	"instance" : {
-		"initProcessLists" : "<historical>",
-		"idleProcess" : "<historical>",
-		"activeProcess" : "<historical>",
-		"installIdleProcess" : "<historical>",
-		"highestPriority" : "<historical>",
-		"installStartProcess" : "<historical>",
-		"remove:" : "<historical>"
-	},
 	"class" : {
-		"new" : "<historical>"
-	}
-}
+		"new" : "<historical>" },
+	"instance" : {
+		"activeProcess" : "<historical>",
+		"highestPriority" : "<historical>",
+		"idleProcess" : "<historical>",
+		"initProcessLists" : "<historical>",
+		"installIdleProcess" : "<historical>",
+		"installStartProcess" : "<historical>",
+		"remove:ifAbsent:" : "<historical>" } }

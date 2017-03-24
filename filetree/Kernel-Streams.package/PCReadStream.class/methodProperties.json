@@ -1,18 +1,15 @@
 {
+	"class" : {
+		"on:" : "<historical>" },
 	"instance" : {
-		"next" : "<historical>",
-		"peekFor:" : "<historical>",
-		"peek" : "<historical>",
-		"on:" : "<historical>",
 		"atEnd" : "<historical>",
-		"skip:" : "<historical>",
+		"contents" : "<historical>",
+		"next" : "<historical>",
+		"next:" : "<historical>",
+		"on:" : "<historical>",
+		"peek" : "<historical>",
+		"peekFor:" : "<historical>",
+		"position" : "<historical>",
 		"position:" : "<historical>",
 		"size" : "<historical>",
-		"position" : "<historical>",
-		"contents" : "<historical>",
-		"next:" : "<historical>"
-	},
-	"class" : {
-		"on:" : "<historical>"
-	}
-}
+		"skip:" : "<historical>" } }

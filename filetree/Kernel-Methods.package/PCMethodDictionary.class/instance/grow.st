@@ -1,4 +1,4 @@
-
+as yet unclassified
 grow
 	| newSelf key |
 	newSelf := self species new: self basicSize.	"This will double the size"

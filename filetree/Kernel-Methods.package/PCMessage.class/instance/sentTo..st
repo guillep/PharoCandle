@@ -1,4 +1,4 @@
-
+as yet unclassified
 sentTo: anObject
 	"Answer the result of sending this message to the given object."
 

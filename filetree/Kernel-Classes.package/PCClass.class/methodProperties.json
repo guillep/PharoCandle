@@ -1,21 +1,20 @@
 {
+	"class" : {
+		 },
 	"instance" : {
-		"theNonMetaClass" : "<historical>",
-		"initFrom:" : "<historical>",
-		"name" : "<historical>",
-		"variableWordSubclass:" : "<historical>",
-		"classVariables:" : "<historical>",
-		"variableByteSubclass:" : "<historical>",
-		"subclass:" : "<historical>",
-		"name:" : "<historical>",
-		"weakSubclass:" : "<historical>",
 		"classSide" : "<historical>",
-		"instVarNames" : "<historical>",
-		"isMeta" : "<historical>",
-		"variableSubclass:" : "<historical>",
 		"classVariables" : "<historical>",
+		"classVariables:" : "<historical>",
+		"initFrom:methodDict:" : "<historical>",
+		"instVarNames" : "<historical>",
 		"instVarNames:" : "<historical>",
-		"newClassBuilderForSubclass:" : "<historical>"
-	},
-	"class" : { }
-}
+		"isMeta" : "<historical>",
+		"name" : "<historical>",
+		"name:" : "<historical>",
+		"newClassBuilderForSubclass:instanceVariableNames:classVariableNames:" : "<historical>",
+		"subclass:instanceVariableNames:classVariableNames:" : "<historical>",
+		"theNonMetaClass" : "<historical>",
+		"variableByteSubclass:instanceVariableNames:classVariableNames:" : "<historical>",
+		"variableSubclass:instanceVariableNames:classVariableNames:" : "<historical>",
+		"variableWordSubclass:instanceVariableNames:classVariableNames:" : "<historical>",
+		"weakSubclass:instanceVariableNames:classVariableNames:" : "<historical>" } }

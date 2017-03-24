@@ -1,4 +1,4 @@
-
+as yet unclassified
 normalize
 	"Check for leading zeroes and return shortened copy if so"
 
@@ -12,17 +12,17 @@ normalize
 	len <= sLen
 		ifTrue: [ minVal := PCSmallInteger minVal.
 			(len < sLen or: [ (self digitAt: sLen) < minVal lastDigit ])
-				ifTrue: [ "If high digit less, then can be small"
-					val := 0.
+				ifTrue: [ val := 0.
 					len to: 1 by: -1 do: [ :i | val := val * 256 - (self digitAt: i) ].
 					^ val ].
+			"If high digit less, then can be small"
 			1 to: sLen do: [ :i"If all digits same, then = minVal"
 				 | 
 				(self digitAt: i) = (minVal digitAt: i)
-					ifFalse: [ "Not so; return self shortened"
-						len < oldLen
+					ifFalse: [ len < oldLen
 							ifTrue: [ ^ self growto: len ]
-							ifFalse: [ ^ self ] ] ].
+							ifFalse: [ ^ self ] ]
+				"Not so; return self shortened" ].
 			^ minVal ].	"Return self, or a shortened copy"
 	len < oldLen
 		ifTrue: [ ^ self growto: len ]

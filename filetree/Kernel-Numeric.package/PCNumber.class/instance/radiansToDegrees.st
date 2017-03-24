@@ -1,4 +1,4 @@
-
+as yet unclassified
 radiansToDegrees
 	"The receiver is assumed to represent radians. Answer the conversion to 
 	degrees."

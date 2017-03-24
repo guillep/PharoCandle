@@ -1,4 +1,4 @@
-
+as yet unclassified
 - anInteger
 	"Primitive. Subtract the argument from the receiver and answer with an
 	Integer result. Fail if either the argument or the result is not a

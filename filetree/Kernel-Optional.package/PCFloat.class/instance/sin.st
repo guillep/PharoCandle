@@ -1,4 +1,4 @@
-
+as yet unclassified
 sin
 	"Answer the sine of the receiver taken as an angle in radians.
 	 Optional. See Object documentation whatIsAPrimitive."
@@ -17,11 +17,11 @@ sin
 	self2 := 0.0 - (self * self).
 	i := 2.0.
 	[ delta > Epsilon ]
-		whileTrue: [ "once"
-			delta := delta * self2 / (i * (i + 1.0)).
+		whileTrue: [ delta := delta * self2 / (i * (i + 1.0)).
 			i := i + 2.0.
 			sum := sum + delta.	"twice"
 			delta := delta * self2 / (i * (i + 1.0)).
 			i := i + 2.0.
 			sum := sum + delta ].
+	"once"
 	^ sum

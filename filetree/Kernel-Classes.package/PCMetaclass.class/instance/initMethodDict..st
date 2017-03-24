@@ -1,4 +1,4 @@
-
+as yet unclassified
 initMethodDict: newMethodDict
 	"Initialize myself with the given method dictionary. Create but do not initialize my soleInstance."
 

@@ -1,4 +1,4 @@
-
+as yet unclassified
 collect: aBlock
 	"Evaluate aBlock with each of my elements as the argument. Collect the 
 	resulting values into a collection that is like me. Answer the new 

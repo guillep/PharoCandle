@@ -1,4 +1,4 @@
-
+as yet unclassified
 doesNotUnderstand: aMessage
 	"Handle a failed attempt to send the given message to the receiver because the receiver does not implement or inherit a method for the message selector. The 'doesNotUnderstand:' message is sent by the virtual machine when a message send fails. If the receiver has an error handling block, invoke it. Otherwise, report an error."
 

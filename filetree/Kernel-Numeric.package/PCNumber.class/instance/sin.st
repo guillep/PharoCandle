@@ -1,4 +1,4 @@
-
+as yet unclassified
 sin
 	"The receiver represents an angle measured in radians. Answer its sine."
 

@@ -1,4 +1,4 @@
-
+as yet unclassified
 primImageName
 	"Answer the full path name for the current image."
 

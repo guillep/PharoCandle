@@ -1,4 +1,4 @@
-
+as yet unclassified
 collect: aBlock
 	"Return a Set containing the result of evaluating aBlock for each element of this set."
 

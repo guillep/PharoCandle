@@ -1,13 +1,14 @@
 {
-	"commentStamp" : "",
-	"super" : "PCLinkedList",
 	"category" : "Kernel-Optional",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
 	"instvars" : [
-		"excessSignals"
-	],
+		"excessSignals" ],
 	"name" : "PCSemaphore",
-	"type" : "normal"
-}
+	"pools" : [
+		 ],
+	"super" : "PCLinkedList",
+	"type" : "normal" }

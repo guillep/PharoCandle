@@ -1,4 +1,4 @@
-
+as yet unclassified
 = aNumber
 	aNumber isNumber
 		ifFalse: [ ^ false ].

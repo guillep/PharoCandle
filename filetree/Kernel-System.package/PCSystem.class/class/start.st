@@ -1,4 +1,4 @@
-
+as yet unclassified
 start
 	self log: 'Welcome to Pharo Candle edition!' substrings asString.
 	self log: self tinyBenchmarks.

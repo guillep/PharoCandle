@@ -1,4 +1,4 @@
-
+as yet unclassified
 arcCos
 	"Answer the angle in radians."
 

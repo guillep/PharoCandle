@@ -1,4 +1,4 @@
-
+as yet unclassified
 removeIndex: removedIndex
 	| index |
 	index := removedIndex.

@@ -1,4 +1,4 @@
-
+as yet unclassified
 peekFor: anObject
 	"If my next element equals the given object, skip it and answer true. Otherwise, answer false and leave my position unchanged."
 

@@ -1,4 +1,4 @@
-
+as yet unclassified
 removeFirst
 	"Remove and answer the first element. Raise an error if I am empty."
 

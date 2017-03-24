@@ -1,11 +1,14 @@
 {
-	"commentStamp" : "",
-	"super" : "PCSet",
 	"category" : "Kernel-Optional",
-	"classinstvars" : [ ],
-	"pools" : [ ],
-	"classvars" : [ ],
-	"instvars" : [ ],
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
 	"name" : "PCIdentitySet",
-	"type" : "normal"
-}
+	"pools" : [
+		 ],
+	"super" : "PCSet",
+	"type" : "normal" }

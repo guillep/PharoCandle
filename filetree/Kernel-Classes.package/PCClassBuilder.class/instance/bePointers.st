@@ -1,3 +1,3 @@
-
+as yet unclassified
 bePointers
-	^ formats := #(pointers)
+	^ formats := #(#pointers)

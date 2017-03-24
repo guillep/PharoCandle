@@ -1,3 +1,0 @@
-
-replaceFrom: start
-	self errorNoModification

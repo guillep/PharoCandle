@@ -1,4 +1,4 @@
-
+as yet unclassified
 numLiterals
 	"Answer the number of literals used by the receiver."
 

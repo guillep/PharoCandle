@@ -1,4 +1,4 @@
-
+as yet unclassified
 max: aMagnitude
 	"Answer the receiver or the argument, whichever has the greater 
 	magnitude."

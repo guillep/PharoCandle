@@ -1,4 +1,4 @@
-
+as yet unclassified
 allInstVarNames
 	"Answer an Array of the names of all my instance variables."
 

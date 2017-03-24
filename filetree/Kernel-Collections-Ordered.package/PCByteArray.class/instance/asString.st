@@ -1,4 +1,4 @@
-
+as yet unclassified
 asString
 	"Answer the receiver converted to a String."
 

@@ -1,4 +1,4 @@
-
+as yet unclassified
 hash
 	| l m |
 	(l := m := self size) <= 2

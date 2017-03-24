@@ -1,4 +1,4 @@
-
+as yet unclassified
 removeFirst
 	"Remove the first element of the receiver and answer it. If the receiver is 
 	empty, create an error notification."
