@@ -175,7 +175,7 @@ PCClassBuilder >> compactClassIndexFor: aClassName
 		#PCString
 		#PCBlock
 		nil
-		#PCMethodContext
+		#PCContext
 		nil
 		nil "#PCBitmap"
 		nil

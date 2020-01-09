@@ -1,0 +1,21 @@
+PCError
+	superclass: #PCException;
+	instanceSpecification: #(#pointers #words);
+	instanceVariables: #();
+	classVariables: #();
+	package: #'Kernel-Exceptions'.
+
+PCError >> defaultAction
+[
+	"No one has handled this error, but now give them a chance to decide how to debug it.  If none handle this either then open debugger (see UnhandedError-defaultAction)"
+
+	"PCUnhandledError signalForException: self"
+	^ 'Unhandled error'
+]
+
+PCError >> isResumable
+[
+	"Determine whether an exception is resumable."
+
+	^ false
+]
